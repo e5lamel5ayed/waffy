@@ -17,6 +17,7 @@ function Header() {
             <a href="#">وفّي أعمال</a>
             <a href="#">الأسئلة الشائعة</a>
             <a href="#">الميزات</a>
+            <a href="#">الميزات</a>
           </div>
           <h1 className="logo">وفّي</h1>
           
