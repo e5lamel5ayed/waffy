@@ -9,7 +9,7 @@ body {
   /* النافبار */
   .navbar {
     background-color: white;
-    box-shadow: 0 4px 10px 10px rgb(238, 117, 4) !important;
+    box-shadow: 0 4px 10px 10px rgb(194, 248, 250);
 
     position: sticky;
     top: 0;
@@ -25,19 +25,7 @@ body {
     align-items: center;
     padding: 0 20px;
   }
-  
-  .logo {
-    font-size: 32px;
-    font-weight: bold;
-    color: #1e40af;
-    cursor: pointer;
-    transition: color 0.3s;
-  }
-  
-  .logo:hover {
-    color: #2563eb;
-  }
-  
+ 
   .nav-links {
     display: flex;
     gap: 20px;
@@ -58,13 +46,13 @@ body {
     color: #305be7;
   }
   
-  .btn {
-    background-color: #000000;
-    color: white;
-    padding: 15px 15px;
-    font-size: 18px;
-    font-weight: 700;
-    border-radius: 3px;
+  .btnlog{
+    background-color: #000000 ;
+    color: white ;
+    padding: 15px 23px ;
+    font-size: 15px;
+    font-weight: 700 ;
+    border-radius: 4px;
     border: none;
     cursor: pointer;
    
@@ -76,118 +64,96 @@ body {
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
   }
 
-
-
-/* تصميم الهيرو سيكشن */
-.hero {
-  text-align: center;
-  padding: 100px 20px;
+  /* Menu Button */
+.menu-btn {
+  display: none;
+  background: none;
+  border: none;
+  font-size: 24px;
+  cursor: pointer;
+  padding: 8px;
+  color: #10212e;
+  transition: color 0.3s;
 }
 
-.hero h2 {
-  font-size: 42px;
-  color: #111827;
-  font-weight: bold;
-  margin-bottom: 20px;
+.menu-btn:hover {
+  color: #10212e;
 }
 
-.hero span {
+.sidebar {
+  position: fixed;
+  top: 0;
+  right: -250px; /* Changed from left to right for RTL */
+  width: 250px;
+  height: 100%;
+  background: white;
+  box-shadow: -2px 0 5px rgba(0, 0, 0, 0.1); /* Adjusted shadow for RTL */
+  transition: right 0.3s ease; /* Changed from left to right */
+  display: flex;
+  flex-direction: column;
+  padding-top: 20px;
+  z-index: 100;
+}
+
+.sidebar a {
+  padding: 15px;
+  text-decoration: none;
+  color: #0d0f13;
+  font-size: 20px;
+  font-weight: 500;
+  transition: background 0.3s, color 0.3s;
+  text-align: right; /* Added for RTL */
+}
+
+.sidebar a:hover {
+  background: #dbeafe;
   color: #1e40af;
-  display: inline-block;
-  transition: transform 0.3s;
 }
 
-.hero span:hover {
-  transform: scale(1.05);
+.sidebar.active {
+  right: 0; /* Changed from left to right */
 }
 
-.hero p {
-  font-size: 30px;
-  color: #6b7280;
-  max-width: 600px;
-  margin: 0 auto 40px;
+.close-btn {
+  text-align: left; /* Changed from right to left for RTL */
+  padding: 10px;
+  font-size: 25px;
+  cursor: pointer;
 }
 
-/* تنسيق الخطوات */
-.steps {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  gap: 20px;
-  flex-wrap: wrap;
-  max-width: 800px; /* توسيع الـ container عشان الأيقونات تكون بالعرض */
-  margin: auto;
+
+
+/* Media Queries */
+@media (max-width: 1024px) {
+  .nav-links {
+    display: none;
+  }
+  
+  .menu-btn {
+    display: block;
+  }
+  
+  .nav-container {
+    justify-content: space-between;
+   
+  }
 }
 
-/* تصميم كل خطوة */
-.step {
-  text-align: center;
-  width: 150px;
-  transition: transform 0.3s ease-in-out;
-}
-
-.step img {
-  width: 100px;
-  height: 80px;
-  transition: transform 0.3s ease-in-out;
-}
-
-/* تأثير الهوفر على الأيقونات */
-.step:hover {
-  transform: scale(1.1);
-}
-
-/* تصميم صورة الاكسترا بين الأيقونات */
-.extra-img {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  width: 50px;
-}
-
-/* الصورة الافتراضية */
-.extra-img img {
-  width: 60px;
-  height: auto;
-}
-
-/* تصميم الريسبونسيف للشاشات الصغيرة */
 @media (max-width: 768px) {
-  .steps {
-    flex-direction: column;
-    gap: 10px;
+  .nav-links {
+      display: none;
   }
 
-  .extra-img {
-    width: auto;
-    height: 30px;
+  .menu-icon {
+      display: block;
   }
-
-  .extra-img img {
-    width: auto;
-    height: 30px;
-    transform: rotate(270deg); /* تدوير الصورة بالطول */
+  .nav-container {
+    display: flex;
+    justify-content: space-between;
+   
   }
-}
+  
+} 
 
-/* تصميم الريسبونسيف للشاشات الصغيرة جدًا */
-@media (max-width: 480px) {
-  .extra-img img {
-    position: relative;
-    bottom: 17px;
-    width: 90px; /* تصغير عرض الصورة */
-    height: 20px; /* تقليل الطول */
-    transform: rotate(270deg); /* جعل السهم يشير للأسفل */
-  }
-}
 
-/* تحديد اللون الأساسي */
-.primary-text {
-  color: #1e40af; /* أو استخدمي var(--primary) لو فيه تعريف له */
-  display: inline-block;
-  transition: transform 0.3s ease-in-out;
-}
 
-.primary-text:hover {
-  transform: scale(1.05);
-}

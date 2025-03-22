@@ -8,7 +8,7 @@ function Section1() {
     <div className="sec1 container-fluid d-flex align-items-center justify-content-center">
     <div className="row w-100 justify-content-around mt-4">
       {/* الجزء الأيسر - الصورة */}
-      <div className="col-md-7 d-flex  justify-content-center">
+      <div className="col-md-7 d-flex  justify-content-center order-md-1">
         <img
           src="/src/assets/Group-7887711.webp"
           className="img-fluid"
@@ -18,7 +18,7 @@ function Section1() {
       </div>
   
       {/* الجزء الأيمن - النص والنموذج */}
-      <div className="col-md-5 d-flex flex-column ">
+      <div className="col-md-5 d-flex flex-column order-md-2">
         <h3 className="fs-2 text-end ">وفّي، شريكك المالي في عالم الوساطة</h3>
         <p className=" text-end fs-5 mt-3">
           مع وفّي نضمن الأموال، لتركز على عملك كوسيط ضامن لإدارة المعاملات بثقة وأمان

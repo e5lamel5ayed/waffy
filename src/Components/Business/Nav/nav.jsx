@@ -1,17 +1,27 @@
-import React from 'react';
-import './nav.css'
+import React, { useState } from 'react';
+import { Menu } from 'lucide-react';import './nav.css'
 //-------------------------
 
 function Nav() {
+  const [isSidebarOpen, setSidebarOpen] = useState(false);
+
+  const toggleSidebar = () => {
+    setSidebarOpen(!isSidebarOpen);
+  };
   return (
     <>
- <nav className="navbar bg-white shadow-sm py-4 px-4">
-  <div className="container-fluid d-flex justify-content-between align-items-center">
+ <nav className="navbar bg-white  py-4 px-2">
+  <div className="nav-container container-fluid d-flex justify-content-between align-items-center">
     {/* زر تسجيل الدخول */}
-    <button className="btn btn-dark ">تسجيل الدخول</button>
+    <button className="btnlog ">تسجيل الدخول</button>
 
+
+          {/* Menu Button */}
+          <button className="menu-btn" onClick={toggleSidebar}>
+            <Menu size={33} />
+          </button>
     {/* روابط التنقل */}
-    <div className="d-flex gap-4">
+    <div className=" gap-4 nav-links">
       <a href="#" className="text-dark text-decoration-none fw-semibold">وفّي أفراد</a>
       <a href="#" className="text-dark text-decoration-none fw-semibold">الأسئلة الشائعة</a>
       <a href="#" className="text-dark text-decoration-none fw-semibold">كيف تستخدم وفّي</a>
@@ -27,6 +37,19 @@ function Nav() {
     />
   </div>
 </nav>
+     
+      {/* Sidebar */}
+      <div className={`sidebar ${isSidebarOpen ? "active" : ""}`}>
+        <div className="close-btn" onClick={() => setSidebarOpen(false)}>
+          &times;
+        </div>
+        <a href="#" className="text-dark text-decoration-none fw-semibold">وفّي أفراد</a>
+      <a href="#" className="text-dark text-decoration-none fw-semibold">الأسئلة الشائعة</a>
+      <a href="#" className="text-dark text-decoration-none fw-semibold">كيف تستخدم وفّي</a>
+      <a href="#" className="text-dark text-decoration-none fw-semibold">لماذا وفّي</a>
+      
+      </div>
+   
 
     </>
   );
