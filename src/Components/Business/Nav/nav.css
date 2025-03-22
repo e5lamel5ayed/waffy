@@ -9,7 +9,8 @@ body {
   /* النافبار */
   .navbar {
     background-color: white;
-    box-shadow: 0 2px 4px rgb(226 239 246);
+    box-shadow: 0 4px 10px 10px rgb(238, 117, 4) !important;
+
     position: sticky;
     top: 0;
     z-index: 50;
