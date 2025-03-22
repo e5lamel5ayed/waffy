@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
+import { Link } from 'react-router-dom';
 import { Menu } from 'lucide-react';
 import '../CSS/nav.css';
-
+//-------------------------------------------------
 function Nav() {
   const [isSidebarOpen, setSidebarOpen] = useState(false);
 
@@ -15,7 +16,7 @@ function Nav() {
       <nav className="navbar">
         <div className="nav-container">
           {/* Login Button */}
-          <button className="login-btn">تسجيل الدخول</button>
+          <Link to="/login" className="login-btn">تسجيل الدخول</Link>
 
           {/* Menu Button */}
           <button className="menu-btn" onClick={toggleSidebar}>
@@ -24,12 +25,12 @@ function Nav() {
 
           {/* Regular Links */}
           <div className="nav-links">
-            <a href="#">تحدث معنا</a>
-            <a href="#">التوظيف</a>
-            <a href="#">المدونة</a>
-            <a href="#">وفّي أعمال</a>
-            <a href="#">الأسئلة الشائعة</a>
-            <a href="#">الميزات</a>
+            <Link to="/contact">تحدث معنا</Link>
+            <Link to="/jobs">التوظيف</Link>
+            <Link to="/blog">المدونة</Link>
+            <Link to="/business">وفّي أعمال</Link>
+            <Link to="/faq">الأسئلة الشائعة</Link>
+            <Link to="/features">الميزات</Link>
           </div>
 
           {/* Logo */}
@@ -42,13 +43,13 @@ function Nav() {
         <div className="close-btn" onClick={() => setSidebarOpen(false)}>
           &times;
         </div>
-        <a href="#">تحدث معنا</a>
-        <a href="#">التوظيف</a>
-        <a href="#">المدونة</a>
-        <a href="#">وفّي أعمال</a>
-        <a href="#">الأسئلة الشائعة</a>
-        <a href="#">الميزات</a>
-        <button className="login-btn">تسجيل الدخول</button>
+        <Link to="/contact">تحدث معنا</Link>
+        <Link to="/jobs">التوظيف</Link>
+        <Link to="/blog">المدونة</Link>
+        <Link to="/business">وفّي أعمال</Link>
+        <Link to="/faq">الأسئلة الشائعة</Link>
+        <Link to="/features">الميزات</Link>
+        <Link to="/login" className="login-btn">تسجيل الدخول</Link>
       </div>
     </div>
   );
