@@ -37,7 +37,7 @@ function Hero() {
         ))}
       </div>
 
-      <button className="cta-btn">سجل الآن</button>
+      <button className="btn">سجل الآن</button>
     </div>
   );
 }
