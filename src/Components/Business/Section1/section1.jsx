@@ -8,12 +8,12 @@ function Section1() {
     <div className="sec1 container-fluid d-flex align-items-center justify-content-center">
     <div className="row w-100 justify-content-around mt-4">
       {/* الجزء الأيسر - الصورة */}
-      <div className="col-md-7 d-flex  ">
+      <div className="col-md-7 d-flex  justify-content-center">
         <img
           src="/src/assets/Group-7887711.webp"
           className="img-fluid"
           alt="Illustration"
-          style={{ maxWidth: "550px", height: "auto" }}
+          style={{ maxWidth: "100%", height: "auto" }}
         />
       </div>
   
