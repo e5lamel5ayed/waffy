@@ -1,0 +1,28 @@
+.sec1{
+    background-image: linear-gradient(135deg, #cefcff 13.72%, rgba(255, 223, 194, 0.1) 75%);
+}
+.sec1 h2{
+    color: #10212e;
+    font-weight: 800;
+ 
+    font-size: 44px;
+ 
+}
+.sec1 p{
+   
+    color: #404440;
+}
+.form{
+    background-color: #ffffff;
+    border-radius: 20px;
+}
+.form p{
+    color: #10212e;
+}
+.form input{
+    padding: 13px 15px;
+}
+.form button{
+    padding-top: 9px;
+    padding-bottom: 9px;
+}
