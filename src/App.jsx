@@ -1,12 +1,12 @@
 import React from 'react';
-import Header from "./Components/Header.jsx"
+import Nav from "./Components/Nav.jsx"
 import Hero from "./Components/Hero.jsx"
 //-------------------------
 
 function App() {
   return (
     <>
-   <Header/>
+   <Nav/>
    <Hero/>
     </>
   );

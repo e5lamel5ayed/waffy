@@ -1,7 +1,7 @@
 import React from 'react';
 import  '../CSS/nav.css'
 //-------------------------------
-function Header() {
+function Nav() {
   return (
     <div>
       {/* Navbar */}
@@ -28,4 +28,4 @@ function Header() {
   );
 }
 
-export default Header;
+export default Nav;
