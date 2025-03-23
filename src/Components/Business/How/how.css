@@ -9,5 +9,22 @@ h1,h2{
   height: 50%;
 }
   
-
+/* Media Queries */
+@media (max-width: 1024px) {
   
+}
+
+@media (max-width: 768px) {
+  .palyVedio{
+max-width: 100%;
+height: 100%;
+margin-top: 50px;
+
+  }
+  .num{
+    display: block;
+  }
+} 
+
+
+ 

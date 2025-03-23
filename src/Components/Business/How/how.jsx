@@ -10,8 +10,8 @@ function How() {
 
     <div className="row">
       <div className="col-md-6 d-flex  justify-content-center mt-5 ">
-      <Lottie animationData={playAnimation}  style={{zIndex:"-2"}}/> 
-<img src="\src\assets\img\Imgur-magic.webp" class=""  style={{ maxWidth: "100%", height: "50%" ,marginTop:"200px"}}/>
+      {/* <Lottie animationData={playAnimation}  style={{zIndex:""}}/>  */}
+<img src="\src\assets\img\Imgur-magic.webp" class="palyVedio"  style={{ maxWidth: "100%", height: "50%" ,marginTop:"200px"}}/>
 
       </div>
 
@@ -22,14 +22,14 @@ function How() {
           </div>
         </div>
        < div className="row mt-4 py-2">
-          <div className="col-md-12 text-end d-flex justify-content-end">
+          <div className="num col-md-12 text-end d-flex justify-content-end">
            
             <div class="mt-3 px-3 ">
             <h4 class="mb-3" >الاتفاق: 🤝 تسجيل الوسيط الضامن للاتفاق</h4>
             <p  class="mb-2 fs-5">بعد اتفاق الأطراف ووصولهم لحل مرضي للجميع يتم تسجيل الاتفاق لدى وفّي.</p>
             </div>
             <img src="\src\assets\img\1.webp" class="img-fluid feature-img" height="100px"/>
-          <div></div>
+      
           </div>
         </div>
         < div className="row  py-2">
@@ -61,7 +61,7 @@ function How() {
           
             <div class="mt-3 px-3 ">
             <h4 class="mb-3" >التقديم: 📝 المودع له يُقدم الوثائق</h4>
-            <p  class="mb-2 fs-">يقوم المُطالب بإتمام الإجراءات المتفق عليها</p>
+            <p  class="mb-2 fs-5">يقوم المُطالب بإتمام الإجراءات المتفق عليها</p>
             </div>
             <img src="\src\assets\img\4.webp" class="img-fluid feature-img"/>
         

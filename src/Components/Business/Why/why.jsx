@@ -29,7 +29,7 @@ function Why() {
   <div className="row mb-5">
     {/* العنصر الأول */}
     <div className="col-md-4 d-flex justify-content-end">
-      <div className="feature-box text-end p-4 " >
+      <div className="feature-box  p-4 " >
         <img src="/src/assets/img/a.svg" alt="وفّي يوفر الوقت" className="feature-icon mb-3" style={{ width: "50px", height: "50px" }} />
         <p className="feature-text m-0">وفّي يوفر الوقت والجهد في عملك</p>
       </div>
@@ -37,7 +37,7 @@ function Why() {
 
     {/* العنصر الثاني */}
     <div className="col-md-4 d-flex justify-content-end">
-      <div className="feature-box text-end p-4 "  >
+      <div className="feature-box  p-4 "  >
         <img src="\src\assets\img\money-1.svg" alt="وفّي يوفر الوقت" className="feature-icon mb-3" style={{ width: "50px", height: "50px" }} />
         <p className="feature-text m-0">وفّي يقدم حماية وضمانًا لأموال عملائك.</p>
       </div>
@@ -45,7 +45,7 @@ function Why() {
 
     {/* العنصر الثالث */}
     <div className="col-md-4 d-flex justify-content-end">
-      <div className="feature-box text-end p-4 ">
+      <div className="feature-box  p-4 ">
         <img src="\src\assets\img\Group-7887705-1.svg" alt="وفّي يوفر الوقت" className="feature-icon mb-3" style={{ width: "50px", height: "50px" }} />
         <p className="feature-text m-0">وفّي يُسهّل عملك كوسيط في التسوية وإدارة أموال عملائك بكل يسر وأمان.</p>
       </div>
