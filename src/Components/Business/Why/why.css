@@ -3,11 +3,7 @@
     padding: 3rem 13px;
     text-align: right;
   }
-  
-  .container {
-    width: 85%;
-    margin: auto;
-  }
+ 
   
   .section-title {
     font-size: 2rem;
@@ -22,19 +18,14 @@
     margin-bottom: 2rem;
   }
   
-  .features {
-    display: flex;
-    justify-content: space-between;
-    gap: 1.5rem;
-  }
+  
   
   .feature-box {
     background-image: linear-gradient(108deg, rgba(244, 189, 92, 0.04), rgba(0, 215, 209, 0.04));
     padding: 2rem;
     border-radius: 10px;
  
-    width: 30%;
-    text-align: center;
+    
   }
   
   .feature-icon {

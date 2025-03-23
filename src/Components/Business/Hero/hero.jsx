@@ -1,16 +1,16 @@
 import React from "react";
-import "./section1.css";
+import "./hero.css";
 //-------------------------
 
-function Section1() {
+function Hero() {
   return (
   
-    <div className="sec1 container-fluid d-flex align-items-center justify-content-center">
-    <div className="row w-100 justify-content-around mt-4">
+    <div className="sec1 container-fluid d-flex align-items-center justify-content-center ">
+    <div className="row w-100 justify-content-around mt-4 mb-5">
       {/* الجزء الأيسر - الصورة */}
-      <div className="col-md-7 d-flex  justify-content-center order-md-1">
+      <div className="col-md-7 d-flex  justify-content-center ">
         <img
-          src="/src/assets/Group-7887711.webp"
+          src="/src/assets/img/Group-7887711.webp"
           className="img-fluid"
           alt="Illustration"
           style={{ maxWidth: "100%", height: "auto" }}
@@ -47,4 +47,4 @@ function Section1() {
   );
 }
 
-export default Section1;
+export default Hero;

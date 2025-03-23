@@ -30,7 +30,7 @@ function Nav() {
 
     {/* اللوجو */}
     <img
-      src="/src/assets/photo_2025-03-21_17-33-57.jpg"
+      src="/src/assets/img/photo_2025-03-21_17-33-57.jpg"
       alt="Logo"
       className="logo"
       style={{ height: "40px" }}
