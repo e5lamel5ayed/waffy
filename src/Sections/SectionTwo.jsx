@@ -82,6 +82,7 @@ function SectionTwo() {
           )}
         </div>
       </div>
+      <button className="btn" style={{ marginLeft: 'auto', marginRight: '180px' }}>اشترك الآن</button>
     </div>
   );
 }
