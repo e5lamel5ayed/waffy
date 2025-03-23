@@ -1,10 +1,10 @@
 import React from 'react';
-import img from "../assets/img.png";
-import img2 from "../assets/img2.png";
-import img3 from "../assets/img3.png";
-import img4 from "../assets/img4.png";
-import img5 from "../assets/img5.png";
-import extraImg from "../assets/step.png";
+import img from "../assets/img/img.png";
+import img2 from "../assets/img/img2.png";
+import img3 from "../assets/img/img3.png";
+import img4 from "../assets/img/img4.png";
+import img5 from "../assets/img/img5.png";
+import extraImg from "../assets/img/step.png";
 import '../CSS/hero.css'
 //--------------------------------
 const steps = [
