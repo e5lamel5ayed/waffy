@@ -31,7 +31,7 @@ body {
 
 .logo {
   font-size: 32px;
-  font-weight: bold;
+  font-weight: bolder;
   color: #1e40af;
   cursor: pointer;
   transition: color 0.3s;
@@ -153,109 +153,3 @@ body {
     justify-content: space-between;
   }
 }
-
-/* Hero Section */
-.hero {
-  text-align: center;
-  padding: 100px 20px;
-}
-
-.hero h2 {
-  font-size: 42px;
-  color: #111827;
-  font-weight: bold;
-  margin-bottom: 20px;
-}
-
-.hero span {
-  color: #1e40af;
-  display: inline-block;
-  transition: transform 0.3s;
-}
-
-.hero span:hover {
-  transform: scale(1.05);
-}
-
-.hero p {
-  font-size: 20px;
-  color: #000000;
-  max-width: 600px;
-  margin: 0 auto 40px;
-}
-
-/* Steps Section */
-.steps {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  gap: 15px;
-  flex-wrap: nowrap;
-  max-width: 100%;
-  margin: auto;
-  overflow-x: auto;
-}
-
-/* Individual Step */
-.step {
-  text-align: center;
-  flex: 1;
-  min-width: 120px;
-  transition: transform 0.3s ease-in-out;
-}
-
-.step img {
-  width: 80px;
-  height: 60px;
-  transition: transform 0.3s ease-in-out;
-}
-
-/* Button Styles */
-.btn {
-  font-size: 20px;
-  font-weight: bold;
-  border-radius: 10px;
-  background-color: #1448b8;
-  color: white;
-  padding: 10px 20px;
-  border: none;
-  cursor: pointer;
-  transition: background-color 0.3s ease, transform 0.2s ease;
-}
-
-.btn:hover {
-  background-color: #0f3a8f;
-  transform: scale(1.05);
-}
-
-/* Responsive Design */
-@media (max-width: 1024px) {
-  .steps {
-      flex-wrap: wrap;
-      justify-content: center;
-  }
-
-  .step {
-      flex: none;
-      width: 25%;
-  }
-}
-
-@media (max-width: 768px) {
-  .nav-links {
-      display: none;
-  }
-
-  .menu-icon {
-      display: block;
-  }
-
-  .steps {
-      flex-direction: column;
-      gap: 10px;
-  }
-
-  .step {
-      width: 100%;
-  }
-} 

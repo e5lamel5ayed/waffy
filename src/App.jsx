@@ -1,14 +1,18 @@
 import React from 'react';
 import { HashRouter as Router, Routes, Route } from 'react-router-dom';
 import Nav from "./Components/Nav";
-import Hero from "./Components/Hero";
-//-----------------------------------------
+import Hero from "./Sections/Hero";
+import SectionTwo from './Sections/SectionTwo';
+
+//---------------------------------------------
+
 function App() {
   return (
     <Router>
       <Nav />
+      <Hero />
+      <SectionTwo/>
       <Routes>
-        <Route path="/" element={<Hero />} />
         <Route path="/contact" element={<h1>تحدث معنا</h1>} />
         <Route path="/jobs" element={<h1>التوظيف</h1>} />
         <Route path="/blog" element={<h1>المدونة</h1>} />
@@ -22,4 +26,3 @@ function App() {
 }
 
 export default App;
-
