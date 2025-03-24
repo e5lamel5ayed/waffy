@@ -1,12 +1,13 @@
 import { useState } from "react";
 import { FaPlayCircle } from "react-icons/fa";
-import securePayment from "../assets/secure-payment.png";
-import seriousClients from "../assets/serious-clients.png";
-import salesManagement from "../assets/sales-management.png";
-import supportTeam from "../assets/support-team.png";
-import sellerImage from "../assets/seller.png";
-import buyerImage from "../assets/buyer.png";
-import '../CSS/section_two.css';
+import securePayment from "../../assets/secure-payment.png";
+import seriousClients from "../../assets/serious-clients.png";
+import salesManagement from "../../assets/sales-management.png";
+import supportTeam from "../../assets/support-team.png";
+import sellerImage from "../../assets/seller.png";
+import buyer from "../../assets/buyer.png";
+
+import "../Sectiontwo/section_two.css"
 //-----------------
 function SectionTwo() {
   const [activeTab, setActiveTab] = useState('seller');

@@ -5,7 +5,7 @@ import img3 from "../assets/img3.png";
 import img4 from "../assets/img4.png";
 import img5 from "../assets/img5.png";
 import extraImg from "../assets/step.png";
-import '../CSS/hero.css'
+import '../Hero/hero.css'
 //--------------------------------
 const steps = [
   { img: img, text: "البائع يسجل تفاصيل المنتج أو الخدمة" },

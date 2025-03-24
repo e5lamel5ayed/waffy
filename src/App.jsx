@@ -1,8 +1,8 @@
 import React from 'react';
 import { HashRouter as Router, Routes, Route } from 'react-router-dom';
 import Nav from "./Components/Nav";
-import Hero from "./Sections/Hero";
-import SectionTwo from './Sections/SectionTwo';
+import SectionTwo from "./Sections/Sectiontwo/SectionTwo";
+
 
 //---------------------------------------------
 
@@ -12,6 +12,9 @@ function App() {
       <Nav />
       <Hero />
       <SectionTwo/>
+      
+    
+
       <Routes>
         <Route path="/contact" element={<h1>تحدث معنا</h1>} />
         <Route path="/jobs" element={<h1>التوظيف</h1>} />
