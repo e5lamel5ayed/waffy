@@ -26,3 +26,18 @@
     padding-top: 9px;
     padding-bottom: 9px;
 }
+.form .log{
+    background-color:#1a7efb;
+    color: white;
+    border: none;
+    border-radius:7px;
+    padding: 8px 2px;
+    cursor: pointer;
+    transition: background-color 0.15s ease-in-out, 
+            border-color 0.15s ease-in-out, 
+            box-shadow 0.15s ease-in-out;
+
+}
+.form .log:hover{
+    background-color:#1a7ffbbb;
+}

@@ -1,0 +1,52 @@
+import React, { useState } from "react";
+import "./fqa.css";
+
+const FAQ = () => {
+  const [openIndex, setOpenIndex] = useState(null);
+
+  const faqs = [
+    {
+      question: "ما هو وفي وما الخدمة التي يقدمها؟",
+      answer:
+        "تقدم وفي خدمة الضمان وحماية الأموال (كطرف مستقل) لكل من طرفي المعاملة (البائع والمشتري) لحين إنهاء إجراءات المعاملة وبالشروط المتفق عليها بين الأطراف ",
+    },
+    {
+      question: "كيف يمكنني التسجيل في وفي؟",
+      answer: "يمكنك التسجيل عبر الموقع أو التطبيق للاستفادة من الخدمة واتباع الخطوات الموضحة لإنشاء حساب جديد، كما يمكنك التواصل مع خدمة العملاء لمزيد من المساعدة أو في حال الرغبة بالتسجيل بميزة الوسيط الضامن (وفي أعمال) المخصص للوسطاء بكافة المجالات.",
+    },
+    {
+      question: "هل وفي آمن؟",
+      answer: "وفي عبارة عن خدمة معتمدة من شركة سعودية مسجلة لدى وزارة التجارة باسم (شركة وفي للتقنية المالية) ورقم سجل “403043377” وتقدم الخدمة من خلال بنوك سعودية ( الراجحي – الإنماء – بنك الخليج الدولي ) وتستخدم بوابات دفع أمنة ( ميسر – هايبر باي ) ومعتمدة من البنك المركزي لضمان الأموال وإرسالها",
+    },
+    {
+      question: "ما هي طرق الدفع المتاحة عبر وفي",
+      answer: "يمكن استخدام طرق دفع متعددة مثل بطاقات الائتمان (فيزا – مدى – مساتر كارد) وابل باي والتحويل البنكي وخدمة التقسيط من خلال Tabby",
+    },
+
+  ];
+
+  const toggleFAQ = (index) => {
+    setOpenIndex(openIndex === index ? null : index);
+  };
+
+  return (
+    <div className="faq-section">
+    <div className=" container">
+      <h1 className="faq-title text-center mb-5">الأسئلة الشائعة</h1>
+
+      {faqs.map((faq, index) => (
+        <div key={index} className="faq-item">
+          <div className="faq-question" onClick={() => toggleFAQ(index)}>
+          <span className="faq-icon">{openIndex === index ? "x" : "+"}</span>
+            <h2 class="text-muted">{faq.question}</h2>
+            
+          </div>
+          {openIndex === index && <p className="faq-answer text-end">{faq.answer}</p>}
+        </div>
+      ))}
+    </div>
+    </div>
+  );
+};
+
+export default FAQ;

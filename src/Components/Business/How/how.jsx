@@ -6,16 +6,16 @@ import playAnimation from '../../../assets/animation/Animation - 1742723749640.j
 
 function How() {
   return (
-    <div className="how container-fluid px-4">
+    <div className="how container-fluid px-4 py-5">
 
       <div className="row">
         <div className="col-md-6 d-flex  justify-content-center mt-5 align-items-center">
-          <Lottie animationData={playAnimation} style={{ position:'absolute', cursor:'pointer' }} />
+          <Lottie animationData={playAnimation} style={{ position:'absolute', cursor:'pointer' ,width:'115px',color:'#1448B8'}} class="animation" />
           <img src="\src\assets\img\Imgur-magic.webp" class="palyVedio" style={{ maxWidth: "100%" }} />
 
         </div>
 
-        <div className="col-md-6 text-end">
+        <div className="col-md-6">
           <div className="row ">
             <div className="col-md-12 mt-5">
               <h1 class="text-end">كيف تستخدم وفي لإتمام معاملاتك</h1>

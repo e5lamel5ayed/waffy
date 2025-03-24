@@ -37,7 +37,7 @@ function Hero2() {
                 className="form-control mb-3  text-end "
                 placeholder="رقم الجوال"
               />
-              <button className="btn btn-primary w-100  fw-bold">سجل الآن</button>
+              <button className=" w-100  fw-bold log">سجل الآن</button>
             </div>
           </div>
         </div>

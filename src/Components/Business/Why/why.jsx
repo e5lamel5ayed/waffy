@@ -19,11 +19,11 @@ function Why() {
 //         </div>
 //     </div>
 //    </div>
-<section class="why-wafi">
-  <div class="container-fluid">
-    <h2 class="section-title mb-4">لماذا وفّي؟</h2>
+<section class="why-wafi ">
+  <div class="container-fluid py-5">
+    <h2 class="section-title mb-4 text-end">لماذا وفّي؟</h2>
     <p class="section-description mb-5">
-      استخدم وفّي، وأمن على أموال عملائك بثقة. مع وفّي، نضمن حماية موثوقة لأموال الأطراف في المعاملات التي تديرها
+      استخدم وفّي، وأمن على أموال عملائك بثقة. مع وفّي، نضمن حماية موثوقة <pre/> لأموال الأطراف في المعاملات التي تديرها
     </p>
    
   <div className="row mb-5">

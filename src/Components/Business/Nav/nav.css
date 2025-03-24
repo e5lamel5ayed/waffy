@@ -17,7 +17,7 @@ body {
 }
 
 .nav-container {
-  max-width: 1200px;
+  max-width: 100%;
   margin: 0 auto;
   display: flex;
   justify-content: space-between;
@@ -25,12 +25,12 @@ body {
   padding: 0 20px;
 }
 
-.nav-links {
-  display: flex;
+.nav-link {
+ display: flex;
   gap: 20px;
 }
 
-.nav-links a {
+.nav-link a {
   text-decoration: none;
   color: #121326;
   font-size: 20px;
@@ -40,9 +40,9 @@ body {
   transition: background 0.3s, color 0.3s;
 }
 
-.nav-links a:hover {
+.nav-link a:hover {
   /* background: #dbeafe; */
-  color: #305be7;
+  color: #305be7 !important;
 }
 
 .btnlog {
