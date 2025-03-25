@@ -1,7 +1,7 @@
 import React from 'react';
 import { HashRouter as Router, Routes, Route } from 'react-router-dom';
 import Nav from "./Components/Nav";
-import Hero from "./Sections/Hero/Hero";
+
 import SectionTwo from "./Sections/Sectiontwo/SectionTwo";
 import Sectionthree from "./Sections/Sectionthree/Sectionthree";
 import Sectionfour from './Sections/Sectionfour/Sectionfour';
@@ -15,7 +15,7 @@ function App() {
   return (
     <Router>
       <Nav />
-      <Hero />
+      
       <SectionTwo/>
       <Sectionthree/>
       <Sectionfour/>
