@@ -30,16 +30,14 @@ body {
 }
 
 .logo {
-  font-size: 32px;
-  font-weight: bolder;
+  font-size: 42px;
+  font-weight:bolder;
   color: #1e40af;
   cursor: pointer;
   transition: color 0.3s;
 }
 
-.logo:hover {
-  color: #2563eb;
-}
+
 
 .nav-links {
   display: flex;
@@ -57,7 +55,6 @@ body {
 }
 
 .nav-links a:hover {
-  background: #dbeafe;
   color: #1e40af;
 }
 

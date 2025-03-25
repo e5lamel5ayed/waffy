@@ -4,7 +4,7 @@
   align-items: center;
   justify-content: center;
   padding: 40px;
-  background-color: white;
+  background-color: aliceblue;
   max-width: 1200px;
   margin: auto;
   gap: 20px;
@@ -50,6 +50,14 @@
   color: black;
 }
 
+
+.transparent-icon {
+  fill: none !important; 
+  stroke: rgb(255, 255, 255);
+  stroke-width: 2px;
+}
+
+
 .content-container {
   display: flex;
   flex-direction: row;
@@ -64,7 +72,7 @@
   flex-direction: column;
   align-items: center;
   position: relative;
-  background: white;
+  
   border-radius: 12px;
   padding: 20px;
   
@@ -77,16 +85,6 @@
   max-width: 400px;
 }
 
-.play-icon {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  background: rgba(49, 113, 232, 0.769);
-  border-radius: 50%;
-  padding: 10px;
-  cursor: pointer;
-}
 
 .content {
   font-size: 25px;
@@ -95,6 +93,61 @@
   text-align: right;
   width: 50%;
 }
+.play-icon {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background:#1448b8; 
+  border-radius: 50%;
+  padding: 25px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: transform 0.3s ease-in-out;
+  animation: pulse 1.5s infinite;
+  box-shadow: 0 0 15px rgba(20, 72, 184, 0.6);
+}
+
+.play-icon i {
+  font-size: 50px; 
+  
+}
+
+.play-icon:hover {
+  transform: translate(-50%, -50%) scale(1.1);
+}
+
+
+.play-icon::before {
+  content: "";
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  background: rgba(20, 72, 184, 0.4);
+  animation: pulse-ring 1.5s infinite;
+  z-index: -1;
+}
+
+
+@keyframes pulse-ring {
+  0% {
+    transform: scale(1);
+    opacity: 0.8;
+  }
+  50% {
+    transform: scale(1.6);
+    opacity: 0.4;
+  }
+  100% {
+    transform: scale(2);
+    opacity: 0;
+  }
+}
+
+
 
 .features {
   display: flex;
@@ -109,7 +162,7 @@
   flex-direction: row-reverse;
   align-items: center;
   gap: 12px;
-  background: white;
+  
   padding: 12px;
   border-radius: 8px;
   width: 100%;
@@ -125,4 +178,4 @@
 .feature-item p {
   font-size: 18px;
   order: 2;
-}
+}    

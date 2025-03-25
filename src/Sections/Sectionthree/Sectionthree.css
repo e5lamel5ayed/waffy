@@ -1,0 +1,102 @@
+.selling-section {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  min-height: 70vh;
+  background: linear-gradient(to bottom, #eaf0f3 30%, white 100%);
+  text-align: right;
+  padding: 40px;
+}
+
+.image-container {
+  width: 50%;
+  display: flex;
+  justify-content: center;
+}
+
+.image-container img {
+  max-width: 70%;
+  height: auto;
+}
+
+h2 {
+  font-size: 32px;
+  font-weight: bold;
+  color: #222;
+}
+
+p {
+  font-size: 20px;
+  color: #555;
+}
+
+.highlight {
+  font-size:larger;
+  font-weight: bolder;
+  color: #1448b8;
+}
+
+.form-container {
+  margin-top: 20px;
+  background: rgba(255, 253, 253, 0.235);
+  padding: 25px;
+  border-radius: 15px;
+  width: 100%;
+  max-width: 420px;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.input-label {
+  font-size: 18px;
+  font-weight: 600;
+  color: #222;
+  margin-bottom: 5px;
+  display: block;
+  text-align: right;
+}
+
+.input-field {
+  width: 100%;
+  padding: 12px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  font-size: 18px;
+  text-align: right;
+  direction: rtl;
+  outline: none;
+}
+
+.input-field:focus {
+  border-color: #1448b8;
+  box-shadow: 0px 0px 5px rgba(20, 72, 184, 0.5);
+}
+
+.submit-btn {
+  
+  border-radius: 15px !important;
+  font-size: clamp(50px, calc(1.125rem + ((1vw - 5.8px) * 0.4167)), 22px);
+  padding: clamp(15px, calc(0.9375rem + ((1vw - 4.8px) * 0.5208)), 20px);
+  font-weight: 900;
+  background: #078DE7 !important;
+  height: auto;
+  width: 100%;
+  display: block;
+  color: white !important;
+  text-align: center;
+}
+
+/* Responsive Design */
+@media (max-width: 1024px) {
+  .selling-section {
+    flex-direction: column;
+    text-align: center;
+  }
+  .text-content, .image-container {
+    width: 100%;
+  }
+  .image-container {
+    margin-top: 20px;
+  }
+}

@@ -1,11 +1,11 @@
 import React from 'react';
-import img from "../assets/img.png";
-import img2 from "../assets/img2.png";
-import img3 from "../assets/img3.png";
-import img4 from "../assets/img4.png";
-import img5 from "../assets/img5.png";
-import extraImg from "../assets/step.png";
-import '../Hero/hero.css'
+import img from "../../assets/img.png";
+import img2 from "../../assets/img2.png";
+import img3 from "../../assets/img3.png";
+import img4 from "../../assets/img4.png";
+import img5 from "../../assets/img5.png";
+import extraImg from "../../assets/step.png";
+import './hero.css'
 //--------------------------------
 const steps = [
   { img: img, text: "البائع يسجل تفاصيل المنتج أو الخدمة" },

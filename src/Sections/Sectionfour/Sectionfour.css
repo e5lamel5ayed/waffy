@@ -1,0 +1,27 @@
+.slider-container {
+    background-color: #ffff;
+    width: 100%;
+    text-align: center;
+    padding: 20px 0;
+  }
+  
+  .slider-header {
+    margin-bottom: 20px;
+  }
+  
+  .slider-header h2 {
+    font-size: 24px;
+    color: #333;
+  }
+  
+  .slider-header p {
+    font-size: 16px;
+    color: #777;
+  }
+  
+  .slider-img {
+    width: 100%;
+    height: 250px;
+    object-fit: contain;
+  }
+  
