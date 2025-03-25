@@ -1,52 +1,38 @@
-
-/* Global Styles */
+/* عام */
 body {
   margin: 0;
   font-family: Arial, sans-serif;
-  /* background: linear-gradient(to bottom, white, #eff6ff); */
+  background: linear-gradient(to bottom, white, #eff6ff);
   min-height: 100vh;
 }
 
-/* Navbar Styles */
+/* النافبار */
 .navbar {
   background-color: white;
-  box-shadow: 0 4px 8px rgba(151, 195, 236, 0.242);
+  box-shadow: 1px 1px 15px 15px rgba(7, 141, 231, 0.08);
   position: sticky;
   top: 0;
   z-index: 50;
-  padding: 10px 20px;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
+  padding: 20px 0px;
 }
 
 .nav-container {
-  max-width: 1200px;
+  max-width: 100%;
   margin: 0 auto;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  width: 100%;
+  padding: 0 20px;
 }
 
-.logo {
-  font-size: 42px;
-  font-weight:bolder;
-  color: #1e40af;
-  cursor: pointer;
-  transition: color 0.3s;
-}
-
-
-
-.nav-links {
-  display: flex;
+.nav-link {
+ display: flex;
   gap: 20px;
 }
 
-.nav-links a {
+.nav-link a {
   text-decoration: none;
-  color: #0d0f13;
+  color: #121326;
   font-size: 20px;
   font-weight: 500;
   padding: 8px 16px;
@@ -54,8 +40,27 @@ body {
   transition: background 0.3s, color 0.3s;
 }
 
-.nav-links a:hover {
-  color: #1e40af;
+.nav-link a:hover {
+  /* background: #dbeafe; */
+  color: #305be7 !important;
+}
+
+.btnlog {
+  background-color: #000000;
+  color: white;
+  padding: 15px 23px;
+  font-size: 15px;
+  font-weight: 700;
+  border-radius: 4px;
+  border: none;
+  cursor: pointer;
+
+}
+
+.btn:hover {
+  background: #10212e;
+
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
 
 /* Menu Button */
@@ -66,23 +71,26 @@ body {
   font-size: 24px;
   cursor: pointer;
   padding: 8px;
-  color: #1e40af;
+  color: #10212e;
   transition: color 0.3s;
 }
 
 .menu-btn:hover {
-  color: #2563eb;
+  color: #10212e;
 }
 
 .sidebar {
   position: fixed;
   top: 0;
-  right: -250px; /* Changed from left to right for RTL */
+  right: -250px;
+  /* Changed from left to right for RTL */
   width: 250px;
   height: 100%;
   background: white;
-  box-shadow: -2px 0 5px rgba(0, 0, 0, 0.1); /* Adjusted shadow for RTL */
-  transition: right 0.3s ease; /* Changed from left to right */
+  box-shadow: -2px 0 5px rgba(0, 0, 0, 0.1);
+  /* Adjusted shadow for RTL */
+  transition: right 0.3s ease;
+  /* Changed from left to right */
   display: flex;
   flex-direction: column;
   padding-top: 20px;
@@ -96,7 +104,8 @@ body {
   font-size: 20px;
   font-weight: 500;
   transition: background 0.3s, color 0.3s;
-  text-align: right; /* Added for RTL */
+  text-align: right;
+  /* Added for RTL */
 }
 
 .sidebar a:hover {
@@ -105,48 +114,49 @@ body {
 }
 
 .sidebar.active {
-  right: 0; /* Changed from left to right */
+  right: 0;
+  /* Changed from left to right */
 }
 
 .close-btn {
-  text-align: left; /* Changed from right to left for RTL */
+  text-align: left;
+  /* Changed from right to left for RTL */
   padding: 10px;
   font-size: 25px;
   cursor: pointer;
 }
 
-/* Login Button */
-.login-btn {
-  background-color: #1e40af;
-  color: white;
-  padding: 10px 24px;
-  font-size: 14px;
-  font-weight: 500;
-  border-radius: 8px;
-  border: none;
-  cursor: pointer;
-  transition: all 0.3s;
-  text-decoration: none;
-  display: inline-block;
-}
 
-.login-btn:hover {
-  background: #2563eb;
-  transform: translateY(-2px);
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-}
 
 /* Media Queries */
 @media (max-width: 1024px) {
   .nav-links {
     display: none;
   }
-  
+
   .menu-btn {
     display: block;
   }
-  
+
   .nav-container {
     justify-content: space-between;
+
   }
+}
+
+@media (max-width: 768px) {
+  .nav-links {
+    display: none;
+  }
+
+  .menu-icon {
+    display: block;
+  }
+
+  .nav-container {
+    display: flex;
+    justify-content: space-between;
+
+  }
+
 }
