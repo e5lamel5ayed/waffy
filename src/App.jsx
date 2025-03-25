@@ -11,6 +11,7 @@ function App() {
       <Routes>
         <Route path="/" element={<Home/> } />
         <Route path="/business" element={<All/> } />
+        
       </Routes>
     </Router>
   );
