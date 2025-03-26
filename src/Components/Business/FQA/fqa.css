@@ -37,4 +37,19 @@ padding: 15px 0;
     color: #333;
     line-height: 1.6;
   }
+  @media (max-width: 768px) {
+    .faq-question{
+      padding: 5px 0;
+
+    }
+    .faq-item{
+      padding: 5px 0;
+    }
+.faq-section{
+  width: 100% !important; 
+
+  /* padding: 0 10px; */
+}
+  
+  }
   
