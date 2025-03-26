@@ -1,0 +1,145 @@
+/* Hero Section */
+.hero {
+  text-align: center;
+  padding: 100px 20px;
+}
+
+.hero h2 {
+  font-size: 42px;
+  color: #111827;
+  font-weight: bold;
+  margin-bottom: 20px;
+}
+
+.hero span {
+  color: #1e40af;
+  display: inline-block;
+  transition: transform 0.3s;
+}
+
+.hero span:hover {
+  transform: scale(1.05);
+}
+
+.hero p {
+  font-size: 20px;
+  color: #000000;
+  max-width: 600px;
+  margin: 0 auto 40px;
+}
+
+/* Tabs Section */
+.tabs {
+  margin-bottom: 20px;
+}
+
+.tabs button {
+  font-size: 18px;
+  padding: 10px 20px;
+  margin: 0 10px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  background-color: #e0e0e0;
+  transition: background-color 0.3s ease;
+}
+
+.tabs button.active {
+  background-color: #1e40af;
+  color: white;
+}
+
+.tabs button:hover {
+  background-color: #1e40af;
+  color: white;
+}
+
+/* Steps Section */
+.steps {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 15px;
+  flex-wrap: nowrap;
+  max-width: 100%;
+  margin: auto;
+  overflow-x: auto;
+}
+
+/* Individual Step */
+.step {
+  text-align: center;
+  flex: 1;
+  min-width: 110px;
+  transition: transform 0.3s ease-in-out;
+}
+
+.step img {
+  width: 80px;
+  height: 60px;
+  transition: transform 0.3s ease-in-out;
+}
+
+.btn {
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  width: fit-content !important;
+  margin: 30px auto !important;
+  gap: var(--space-3xs) !important;
+  padding: 15px 30px !important;
+  background: #1448b8 !important; 
+  color: #fff !important;
+  font-size: 18px !important; 
+  font-weight: 700 !important;
+  border-radius: 8px !important;
+  box-shadow: var(--shadow-m) !important;
+  transition: all 0.3s ease-in-out !important;
+  outline: 0 !important;
+  cursor: pointer !important;
+}
+
+
+.btn:hover {
+  background: #0f3a91 !important; 
+  border-color: #0c3278 !important; 
+  transform: scale(1.1) !important; 
+}
+
+.btn:active {
+  transform: scale(0.98) !important;
+  box-shadow: var(--shadow-s) !important;
+}
+
+
+/* Responsive Design */
+@media (max-width: 1024px) {
+  .steps {
+      flex-wrap: wrap;
+      justify-content: center;
+  }
+
+  .step {
+      flex: none;
+      width: 25%;
+  }
+}
+
+@media (max-width: 768px) {
+  .nav-links {
+      display: none;
+  }
+
+  .menu-icon {
+      display: block;
+  }
+
+  .steps {
+      flex-direction: column;
+      gap: 10px;
+  }
+
+  .step {
+      width: 100%;
+  }
+}

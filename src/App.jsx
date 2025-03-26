@@ -14,15 +14,9 @@ import Home from './Sections/Home';
 function App() {
   return (
     <Router>
-      <Nav />
-      
-      <SectionTwo/>
-      <Sectionthree/>
-      <Sectionfour/>
       <Routes>
         <Route path="/" element={<Home/> } />
         <Route path="/business" element={<All/> } />
-        
       </Routes>
     </Router>
   );

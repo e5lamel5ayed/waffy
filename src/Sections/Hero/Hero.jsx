@@ -26,7 +26,7 @@ function Hero() {
         {steps.map((step, index) => (
           <React.Fragment key={index}>
             <div className="step" style={{ textAlign: 'center', maxWidth: '200px' }}>
-              <img src={step.img} alt={`Step ${index + 1}`} style={{ width: '70%', borderRadius: '10px' , height:"100px"}} />
+              <img src={step.img} alt={`Step ${index + 1}`} style={{ width: '50%', borderRadius: '10px' , height:"60%"}} />
               <p style={{ fontSize: '18px', fontWeight: '600', marginTop: '10px' }}>{step.text}</p>
             </div>
             {index < steps.length - 1 && ( 
@@ -38,7 +38,7 @@ function Hero() {
         ))}
       </div>
 
-      <button className="btn" style={{ marginTop: '30px', padding: '10px 20px', fontSize: '18px' }}>سجل الآن</button>
+      <button className="btn" style={{ marginTop: '30px', padding: '10px 20px', fontSize: '18px' ,  }}>سجل الآن</button>
     </div>
   );
 }

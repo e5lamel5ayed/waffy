@@ -25,7 +25,7 @@ const Sectionfour = () => {
 
   return (
     <div className="slider-container">
-      <div className="slider-header" style={{ textAlign: "center" }}>
+      <div className="slider-header" style={{ textAlign: "center" ,margin:"8 0px" }}>
         <h2 style={{ fontSize: "50px", fontWeight: "bold" }}>ندعم العديد من المنتجات والخدمات، كل ما تحتاج إليه لمعاملة آمنة وسهلة</h2>
         <p style={{ fontSize: "25px", maxWidth: "600px", margin: "0 auto" }}>
           صممنا حلولًا تناسب احتياجاتك، بيع على وفي خدماتك مثل (الحسابات الرقمية)، ومنتجاتك مثل: (الإلكترونيات، لوحات السيارات، والألعاب)، والمزيد.

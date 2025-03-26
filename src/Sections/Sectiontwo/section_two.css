@@ -1,11 +1,12 @@
+
 .section-two {
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
   padding: 40px;
-  background-color: aliceblue;
-  max-width: 1200px;
+  background-color: rgb(255, 255, 255);
+  max-width: 100%;
   margin: auto;
   gap: 20px;
 }
@@ -72,10 +73,8 @@
   flex-direction: column;
   align-items: center;
   position: relative;
-  
   border-radius: 12px;
-  padding: 20px;
-  
+  padding: 40px;
   width: 50%;
 }
 
@@ -86,13 +85,14 @@
 }
 
 
-.content {
+.content h1 p {
   font-size: 25px;
-  max-width: 500px;
+  max-width: 900px;
   line-height: 1.1;
   text-align: right;
   width: 50%;
 }
+
 .play-icon {
   position: absolute;
   top: 50%;
@@ -146,10 +146,15 @@
     opacity: 0;
   }
 }
-
-
+.content{
+  width: 650px;
+}
+.feature-item p {
+  font-size: 20px;
+}
 
 .features {
+  font-weight:bolder;
   display: flex;
   flex-direction: column;
   align-items: flex-start;
@@ -162,11 +167,10 @@
   flex-direction: row-reverse;
   align-items: center;
   gap: 12px;
-  
   padding: 12px;
   border-radius: 8px;
   width: 100%;
-  max-width: 450px;
+  max-width: 420px;
 }
 
 .feature-item img {
@@ -179,3 +183,36 @@
   font-size: 18px;
   order: 2;
 }    
+
+
+.btn-2 {
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  width: fit-content !important;
+  margin: 30px auto !important; 
+  gap: var(--space-3xs) !important;
+  padding: 15px 30px !important; 
+  background: #1448b8 !important; 
+  color: #fff !important;
+  font-size: 18px !important; 
+  font-weight: 700 !important; 
+  border-radius: 8px !important;
+  box-shadow: var(--shadow-m) !important;
+  transition: all 0.3s ease-in-out !important;
+  outline: 0 !important;
+  cursor: pointer !important;
+}
+
+/* تأثير الـ Hover */
+.btn-2:hover {
+  background: #0f3a91 !important; /* لون أغمق عند الـ Hover */
+  border-color: #0c3278 !important; /* تغيير لون البوردر عند الـ Hover */
+  transform: scale(1.1) !important; /* تكبير الزر عند المرور عليه */
+}
+
+/* تأثير الـ Active */
+.btn-2:active {
+  transform: scale(0.98) !important;
+  box-shadow: var(--shadow-s) !important;
+}

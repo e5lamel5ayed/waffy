@@ -56,7 +56,7 @@ function SectionTwo() {
         <div className="content">
           {activeTab === 'seller' ? (
             <div>
-              <h3>أنت موثوق، مبيعاتك متزايدة</h3>
+              <h1>أنت موثوق، مبيعاتك متزايدة</h1>
               <p>مع وفّي تضمن ثقة عملائك وتعزز مصداقيتك</p>
               <div className="features">
                 {sellerContent.map((item, index) => (
@@ -83,7 +83,7 @@ function SectionTwo() {
           )}
         </div>
       </div>
-      <button className="btn" style={{ marginLeft: 'auto', marginRight: '180px' }}>اشترك الآن</button>
+      <button className="btn-2" style={{ marginLeft: 'auto', marginRight: '180px' }}>سجل الان</button>
     </div>
   );
 }
