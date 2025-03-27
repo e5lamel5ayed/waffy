@@ -40,7 +40,7 @@ const Sectionfour = () => {
       >
         {cardsData.map((card) => (
           <SwiperSlide key={card.id}>
-            <div style={{ textAlign: "center", marginBottom: "10px" }}>
+            <div style={{ textAlign: "center", marginBottom: "10px"  ,padding:"75px"}}>
               <h3 style={{ fontSize: "35px", fontWeight: "bold" }}>{card.title}</h3>
               <p style={{ fontSize: "20px", marginTop: "5px" }}>{card.text}</p>
             </div>

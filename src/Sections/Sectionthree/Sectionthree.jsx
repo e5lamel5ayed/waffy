@@ -14,7 +14,7 @@ const Sectionthree = () => {
           <span className="highlight">ابدأ أول عملية بيع</span> في أقل من 60 ثانية
         </h2>
         <p>معاملاتك محمية تمامًا، زد مبيعاتك، واكسب ثقة عملائك</p>
-        <div className="form-container">
+        <div className="form-container expanded"> {/* أضفت كلاس جديد لتوسيع العرض */}
           <label htmlFor="ff_3_input_text_1" className="input-label">أنا أبيع</label>
           <input
             type="text"

@@ -32,7 +32,7 @@ const stats = [
 
 const Sectionfive = () => {
   return (
-    <Box sx={{ textAlign: "center", py: 6, backgroundColor: "#ffff" }}>
+    <Box sx={{ textAlign: "center", py: 6, backgroundColor: "#ffff" ,padding:"80px" }}>
      
       <Typography
         variant="h4"
