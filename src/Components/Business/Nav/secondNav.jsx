@@ -14,7 +14,7 @@ function SecondNav() {
   return (
     <>
       <nav className="navbar  bg-white  py-4 ">
-        <div className=" container-fluid  justify-content-between align-items-center">
+        <div className=" container-fluid  justify-content-between align-items-center" style={{width:'90%'}}>
           {/* زر تسجيل الدخول */}
           <Link to="/login">
             <button className="btnlog">تسجيل الدخول</button>

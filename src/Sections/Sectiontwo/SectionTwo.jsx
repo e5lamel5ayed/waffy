@@ -1,12 +1,13 @@
 import { useState } from "react";
 import { FaPlayCircle } from "react-icons/fa";
-import securePayment from "../assets/secure-payment.png";
-import seriousClients from "../assets/serious-clients.png";
-import salesManagement from "../assets/sales-management.png";
-import supportTeam from "../assets/support-team.png";
-import sellerImage from "../assets/seller.png";
-import buyerImage from "../assets/buyer.png";
-import '../CSS/section_two.css';
+import securePayment from "../../assets/secure-payment.png";
+import seriousClients from "../../assets/serious-clients.png";
+import salesManagement from "../../assets/sales-management.png";
+import supportTeam from "../../assets/support-team.png";
+import sellerImage from "../../assets/seller.png";
+import buyerImage from "../../assets/buyer.png";
+import '../Sectiontwo/section_two.css';
+
 //-----------------
 function SectionTwo() {
   const [activeTab, setActiveTab] = useState('seller');
@@ -55,7 +56,7 @@ function SectionTwo() {
         <div className="content">
           {activeTab === 'seller' ? (
             <div>
-              <h3>أنت موثوق، مبيعاتك متزايدة</h3>
+              <h1>أنت موثوق، مبيعاتك متزايدة</h1>
               <p>مع وفّي تضمن ثقة عملائك وتعزز مصداقيتك</p>
               <div className="features">
                 {sellerContent.map((item, index) => (
@@ -82,7 +83,7 @@ function SectionTwo() {
           )}
         </div>
       </div>
-      <button className="btn" style={{ marginLeft: 'auto', marginRight: '180px' }}>اشترك الآن</button>
+      <button className="btn-2" style={{ marginLeft: 'auto', marginRight: '180px' }}>سجل الان</button>
     </div>
   );
 }

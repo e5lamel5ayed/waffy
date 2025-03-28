@@ -1,0 +1,51 @@
+.sectionSix {
+  background: linear-gradient(to top, white, #dddedf);
+  padding: 80px 5%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+}
+
+.sectionRight {
+  width: 45%;
+  text-align: right;
+  padding-right: 5%;
+}
+
+.sectionTitle {
+  font-size: 45px;
+  font-weight: bold;
+  color: #1448b8;
+}
+
+.sectionText {
+  font-size: 22px;
+  line-height: 1.8;
+  color: #333;
+  margin-bottom: 20px;
+}
+
+.joinButton {
+  font-size: 20px;
+  font-weight: bold;
+  background-color: #1448b8;
+  color: white;
+  padding: 15px 40px;
+  border: 2px solid #1c3a90;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.sectionLeft {
+  width: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.sectionImage {
+  width: 60%;
+  border-radius: 10px;
+}

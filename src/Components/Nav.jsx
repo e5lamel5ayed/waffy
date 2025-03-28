@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { Menu } from 'lucide-react';
-import '../CSS/nav.css'
-//-------------------------------------------------
+import "../Components/nav.css";
+
 function Nav() {
   const [isSidebarOpen, setSidebarOpen] = useState(false);
 
@@ -20,7 +20,7 @@ function Nav() {
 
           {/* Menu Button */}
           <button className="menu-btn" onClick={toggleSidebar}>
-            <Menu size={24} />
+            <Menu size={30} />
           </button>
 
           {/* Regular Links */}
