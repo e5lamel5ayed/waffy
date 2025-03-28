@@ -25,19 +25,14 @@ function SecondNav() {
             <Menu size={38} />
           </button>
           {/* روابط التنقل */}
-          <div className=" gap-4 nav-link">
-            <a href="#" className="text-dark text-decoration-none fw-semibold">
-              وفّي أفراد
-            </a>
-            <a href="#" className="text-dark text-decoration-none fw-semibold">
-              الأسئلة الشائعة
-            </a>
-            <a href="#" className="text-dark text-decoration-none fw-semibold">
-              كيف تستخدم وفّي
-            </a>
-            <a href="#" className="text-dark text-decoration-none fw-semibold">
-              لماذا وفّي
-            </a>
+          <div className=" gap-4 nav-link text-dark text-decoration-none fw-semibold">
+            
+           
+            <Link to="/faq"> وفّي أفراد</Link>
+            <Link to="/faq">الأسئلة الشائعة</Link>
+            <Link to="/faq">   كيف تستخدم وفّي</Link>
+            <Link to="/faq">    لماذا وفّي</Link>
+          
           </div>
 
           {/* اللوجو */}
