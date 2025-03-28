@@ -147,7 +147,7 @@
   }
 }
 .content{
-  width: 650px;
+  max-width: 650px;
 }
 .feature-item p {
   font-size: 20px;
