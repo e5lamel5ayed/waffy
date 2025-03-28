@@ -15,9 +15,9 @@ function All() {
       <Hero2 />
       <Why />
       <How />
-      <Dealings/>
-      <FQA/>
-   
+      <Dealings />
+      <FQA />
+
     </>
   );
 }
