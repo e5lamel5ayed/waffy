@@ -29,6 +29,33 @@ body {
   width: 100%;
 }
 
+
+
+
+
+.nav-links .custom-scroll-link {
+  padding: 8px 12px;
+ 
+}
+
+.nav-links .custom-scroll-link:hover {
+  color: #1e40af;
+  background-color: #f0f4ff; 
+}
+
+
+.sidebar .custom-scroll-link {
+  display: block;
+  padding: 12px 20px;
+
+}
+
+.features-section .custom-scroll-link:hover {
+  color: #1e40af;
+  background-color: #f5f5f5;
+}
+
+
 .logo {
   font-size: 42px;
   font-weight:bolder;
