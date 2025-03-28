@@ -17,6 +17,7 @@ function All() {
       <How />
       <Dealings/>
       <FQA/>
+   
     </>
   );
 }
