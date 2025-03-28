@@ -35,8 +35,8 @@ function Nav() {
             <a href="#jobs">التوظيف</a>
             <a href="#blog">المدونة</a>
             <a href="#business">وفّي أعمال</a>
-            <ScrollLink to="faq-section" smooth={true} duration={500}>الأسئلة الشائعة</ScrollLink>
-            <ScrollLink to="slider-container" smooth={true} duration={500}>الميزات</ScrollLink>
+            <ScrollLink to="faq-section" style={{cursor:'pointer'}}  smooth={true} duration={500}>الأسئلة الشائعة</ScrollLink>
+            <ScrollLink to="slider-container" style={{cursor:'pointer'}} smooth={true} duration={500}>الميزات</ScrollLink>
           </div>
 
           <h1 className="logo">وفّي</h1>

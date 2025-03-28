@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { Menu } from "lucide-react";
-import "./nav.css";
+import "./secondNav.css";
 import { Link } from "react-router-dom";
 
 //-------------------------
@@ -25,7 +25,7 @@ function SecondNav() {
             <Menu size={38} />
           </button>
           {/* روابط التنقل */}
-          <div className=" gap-4 nav-link text-dark text-decoration-none fw-semibold">
+          <div className=" gap-4 nav-links text-dark text-decoration-none fw-semibold nav-links-mop">
             
            
             <Link to="/faq"> وفّي أفراد</Link>

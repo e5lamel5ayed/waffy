@@ -147,7 +147,7 @@ body {
 
 @media (max-width: 768px) {
   .nav-links {
-    display: none;
+    display: none !important;
   }
 
   .menu-icon {
