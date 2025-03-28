@@ -6,6 +6,17 @@ import LinkedInIcon from "@mui/icons-material/LinkedIn";
 import TwitterIcon from "@mui/icons-material/Twitter";
 import phone from "../../assets/phone.png";
 
+const androidAppLink = "https://waffy.onelink.me/fYVs/lxx6r9yl";
+const iosAppLink = "https://waffy.onelink.me/fYVs/lxx6r9yl";
+
+const openAndroidApp = () => {
+  window.open(androidAppLink, '_blank');
+};
+
+const openIosApp = () => {
+  window.open(iosAppLink, '_blank');
+};
+
 const rotateAnimation = keyframes`
   from { transform: rotate(0deg); }
   to { transform: rotate(360deg); }
@@ -46,8 +57,7 @@ const Footer = () => {
             }}
           ></Box>
 
-
-<Box
+          <Box
             sx={{
               width: 330,
               height: 320,
@@ -86,6 +96,7 @@ const Footer = () => {
           <Box sx={{ display: "flex", justifyContent: "center", gap: 2, flexDirection: isMobile ? "column" : "row" }}>
             <Button
               variant="contained"
+              onClick={openAndroidApp}
               sx={{
                 backgroundColor: "#fff",
                 color: "#000",
@@ -102,6 +113,7 @@ const Footer = () => {
 
             <Button
               variant="contained"
+              onClick={openIosApp}
               sx={{
                 backgroundColor: "#fff",
                 color: "#000",
@@ -120,25 +132,22 @@ const Footer = () => {
       </Box>
 
       <Box sx={{ width: "100%", borderTop: "1px solid #fff", mt: 0, pt: 3 }}>
-
-      <Typography 
-  variant="body1" 
-  sx={{ 
-    textAlign: "start", 
-    fontSize: "25px", 
-    flexGrow: 1, 
-    mb: -2, 
-    mr: 5, 
-    paddingLeft:5,
-    color: "#fff", 
-    display: "flex",
-    justifyContent: "start"
-  }}
->
-  الميزات | الأسئلة الشائعة | المدونة | وَفِي أعمال | التوظيف | تحدث معنا
-</Typography>
-
-
+        <Typography 
+          variant="body1" 
+          sx={{ 
+            textAlign: "start", 
+            fontSize: "25px", 
+            flexGrow: 1, 
+            mb: -2, 
+            mr: 5, 
+            paddingLeft: 5,
+            color: "#fff", 
+            display: "flex",
+            justifyContent: "start"
+          }}
+        >
+          الميزات | الأسئلة الشائعة | المدونة | وَفِي أعمال | التوظيف | تحدث معنا
+        </Typography>
 
         <Box
           sx={{
@@ -162,7 +171,6 @@ const Footer = () => {
         </Box>
       </Box>
 
-      {/* الخط الأبيض بعرض الصفحة بالكامل تحت الصورة */}
       <Box
         sx={{
           width: "100%",
@@ -172,7 +180,6 @@ const Footer = () => {
         }}
       />
 
-      {/* الجزء السفلي */}
       <Box
         sx={{
           backgroundColor: "#0056D2",
@@ -192,17 +199,14 @@ const Footer = () => {
             textAlign: "center",
           }}
         >
-          {/* الأيقونات في أقصى اليسار */}
           <Box sx={{ mb: isMobile ? 2 : 0 }}>
             <LinkedInIcon sx={{ mx: 1, fontSize: isMobile ? 30 : 40 }} />
             <InstagramIcon sx={{ mx: 1, fontSize: isMobile ? 30 : 40 }} />
             <TwitterIcon sx={{ mx: 1, fontSize: isMobile ? 30 : 40 }} />
           </Box>
 
-          {/* "الشروط والأحكام | سياسة الخصوصية" في المنتصف */}
           <Typography variant={isMobile ? "body1" : "h6"}>الشروط والأحكام | سياسة الخصوصية</Typography>
 
-          {/* "© 2024 جميع الحقوق محفوظة وَفِي" في أقصى اليمين */}
           <Typography variant={isMobile ? "body1" : "h6"}>© 2024 جميع الحقوق محفوظة وَفِي</Typography>
         </Box>
       </Box>

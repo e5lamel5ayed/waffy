@@ -23,6 +23,9 @@ function Home() {
             <Sectionsix />
             <Section8 />
             <Footer />
+
+
+            
         </>
     );
 }

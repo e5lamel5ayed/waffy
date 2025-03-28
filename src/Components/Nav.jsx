@@ -1,10 +1,20 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { Menu } from 'lucide-react';
+import { Link as ScrollLink } from 'react-scroll';
 import "../Components/nav.css";
-
+//-----------------------------------------------------------
 function Nav() {
   const [isSidebarOpen, setSidebarOpen] = useState(false);
+  const [isScrolled, setIsScrolled] = useState(false);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      setIsScrolled(window.scrollY > 10);
+    };
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
 
   const toggleSidebar = () => {
     setSidebarOpen(!isSidebarOpen);
@@ -12,43 +22,52 @@ function Nav() {
 
   return (
     <div>
-      {/* Navbar */}
-      <nav className="navbar">
+      <nav className={`navbar ${isScrolled ? 'scrolled' : ''}`}>
         <div className="nav-container">
-          {/* Login Button */}
           <Link to="/login" className="login-btn">تسجيل الدخول</Link>
 
-          {/* Menu Button */}
           <button className="menu-btn" onClick={toggleSidebar}>
             <Menu size={30} />
           </button>
 
-          {/* Regular Links */}
           <div className="nav-links">
-            <Link to="/contact">تحدث معنا</Link>
-            <Link to="/jobs">التوظيف</Link>
-            <Link to="/blog">المدونة</Link>
-            <Link to="/business">وفّي أعمال</Link>
-            <Link to="/faq">الأسئلة الشائعة</Link>
-            <Link to="/features">الميزات</Link>
+            <a href="#contact">تحدث معنا</a>
+            <a href="#jobs">التوظيف</a>
+            <a href="#blog">المدونة</a>
+            <a href="#business">وفّي أعمال</a>
+            <ScrollLink to="faq-section" smooth={true} duration={500}>الأسئلة الشائعة</ScrollLink>
+            <ScrollLink to="slider-container" smooth={true} duration={500}>الميزات</ScrollLink>
           </div>
 
-          {/* Logo */}
           <h1 className="logo">وفّي</h1>
         </div>
       </nav>
 
-      {/* Sidebar */}
       <div className={`sidebar ${isSidebarOpen ? "active" : ""}`}>
-        <div className="close-btn" onClick={() => setSidebarOpen(false)}>
-          &times;
-        </div>
-        <Link to="/contact">تحدث معنا</Link>
-        <Link to="/jobs">التوظيف</Link>
-        <Link to="/blog">المدونة</Link>
-        <Link to="/business">وفّي أعمال</Link>
-        <Link to="/faq">الأسئلة الشائعة</Link>
-        <Link to="/features">الميزات</Link>
+        <div className="close-btn" onClick={() => setSidebarOpen(false)}>&times;</div>
+        <a href="#contact">تحدث معنا</a>
+        <a href="#jobs">التوظيف</a>
+        <a href="#blog">المدونة</a>
+        <a href="#business">وفّي أعمال</a>
+        <ScrollLink 
+  to="faq-section" 
+  smooth={true} 
+  duration={500} 
+  onClick={() => setSidebarOpen(false)}
+  className="custom-scroll-link"
+>
+  الأسئلة الشائعة
+</ScrollLink>
+
+         <ScrollLink 
+            to="features-section" 
+            smooth={true} 
+            duration={500} 
+            onClick={() => setSidebarOpen(false)}
+            className="custom-scroll-link"
+          >
+  الميزات         
+          </ScrollLink>
         <Link to="/login" className="login-btn">تسجيل الدخول</Link>
       </div>
     </div>
