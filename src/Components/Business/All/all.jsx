@@ -5,7 +5,7 @@ import How from '../How/how';
 import Why from '../Why/why';
 import Dealings from '../Dealings/dealings'
 import FQA from '../FQA/fqa'
-import Footer from '../Footer/footer';
+// import Footer from '../Footer/footer';
 
 //-------------------------
 
