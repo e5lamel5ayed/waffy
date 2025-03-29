@@ -2,6 +2,8 @@ import React, { useState } from "react";
 import { Menu } from "lucide-react";
 import "./secondNav.css";
 import { Link } from "react-router-dom";
+import { Link as ScrollLink } from 'react-scroll';
+
 
 //-------------------------
 
@@ -13,7 +15,7 @@ function SecondNav() {
   };
   return (
     <>
-      <nav className="navbar  bg-white  py-4 ">
+      <nav className="navbar  bg-white  py-4 {`navbar ${isScrolled ? 'scrolled' : ''}`}">
         <div className=" container-fluid  justify-content-between align-items-center" style={{width:'90%'}}>
           {/* زر تسجيل الدخول */}
           <Link to="/login">
@@ -28,10 +30,12 @@ function SecondNav() {
           <div className=" gap-4 nav-links text-dark text-decoration-none fw-semibold nav-links-mop">
             
            
-            <Link to="/faq"> وفّي أفراد</Link>
-            <Link to="/faq">الأسئلة الشائعة</Link>
-            <Link to="/faq">   كيف تستخدم وفّي</Link>
-            <Link to="/faq">    لماذا وفّي</Link>
+            <Link to="/"> وفّي أفراد</Link>
+            <ScrollLink to="faq-section" style={{cursor:'pointer'}}  smooth={true} duration={500}>الأسئلة الشائعة</ScrollLink>
+            <ScrollLink to="how" style={{cursor:'pointer'}}  smooth={true} duration={500}>  كيف تستخدم وفّي </ScrollLink>
+            <ScrollLink to="why-wafi" style={{cursor:'pointer'}}  smooth={true} duration={500}>  لماذا وفّي</ScrollLink>
+          
+ 
           
           </div>
 
