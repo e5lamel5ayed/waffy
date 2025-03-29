@@ -38,12 +38,12 @@
   transition: 0.3s;
 }
 
-.sectionLeft {
+/* .sectionLeft {
   width: 50%;
   display: flex;
   justify-content: center;
   align-items: center;
-}
+} */
 
 .sectionImage {
   width: 60%;
