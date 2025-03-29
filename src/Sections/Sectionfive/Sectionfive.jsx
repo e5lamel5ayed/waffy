@@ -9,7 +9,6 @@ import user from "../../assets/user.png";
 const stats = [
   { 
     id: 1, 
-    id: 3, 
     value: 4.8, 
     label: "تقييم المستخدمين", 
     iconClass: "ion-ios-star", 
