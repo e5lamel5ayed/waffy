@@ -1,42 +1,57 @@
 import React, { useState } from "react";
 import { Menu } from "lucide-react";
 import "./secondNav.css";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { Link as ScrollLink } from 'react-scroll';
-
+import LogoutIcon from '@mui/icons-material/Logout';
 
 //-------------------------
 
 function SecondNav() {
   const [isSidebarOpen, setSidebarOpen] = useState(false);
+  const [isLoggedIn, setIsLoggedIn] = useState(!!localStorage.getItem('token'));
+  const navigate = useNavigate();
 
+  const handleLogout = () => {
+    localStorage.removeItem('token');
+    setIsLoggedIn(false);
+    navigate('/login');
+  };
   const toggleSidebar = () => {
     setSidebarOpen(!isSidebarOpen);
   };
   return (
     <>
       <nav className="navbar  bg-white  py-4 {`navbar ${isScrolled ? 'scrolled' : ''}`}">
-        <div className=" container-fluid  justify-content-between align-items-center" style={{width:'90%'}}>
+        <div className=" container-fluid  justify-content-between align-items-center" style={{ width: '90%' }}>
           {/* زر تسجيل الدخول */}
-          <Link to="/login">
-            <button className="btnlog">تسجيل الدخول</button>
-          </Link>
 
+          {isLoggedIn ? (
+            <Link to="/login">
+              <button className="btnlog" onClick={handleLogout}>
+                تسجيل الحروج
+                <LogoutIcon style={{marginLeft:'10px'}}/>
+              </button>
+            </Link>
+          ) : (
+            <Link to="/login">
+              <button className="btnlog">تسجيل الدخول</button>
+            </Link>)}
           {/* Menu Button */}
           <button className="menu-btn" onClick={toggleSidebar}>
             <Menu size={38} />
           </button>
           {/* روابط التنقل */}
           <div className=" gap-4 nav-links text-dark text-decoration-none fw-semibold nav-links-mop">
-            
-           
+
+            {isLoggedIn && (
+              <Link to="/ticket">التذاكر</Link>
+            )}
             <Link to="/"> وفّي أفراد</Link>
-            <ScrollLink to="faq-section" style={{cursor:'pointer'}}  smooth={true} duration={500}>الأسئلة الشائعة</ScrollLink>
-            <ScrollLink to="how" style={{cursor:'pointer'}}  smooth={true} duration={500}>  كيف تستخدم وفّي </ScrollLink>
-            <ScrollLink to="why-wafi" style={{cursor:'pointer'}}  smooth={true} duration={500}>  لماذا وفّي</ScrollLink>
-          
- 
-          
+            <ScrollLink to="faq-section" style={{ cursor: 'pointer' }} smooth={true} duration={500}>الأسئلة الشائعة</ScrollLink>
+            <ScrollLink to="how" style={{ cursor: 'pointer' }} smooth={true} duration={500}>  كيف تستخدم وفّي </ScrollLink>
+            <ScrollLink to="why-wafi" style={{ cursor: 'pointer' }} smooth={true} duration={500}>  لماذا وفّي</ScrollLink>
+
           </div>
 
           {/* اللوجو */}
@@ -56,6 +71,9 @@ function SecondNav() {
         <div className="close-btn" onClick={() => setSidebarOpen(false)}>
           &times;
         </div>
+        {isLoggedIn && (
+          <Link className="text-dark text-decoration-none fw-semibold" to="/ticket">التذاكر</Link>
+        )}
         <a href="#" className="text-dark text-decoration-none fw-semibold">
           وفّي أفراد
         </a>
