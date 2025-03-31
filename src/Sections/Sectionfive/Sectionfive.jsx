@@ -31,7 +31,7 @@ const stats = [
 
 const Sectionfive = () => {
   return (
-    <Box sx={{ textAlign: "center", py: 6, backgroundColor: "#ffff" ,padding:"80px" }}>
+    <Box sx={{ textAlign: "center", py: 6,marginTop:'50px', backgroundImage:'linear-gradient(70deg, rgba(4, 247, 251, 0.08), rgba(254, 252, 249, 0.32))' ,padding:"80px" }}>
      
       <Typography
         variant="h4"
@@ -45,11 +45,11 @@ const Sectionfive = () => {
         وَفي أرقام
       </Typography>
 
-      <Grid container spacing={3} justifyContent="center">
+      <Grid container spacing={3} gap={5} justifyContent="center">
         {stats.map((stat) => (
-          <Grid item xs={12} sm={4} key={stat.id}>
+          <Grid item xs={12} sm={3} key={stat.id} className="bg-white py-2 px-5 text-end" style={{borderRadius:'8px'}} >
            
-            <Box sx={{ display: "flex", alignItems: "center", justifyContent: "center", gap: 1.5 }}>
+            <Box sx={{ display: "flex", alignItems: "center", justifyContent: "end", gap: 1.5}}>
               <Typography 
                 variant="h3" 
                 sx={{ 

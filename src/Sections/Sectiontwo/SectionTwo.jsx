@@ -31,19 +31,19 @@ function SectionTwo() {
 
   return (
     <div className="section-two">
-      <h2 className="section-title">نحمي المعاملات ونحفظ الحقوق بين الأفراد</h2>
+      <h2 className="section-title">نحمي المعاملات ونحفظ <br />الحقوق بين الأفراد</h2>
       <div className="tabs-container">
-        <button 
-          className={activeTab === 'seller' ? 'active' : ''} 
-          onClick={() => setActiveTab('seller')}
-        >
-          بائع
-        </button>
-        <button 
-          className={activeTab === 'buyer' ? 'active' : ''} 
+        <button
+          className={activeTab === 'buyer' ? 'active' : ''}
           onClick={() => setActiveTab('buyer')}
         >
           مشتري
+        </button>
+        <button
+          className={activeTab === 'seller' ? 'active' : ''}
+          onClick={() => setActiveTab('seller')}
+        >
+          بائع
         </button>
       </div>
       <div className="content-container">
@@ -56,9 +56,12 @@ function SectionTwo() {
         <div className="content">
           {activeTab === 'seller' ? (
             <div>
-              <h1>أنت موثوق، مبيعاتك متزايدة</h1>
-              <p>مع وفّي تضمن ثقة عملائك وتعزز مصداقيتك</p>
-              <div className="features">
+              <h1 style={{ color: '#404040' }} >أنت موثوق، مبيعاتك متزايدة</h1>
+              <div className="features mt-5">
+                <div className="text-end mb-4">
+
+                  <p >مع وفّي تضمن ثقة عملائك وتعزز مصداقيتك</p>
+                </div>
                 {sellerContent.map((item, index) => (
                   <div className="feature-item" key={index}>
                     <img src={item.img} alt={item.text} />
@@ -83,7 +86,17 @@ function SectionTwo() {
           )}
         </div>
       </div>
-      <button className="btn-2" style={{ marginLeft: 'auto', marginRight: '180px' }}>سجل الان</button>
+      <div className="w-100">
+        {activeTab === 'seller' ?
+          (
+
+            <button className="btn-2" style={{ marginLeft: 'auto', marginRight: '180px' }}>سجل الان</button>
+          ) : (
+
+            <button className="btn-2" style={{ marginLeft: 'auto', marginRight: '180px' }}>بيع الان</button>
+          )
+        }
+      </div>
     </div>
   );
 }

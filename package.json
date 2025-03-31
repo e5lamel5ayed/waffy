@@ -15,6 +15,8 @@
     "@fortawesome/fontawesome-free": "^6.7.2",
     "@mui/icons-material": "^6.4.8",
     "@mui/material": "^6.4.9",
+    "@react-oauth/google": "^0.12.1",
+    "axios": "^1.8.4",
     "bootstrap": "^5.3.3",
     "lottie-react": "^2.4.1",
     "lucide-react": "^0.483.0",

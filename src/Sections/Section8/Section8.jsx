@@ -78,9 +78,9 @@ const Section8 = () => {
   };
 
   return (
-    <div className=" bg-white ">
+    <div className=" bg-white">
       <div className=" container w-75 mt-5 bg-white ">
-        <h1 className="faq-title text-center mb-5">الأسئلة الشائعة</h1>
+        <h1 className="faq-title text-center my-5" sty>الأسئلة الشائعة</h1>
 
         {faqs.map((faq, index) => (
           <div key={index} className="faq-item">
