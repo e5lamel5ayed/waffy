@@ -1,38 +1,59 @@
 import React from 'react';
-import './JobCards.css';
-//---------------------------------
-const JobCards = () => {
-  const jobs = Array(10).fill({
-    title: "Business Development Manager",
-    department: "الوظائف الناحية",
-    category: "القسم: التربة",
-    level: "Entry-level",
-    action: "التفاصيل +"
-  });
+import { Box, Typography, Button } from '@mui/material';
 
+const JobCards = ({ icon: Icon, title, description }) => {
   return (
-    <div className="jobs-container">
-      <h2 className="section-title">وفق</h2>
-      <div className="jobs-grid">
-        {jobs.map((job, index) => (
-          <div className="job-card" key={index}>
-            <div className="job-header">
-              <span className="job-department">{job.department}</span>
-            </div>
-            <div className="job-content">
-              <h3 className="job-title">{job.title}</h3>
-              <div className="job-details">
-                <span className="job-category">{job.category}</span>
-                <span className="job-level">{job.level}</span>
-              </div>
-            </div>
-            <div className="job-footer">
-              <button className="details-btn">{job.action}</button>
-            </div>
-          </div>
-        ))}
-      </div>
-    </div>
+    <Box
+      sx={{
+        display: 'flex',
+        flexDirection: 'column',
+        alignItems: 'center',
+        textAlign: 'center',
+        p: 'var(--spacing-3)',
+        backgroundColor: 'var(--color-background)',
+        color: 'var(--color-text)',
+        borderRadius: 'var(--border-radius)',
+        boxShadow: 'var(--box-shadow)',
+        maxWidth: '300px',
+        transition: 'transform 0.3s ease-in-out',
+        '&:hover': {
+          transform: 'scale(1.05)',
+          boxShadow: 'var(--box-shadow-hover)',
+        },
+      }}
+    >
+      <Box
+        sx={{
+          backgroundColor: 'var(--color-primary)',
+          p: 'var(--spacing-2)',
+          borderRadius: '50%',
+          display: 'flex',
+          justifyContent: 'center',
+          alignItems: 'center',
+          mb: 'var(--spacing-2)',
+        }}
+      >
+        <Icon style={{ fontSize: 'var(--icon-size)', color: 'var(--color-text)' }} />
+      </Box>
+      <Typography variant="h6" fontWeight="bold" gutterBottom>
+        {title}
+      </Typography>
+      <Typography variant="body2" sx={{ mb: 'var(--spacing-2)' }}>
+        {description}
+      </Typography>
+      <Button
+        variant="contained"
+        sx={{
+          backgroundColor: 'var(--color-primary)',
+          color: 'var(--color-button-text)',
+          '&:hover': {
+            backgroundColor: 'var(--color-primary-dark)',
+          },
+        }}
+      >
+        Learn More
+      </Button>
+    </Box>
   );
 };
 
