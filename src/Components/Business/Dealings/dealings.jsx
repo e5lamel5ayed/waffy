@@ -25,7 +25,7 @@ const Dealings = () => {
   }, []);
     
   return (
-    <div className="container-fluid dealings-section py-5">
+    <div className="container dealings-section py-5">
       {/* العنوان */}
       <div className="row">
         <div className="col-12 text-center mb-5 py-5">
@@ -53,7 +53,7 @@ const Dealings = () => {
               />
                <div class="px-3">
                <h2 className="fw-bold count fs-3">{counts[index].toLocaleString()}</h2>
-              <p className="text-muted fs-3">{item.text}</p>
+              <p className="text-muted" style={{fontSize:'1.3rem'}}>{item.text}</p>
               </div>
             </div>
           </div>
