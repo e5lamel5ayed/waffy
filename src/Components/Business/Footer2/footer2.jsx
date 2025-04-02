@@ -8,7 +8,7 @@ import "./footer2.css";
 
 function Footer2() {
   return (
-    <footer className="bg-light py-2 mt-5  " dir="rtl">
+    <footer className="py-2 mt-5  " dir="rtl">
       <div className="Container-fluid mx-5">
         <Row className="justify-content-between align-items-center mb-5">
           <Col
@@ -22,7 +22,7 @@ function Footer2() {
               alt="Image"
             />{" "}
             <p className="px-3 text-end text-dark fs-4">
-              الوسيط الآمن<pre /> للتعامل بين الأفراد
+              الوسيط الآمن<br /> للتعامل بين الأفراد
             </p>
           </Col>
           <Col md={4} className="d-flex justify-content-center fs-5 gap-2">
@@ -43,7 +43,11 @@ function Footer2() {
 
         <Row className="justify-content-between">
           <Col md={2} className="text-md-start text-center">
-        <p className="mb-0 text-end text-dark">جميع الحقوق محفوظة ©2024 وفي</p>
+        <p className="mb-0 text-end text-dark">
+          وفي
+          ©2024 
+          جميع الحقوق محفوظة 
+          </p>
         </Col>
 
           <Col md={7} className=" text-center fs-5 mx-auto gap-4 text-dark">

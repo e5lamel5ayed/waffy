@@ -1,11 +1,5 @@
 
 /* Global Styles */
-body {
-  margin: 0;
-  font-family: Arial, sans-serif;
-  /* background: linear-gradient(to bottom, white, #eff6ff); */
-  min-height: 100vh;
-}
 
 /* Navbar Styles */
 .navbar {

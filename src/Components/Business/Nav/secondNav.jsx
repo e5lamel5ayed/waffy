@@ -39,7 +39,7 @@ function SecondNav() {
             </Link>)}
           {/* Menu Button */}
           <button className="menu-btn" onClick={toggleSidebar}>
-            <Menu size={38} />
+            <Menu color="#000" size={38} />
           </button>
           {/* روابط التنقل */}
           <div className=" gap-4 nav-links text-dark text-decoration-none fw-semibold nav-links-mop">
