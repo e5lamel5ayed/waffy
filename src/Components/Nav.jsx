@@ -63,7 +63,7 @@ function Nav() {
 
       <div className={`sidebar ${isSidebarOpen ? "active" : ""}`}>
         <div className="close-btn" onClick={() => setSidebarOpen(false)}>&times;</div>
-        <ScrollLink to="features-section slider-container" smooth={true} duration={500} onClick={() => setSidebarOpen(false)} className="custom-scroll-link">
+        <ScrollLink to="slider-container" smooth={true} duration={500} onClick={() => setSidebarOpen(false)} className="custom-scroll-link">
           الميزات
         </ScrollLink>
         <ScrollLink to="faq-section2" smooth={true} duration={500} onClick={() => setSidebarOpen(false)} className="custom-scroll-link">
