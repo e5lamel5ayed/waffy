@@ -1,9 +1,9 @@
 import React from 'react';
-import { Link, useParams } from 'react-router-dom';
-import { ArrowLeft, Building2, Briefcase, ArrowRight } from 'lucide-react';
+import { Link } from 'react-router-dom';
+import { ArrowLeft, Building2, Briefcase } from 'lucide-react';
 import '../JobCards/JobCards.css';
 import Form from "../Form/Form";
-import image from "../../assets/Waffy-logo.png"
+import image from "/assets/Waffy-logo.png"
 import Footer from "../Footer/Footer";
 //-------------------------------------------
 // data  
