@@ -88,12 +88,12 @@ const FAQ = () => {
           <div key={index} className="faq-item">
             <div className="faq-question" onClick={() => toggleFAQ(index)}>
               <span className="faq-icon">
-                {openIndex === index ? <X size={20} /> : <Plus size={20} />}
+                {openIndex === index ? <X size={24} /> : <Plus size={27} />}
               </span>
-              <h2 class="text-muted">{faq.question}</h2>
+              <h3 class="text-muted">{faq.question}</h3>
 
             </div>
-            {openIndex === index && <p className="faq-answer text-end">{faq.answer}</p>}
+            {openIndex === index && <h3 className="faq-answer text-end">{faq.answer}</h3>}
           </div>
         ))}
       </div>
