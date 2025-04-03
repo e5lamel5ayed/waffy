@@ -16,7 +16,7 @@ function Footer2() {
             className="text-md-start text-center d-flex align-items-center"
           >
             <img
-              src="\src\assets\img\PNG-02-1-1024x664.webp"
+              src="/assets/img/PNG-02-1-1024x664.webp"
               style={{ width: "120px", height: "70px" }}
               className="border-start border-1 border-dark px-3"
               alt="Image"

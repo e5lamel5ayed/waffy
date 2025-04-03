@@ -4,7 +4,7 @@ import AndroidIcon from "@mui/icons-material/Android";
 import InstagramIcon from "@mui/icons-material/Instagram";
 import LinkedInIcon from "@mui/icons-material/LinkedIn";
 import TwitterIcon from "@mui/icons-material/Twitter";
-import phone from "../../assets/phone.png";
+import phone from "/assets/phone.png";
 
 const androidAppLink = "https://waffy.onelink.me/fYVs/lxx6r9yl";
 const iosAppLink = "https://waffy.onelink.me/fYVs/lxx6r9yl";

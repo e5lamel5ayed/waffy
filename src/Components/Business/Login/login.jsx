@@ -28,7 +28,7 @@ const Login = () => {
       });
 
       if (response.data.isSuccess && response.data.data.token) {
-        localStorage.setItem("token", response.data.data.token);
+        sessionStorage.setItem("token", response.data.data.token);
         navigate("/");
       } else {
         setError("حدث خطأ، لم يتم استلام التوكن!");
@@ -46,7 +46,7 @@ const Login = () => {
       });
 
       if (res.data.isSuccess && res.data.data.token) {
-        localStorage.setItem("token", res.data.data.token);
+        sessionStorage.setItem("token", res.data.data.token);
         navigate("/");
       } else {
         setError("فشل تسجيل الدخول عبر جوجل!");
@@ -67,7 +67,7 @@ const Login = () => {
           <div className="container w-75 d-flex justify-content-between align-items-center">
             <button className="btnn border px-4 d-flex align-items-center">
               تواصل معنا
-              <img src="/src/assets/img/whatsapp.svg" className="text-success mx-2" alt="WhatsApp" />
+              <img src="/assets/img/whatsapp.svg" className="text-success mx-2" alt="WhatsApp" />
             </button>
             <Link to="/" style={{ textDecoration: "none" }}>
               <h3 className="fw-bold m-0 text-dark">وفّي</h3>
@@ -77,7 +77,7 @@ const Login = () => {
 
         <div className="top-section" />
         <div className="profile-img">
-          <img src="/src/assets/img/auth.svg" alt="Profile" className="img-fluid" />
+          <img src="/assets/img/auth.svg" alt="Profile" className="img-fluid" />
         </div>
 
         <div className="container text-center phone-card mt-1">
@@ -88,7 +88,7 @@ const Login = () => {
 
             <div className="input-group mb-3">
               <span className="input-group-text py-3">
-                <img src="/src/assets/img/saudi_flag.svg" alt="SA" width="30" />
+                <img src="/assets/img/saudi_flag.svg" alt="SA" width="30" />
               </span>
               <input
                 type="text"

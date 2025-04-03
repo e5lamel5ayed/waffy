@@ -11,7 +11,7 @@ function Hero2() {
           {/* الجزء الأيسر - الصورة */}
           <div className="col-md-7 d-flex  justify-content-center ">
             <img
-              src="/src/assets/img/Group-7887711.webp"
+              src="/assets/img/Group-7887711.webp"
               className="img-fluid"
               alt="Illustration"
               style={{ maxWidth: "100%", height: "auto" }}

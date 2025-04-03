@@ -46,7 +46,7 @@ const Dealings = () => {
                
              
               <img
-                src={`/src/assets/img/${item.icon}`}
+                src={`/assets/img/${item.icon}`}
                 alt={item.text}
                 className="feature-icon "
                 style={{ width: "50px", height: "50px" }}

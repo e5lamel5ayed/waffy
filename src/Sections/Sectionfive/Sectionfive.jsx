@@ -1,9 +1,9 @@
 import React from "react";
 import CountUp from "react-countup";
 import { Box, Typography, Button, Grid } from "@mui/material";
-import star from "../../assets/star.png";
-import check from "../../assets/check.png";
-import user from "../../assets/user.png";
+import star from "/assets/star.png";
+import check from "/assets/check.png";
+import user from "/assets/user.png";
 
 //----------------------------------------------------
 const stats = [

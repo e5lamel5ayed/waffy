@@ -57,7 +57,7 @@ function SecondNav() {
           {/* اللوجو */}
           <Link to={"/"}>
             <img
-              src="/src/assets/img/photo_2025-03-21_17-33-57.jpg"
+              src="/assets/img/photo_2025-03-21_17-33-57.jpg"
               alt="Logo"
               className="logo"
               style={{ height: "40px" }}

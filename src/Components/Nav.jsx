@@ -7,7 +7,7 @@ import LogoutIcon from '@mui/icons-material/Logout';
 function Nav() {
   const [isSidebarOpen, setSidebarOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
-  const [isLoggedIn, setIsLoggedIn] = useState(!!localStorage.getItem('token'));
+  const [isLoggedIn, setIsLoggedIn] = useState(!!sessionStorage.getItem('token'));
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -23,7 +23,7 @@ function Nav() {
   };
 
   const handleLogout = () => {
-    localStorage.removeItem('token');
+    sessionStorage.removeItem('token');
     setIsLoggedIn(false);
     navigate('/login');
   };
@@ -53,7 +53,7 @@ function Nav() {
             <a href="#jobs">التوظيف</a>
             <a href="#blog">المدونة</a>
             <a href="#business">وفّي أعمال</a>
-            <ScrollLink to="faq-section" style={{ cursor: 'pointer' }} smooth={true} duration={500}>الأسئلة الشائعة</ScrollLink>
+            <ScrollLink to="faq-section2" style={{ cursor: 'pointer' }} smooth={true} duration={500}>الأسئلة الشائعة</ScrollLink>
             <ScrollLink to="slider-container" style={{ cursor: 'pointer' }} smooth={true} duration={500}>الميزات</ScrollLink>
           </div>
 
@@ -63,19 +63,19 @@ function Nav() {
 
       <div className={`sidebar ${isSidebarOpen ? "active" : ""}`}>
         <div className="close-btn" onClick={() => setSidebarOpen(false)}>&times;</div>
+        <ScrollLink to="features-section slider-container" smooth={true} duration={500} onClick={() => setSidebarOpen(false)} className="custom-scroll-link">
+          الميزات
+        </ScrollLink>
+        <ScrollLink to="faq-section2" smooth={true} duration={500} onClick={() => setSidebarOpen(false)} className="custom-scroll-link">
+          الأسئلة الشائعة
+        </ScrollLink>
+        <a href="#business">وفّي أعمال</a>
+        <a href="#blog">المدونة</a>
+        <a href="#jobs">التوظيف</a>
         {isLoggedIn && (
           <Link to="/ticket">التذاكر</Link>
         )}
         <a href="#contact">تحدث معنا</a>
-        <a href="#jobs">التوظيف</a>
-        <a href="#blog">المدونة</a>
-        <a href="#business">وفّي أعمال</a>
-        <ScrollLink to="faq-section" smooth={true} duration={500} onClick={() => setSidebarOpen(false)} className="custom-scroll-link">
-          الأسئلة الشائعة
-        </ScrollLink>
-        <ScrollLink to="features-section" smooth={true} duration={500} onClick={() => setSidebarOpen(false)} className="custom-scroll-link">
-          الميزات
-        </ScrollLink>
 
       </div>
     </div>
