@@ -9,6 +9,7 @@ import Register from './Components/Business/Login/Register';
 import '@fortawesome/fontawesome-free/css/all.min.css';
 import TicketPage from './Components/Tickets/ticket';
 import ProtectedRoute from './Components/ProtectedRoute';
+//------------------------------------------------------
 
 function App() {
   return (
@@ -16,6 +17,7 @@ function App() {
       <WhatsAppButton />
       <Routes>
         <Route path="/" element={<Home />} />
+        <Route path="/jobs" element={<JobCards />} />
         <Route path="/business" element={<All />} />
         <Route path="/login" element={<Login />} />
         <Route path="/register" element={<Register />} />
