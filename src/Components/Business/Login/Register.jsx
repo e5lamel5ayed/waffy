@@ -43,7 +43,7 @@ const Register = () => {
                 <div className="container w-75 d-flex justify-content-between align-items-center">
                     <button className="btnn border px-4 d-flex align-items-center">
                         تواصل معنا
-                        <img src="/src/assets/img/whatsapp.svg" className="text-success mx-2" alt="WhatsApp" />
+                        <img src="/assets/img/whatsapp.svg" className="text-success mx-2" alt="WhatsApp" />
                     </button>
                     <Link to="/" style={{ textDecoration: "none" }}>
                         <h3 className="fw-bold m-0 text-dark">وفّي</h3>
@@ -53,7 +53,7 @@ const Register = () => {
 
             <div className="top-section" />
             <div className="profile-img">
-                <img src="/src/assets/img/auth.svg" alt="Profile" className="img-fluid" />
+                <img src="/assets/img/auth.svg" alt="Profile" className="img-fluid" />
             </div>
 
             <div className="container text-center phone-card mt-1" style={{ marginBottom: '50px' }}>
@@ -79,7 +79,7 @@ const Register = () => {
 
                     <div className="input-group mb-3">
                         <span className="input-group-text py-3 px-3">
-                            <img src="/src/assets/img/saudi_flag.svg" alt="SA" width="15" />
+                            <img src="/assets/img/saudi_flag.svg" alt="SA" width="15" />
                         </span>
                         <input
                             type="text"

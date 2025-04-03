@@ -4,13 +4,13 @@ import "swiper/css";
 import "swiper/css/autoplay";
 import { Autoplay } from "swiper/modules";
 
-import client from "../../assets/car.png";
-import client3 from "../../assets/client3.png";
-import client4 from "../../assets/client4.png";
-import client5 from "../../assets/client5.png";
-import client6 from "../../assets/client6.png";
-import client8 from "../../assets/client8.png";
-import client9 from "../../assets/client9.png";
+import client from "/assets/car.png";
+import client3 from "/assets/client3.png";
+import client4 from "/assets/client4.png";
+import client5 from "/assets/client5.png";
+import client6 from "/assets/client6.png";
+import client8 from "/assets/client8.png";
+import client9 from "/assets/client9.png";
 
 const Sectionfour = () => {
   const cardsData = [

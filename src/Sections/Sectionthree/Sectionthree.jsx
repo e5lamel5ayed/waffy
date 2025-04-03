@@ -1,7 +1,7 @@
 import React from "react";
 import "./Sectionthree.css";
 import { Button } from "@mui/material";
-import sellingImage from "../../assets/progres.png";
+import sellingImage from "/assets/progres.png";
 
 const Sectionthree = () => {
   return (

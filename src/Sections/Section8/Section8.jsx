@@ -78,7 +78,7 @@ const Section8 = () => {
   };
 
   return (
-    <div className=" bg-white">
+    <div className="faq-section2">
       <div className=" container w-75 mt-5 bg-white ">
         <h1 className="faq-title text-center my-5" sty>الأسئلة الشائعة</h1>
 

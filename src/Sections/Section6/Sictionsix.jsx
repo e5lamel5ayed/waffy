@@ -1,6 +1,6 @@
 import React from "react";
 import styles from "./Sectionsix.module.css";
-import group from "../../assets/Group.png";
+import group from "/assets/Group.png";
 
 const SectionSix = () => {
   return (
