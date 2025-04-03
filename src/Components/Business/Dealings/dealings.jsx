@@ -4,7 +4,7 @@ import "./dealings.css";
 const Dealings = () => {
   // دالة العدّاد التدريجي للأرقام
   const [counts, setCounts] = useState([0, 0, 0, 0]);
-  const targetNumbers = [+40000, +14000, 13800, 4.8];
+  const targetNumbers = [+40000, +14000, 13800, 4.4];
 
   useEffect(() => {
     const intervals = targetNumbers.map((num, index) => {
@@ -52,7 +52,7 @@ const Dealings = () => {
                 style={{ width: "50px", height: "50px" }}
               />
                <div class="px-3">
-               <h2 className="fw-bold count fs-3">{counts[index].toLocaleString()}</h2>
+               <h1 className="fw-bold count fs-1">{counts[index].toLocaleString()}</h1>
               <p className="text-muted" style={{fontSize:'1.3rem'}}>{item.text}</p>
               </div>
             </div>

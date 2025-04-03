@@ -41,6 +41,7 @@
 @media (max-width: 768px) {
   .faq-question {
     padding: 5px 0;
+    font-size: 0.5rem;
 
   }
 

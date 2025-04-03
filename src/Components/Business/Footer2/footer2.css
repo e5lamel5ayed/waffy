@@ -1,0 +1,82 @@
+.footer-container {
+    padding: 1rem 0;
+    margin-top: 5rem;
+  }
+  
+  .footer-top, 
+  .footer-bottom {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 3rem;
+  }
+  
+  .footer-logo {
+    display: flex;
+    align-items: center;
+  }
+  
+  .logo-img {
+    width: 120px;
+    height: 70px;
+    border-left: 1px solid black;
+    padding-left: 1rem;
+  }
+  
+  .logo-text {
+    padding-right: 1rem;
+    text-align: right;
+    font-size: 1.25rem;
+    color: #333;
+  }
+  
+  .footer-links {
+    display: flex;
+    justify-content: center;
+    gap: 1.2rem;
+  }
+  
+  .footer-link {
+    text-decoration: none;
+    color: black;
+    font-size: 1.2rem;
+  }
+  
+  .footer-bottom {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-top: 10px;
+  }
+  
+  .footer-rights p {
+    margin: 0;
+    text-align: right;
+    color: #333;
+  }
+  
+  .footer-center {
+    display: flex;
+    justify-content: center;
+    gap: 1.5rem;
+    font-size: 1rem;
+    color: black;
+  }
+  
+  .footer-policy {
+    text-decoration: none;
+    color: black;
+  }
+  
+  .footer-social {
+    display: flex;
+    justify-content: flex-end;
+    gap: 1.4rem;
+    font-size: 1.5rem;
+    color: black !important;
+  }
+  
+/* الريسبونسيف */
+@media (max-width: 768px) {
+    
+  }
