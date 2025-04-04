@@ -23,7 +23,7 @@ function SecondNav() {
   return (
     <>
       <nav className="navbar container-fluid   {`navbar ${isScrolled ? 'scrolled' : ''}`}">
-        <div className="nav-container " >
+        <div className="nav-container py-3" >
           {/* زر تسجيل الدخول */}
 
           {isLoggedIn ? (
