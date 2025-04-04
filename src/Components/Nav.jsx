@@ -31,7 +31,7 @@ function Nav() {
   return (
     <div>
       <nav className={`navbar ${isScrolled ? 'scrolled' : ''}`}>
-        <div className="nav-container">
+        <div className="nav-container container-fluid">
           {isLoggedIn ? (
             <Link className="login-btn" onClick={handleLogout}>
               تسجيل الخروج
@@ -45,7 +45,7 @@ function Nav() {
             <Menu size={30} />
           </button>
 
-          <div className="nav-links">
+          <div className="nav-links ">
             {isLoggedIn && (
               <Link to="/ticket">التذاكر</Link>
             )}

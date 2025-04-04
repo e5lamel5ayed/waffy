@@ -12,9 +12,8 @@ function Footer2() {
         <div className="footer-top">
           <div className="footer-logo">
             <img
-              src="/assets/img/PNG-02-1-1024x664.webp"
-              style={{ width: "120px", height: "70px" }}
-              className="border-start border-1 border-dark px-3"
+              src="\src\assets\img\PNG-02-1-1024x664.webp"
+              className="logo-img"
               alt="Image"
             />
             <p className="logo-text">
@@ -22,7 +21,7 @@ function Footer2() {
             </p>
           </div>
           <div className="footer-links ">
-            <a href="#" className="footer-link">لماذا وفي</a>
+            <a href="#" className="footer-link ">لماذا وفي</a>
             <a href="#" className="footer-link">كيف تستخدم وفي</a>
             <a href="#" className="footer-link">وفي أفراد</a>
             <a href="#" className="footer-link">اتصل بنا</a>

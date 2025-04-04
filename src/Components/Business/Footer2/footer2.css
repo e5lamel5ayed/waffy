@@ -75,6 +75,9 @@
     font-size: 1.5rem;
     color: black !important;
   }
+  .footer-social a{
+    color: black !important;
+  }
   
 /* الريسبونسيف */
 @media (max-width: 768px) {

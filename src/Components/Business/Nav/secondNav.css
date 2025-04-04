@@ -3,34 +3,37 @@
 /* النافبار */
 .navbar {
   background-color: white;
-  box-shadow: 1px 1px 15px 15px rgba(7, 141, 231, 0.08);
+  box-shadow: 0 4px 8px 8px rgba(151, 195, 236, 0.242);
   position: sticky;
   top: 0;
   z-index: 50;
-  padding: 20px 0px;
-  min-height: 6rem;
-}
-
-.nav-container {
-  max-width: 90%;
-  margin: 0 auto;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 0 20px;
+  min-height: 88px;
+  
+}
+
+.nav-container {
+  /* max-width: 1200px; */
+  margin: 0 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
 }
 
 .nav-link {
  display: flex;
-  gap: 20px;
+
 }
 
 .nav-link a {
   text-decoration: none;
   color: #121326;
-  font-size: 20px;
+  font-size: 16px;
   font-weight: 500;
-  padding: 8px 16px;
+  padding: 8px 6px;
   border-radius: 8px;
   transition: background 0.3s, color 0.3s;
 }
@@ -43,12 +46,15 @@
 .btnlog {
   background-color: #000000;
   color: white;
-  padding: 15px 23px;
-  font-size: 15px;
-  font-weight: 700;
+  font-size: 17px;
+  font-weight: 600;
   border-radius: 4px;
+  padding: 13px 30px ;
   border: none;
   cursor: pointer;
+  text-decoration: none;
+  display: inline-block;
+  transition: all .2s ease;
 
 }
 

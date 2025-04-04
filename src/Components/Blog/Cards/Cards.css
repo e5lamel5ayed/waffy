@@ -1,0 +1,17 @@
+
+
+
+.cards button{
+    background-color: #1448B8;
+    color: white;
+    padding: 15px 27px;
+    border-radius: 8px;
+    margin-top: 10px;
+}
+.custom-img {
+    height: 250px; /* زيادة الارتفاع */
+    object-fit: cover; /* قص الصورة وتكبيرها بدون تشوه */
+    transform: scale(1); /* تكبير الصورة قليلاً */
+    transition: transform 0.3s ease-in-out; /* تأثير ناعم */
+  }
+  

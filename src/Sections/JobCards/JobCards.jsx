@@ -3,14 +3,14 @@ import { Link } from 'react-router-dom';
 import { ArrowLeft, Building2, Briefcase } from 'lucide-react';
 import '../JobCards/JobCards.css';
 import Form from "../Form/Form";
-import image from "/assets/waffyLogo.svg"
+// import image from "/assets/Waffy-logo.png"
 import Footer from "../Footer/Footer";
 //-------------------------------------------
 // data  
 const jobData = [
   { title: "Business Development Manager", department: "الإدارة", experience: "مدير" },
   { title: "Senior Business Developer", department: "التصميم", experience: "مبتدئ" },
-  { title: "Operations Specialist – Pipeline", department: "البرمجة", experience: "متوسط", imageSrc: { image } },
+  { title: "Operations Specialist – Pipeline", department: "البرمجة", experience: "متوسط"},
   { title: "Product Marketing Manager – Pipeline", department: "التسويق", experience: "مبتدئ",},
   { title: "Product Marketing Manager – Pipeline", department: "التحليل", experience: "متقدم", },
   { title: "Senior Backend Engineer", department: "المبيعات", experience: "مدير",  },
@@ -45,7 +45,7 @@ function JobCard({ id, title, department, experience,  }) {
           <div className="title-badge">
             <h3 className="job-title">{title}</h3>
           </div>
-          <img src={image} alt={title} className="job-image" />
+          {/* <img src={image} alt={title} className="job-image" /> */}
           <Link to={`/job/${id}`} className="details-button">
             <ArrowLeft className="arrow-icon" />
             <span>التفاصيل</span>
