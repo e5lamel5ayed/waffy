@@ -5,6 +5,9 @@ import InstagramIcon from "@mui/icons-material/Instagram";
 import LinkedInIcon from "@mui/icons-material/LinkedIn";
 import TwitterIcon from "@mui/icons-material/Twitter";
 import phone from "/assets/phone.png";
+import { FaFacebook, FaInstagram, FaXTwitter } from "react-icons/fa6";
+import './Footer.css'
+
 
 
 const rotateAnimation = keyframes`
@@ -98,47 +101,27 @@ const Footer = () => {
 
       </Box>
 
-      <Box sx={{ width: "90%", borderTop: "1px solid #fff", mt: 0, pt: 3 ,display: "flex",justifyContent: "center"}}>
+      <Box sx={{ width: "90%", borderTop: "1px solid #fff", mt: 0, pt: 3 ,display: "flex",justifyContent: "center",margin: "auto"}}>
+      <div className="footerr-top d-flex gap-5 justify-content-between px-5" dir="rtl">
+          <div className="footerr-logo">
+            <img
+              src="/assets/img/PNG-01-1-1024x658.webp"
+              className="logo-img"
+              alt="Image"
+            />
+            <p className="logo-text">
+              الوسيط الآمن<br /> للتعامل بين الأفراد
+            </p>
+          </div>
+          <div className="footerr-links ">
+            <a href="#" className="footerr-link ">لماذا وفي</a>
+            <a href="#" className="footerr-link">كيف تستخدم وفي</a>
+            <a href="#" className="footerr-link">وفي أفراد</a>
+            <a href="#" className="footerr-link">اتصل بنا</a>
+          </div>
+        </div>
 
-        
-      <Typography
-  variant="body1"
-  sx={{
-    textAlign: "start",
-    fontSize: "25px",
-    flexGrow: 1,
-    mb: -2,
-    mr: 5,
-    paddingLeft: 5,
-    color: "#fff",
-    display: "flex",
-    justifyContent: "start"
-  }}
->
-  الميزات&nbsp;&nbsp; الأسئلة الشائعة&nbsp;&nbsp; المدونة&nbsp;&nbsp; وَفِي أعمال&nbsp;&nbsp; التوظيف&nbsp;&nbsp; تحدث معنا
-</Typography>
 
-
-        <Box
-          sx={{
-            display: "flex",
-            alignItems: "center",
-            justifyContent: "flex-end",
-            px: 3,
-            pb: 2,
-            flexDirection: isMobile ? "column" : "row",
-            textAlign: isMobile ? "center" : "right",
-          }}
-        >
-          <Box sx={{ textAlign: "right", color: "#fff" }}>
-            <Typography variant={isMobile ? "h6" : "h5"}>الوسيط الآمن</Typography>
-            <Typography variant={isMobile ? "h6" : "h5"}>للبيع والشراء</Typography>
-          </Box>
-          <Box sx={{ width: "2px", height: "30px", backgroundColor: "#fff", mx: 2, display: isMobile ? "none" : "block" }} />
-          <Typography variant={isMobile ? "h5" : "h4"} fontWeight="bold">
-            وَفِي
-          </Typography>
-        </Box>
       </Box>
 
       <Box
@@ -146,9 +129,10 @@ const Footer = () => {
           width: "90%",
           borderTop: "1px solid #fff",
           mt: 5,
-          pt: 3,
+          pt: 2,
           display: "flex",
-          justifyContent: "center"
+          justifyContent: "center",
+          margin: "auto"
         }}
       />
 
@@ -156,31 +140,30 @@ const Footer = () => {
         sx={{
           backgroundColor: "#0056D2",
           color: "#fff",
-          py: 3,
+       
+          px: 4,
           width: "100%",
         }}
       >
-        <Box
-          sx={{
-            display: "flex",
-            alignItems: "center",
-            justifyContent: "space-between",
-            px: 3,
-            pt: 2,
-            flexDirection: isMobile ? "column" : "row",
-            textAlign: "center",
-          }}
-        >
-          <Box sx={{ mb: isMobile ? 2 : 0 }}>
-            <LinkedInIcon sx={{ mx: 1, fontSize: isMobile ? 30 : 40 }} />
-            <InstagramIcon sx={{ mx: 1, fontSize: isMobile ? 30 : 40 }} />
-            <TwitterIcon sx={{ mx: 1, fontSize: isMobile ? 30 : 40 }} />
-          </Box>
+          {/* القسم السفلي */}
+          <div className="footerr-bottom fw-600" dir="rtl">
+          <div className="footerr-rights ">
+            <p>وفي
+              ©2024  جميع <br/>الحقوق محفوظة</p>
+          </div>
 
-          <Typography variant={isMobile ? "body1" : "h6"}>الشروط والأحكام | سياسة الخصوصية</Typography>
+          <div className="footerr-center">
+            <span>Powered By Gotrah</span>
+            <a href="#" className="footerr-policy">الشروط والأحكام</a>
+            <a href="#" className="footerr-policy">سياسة الخصوصية</a>
+          </div>
 
-          <Typography variant={isMobile ? "body1" : "h6"}>© 2024 جميع الحقوق محفوظة وَفِي</Typography>
-        </Box>
+          <div className="footerr-social ">
+            <a href="#"><FaXTwitter size={30} /></a>
+            <a href="#"><FaInstagram size={30} /></a>
+            <a href="#"><FaFacebook size={30} /></a>
+          </div>
+        </div>
       </Box>
     </Box>
   );
