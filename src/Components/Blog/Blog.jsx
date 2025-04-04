@@ -7,11 +7,11 @@ import Cards from "./Cards/Cards";
 
 function Blog() {
   return (
-  
+
     <div className="Blog">
-<Nav/>
-<Herro/>
-<Cards/>
+      <Nav />
+      <Herro />
+      <Cards />
 
     </div>
   );

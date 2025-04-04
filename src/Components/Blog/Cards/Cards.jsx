@@ -22,8 +22,8 @@ const cardsData = [
 
 const Cards = () => {
   return (
-    <div className="cards my-5 container-fluid">
-      <Row className="g-4">
+    <div className="cards my-5 container-fluid" style={{width:'95%'}}>
+      <Row className="g-3 ">
         {cardsData.map((card, index) => (
           <Col md={4} key={index}>
             <Card className=" border-0 text-end">
