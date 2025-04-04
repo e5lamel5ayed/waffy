@@ -7,14 +7,14 @@ function Hero2() {
     <div className=" sec1">
 
       <div className="container-fluid d-flex align-items-center justify-content-center ">
-        <div className="row w-100 justify-content-around mt-5 px-3 mb-5">
+        <div className="row w-100 justify-content-around mt-5 px-3 mb-5 gap-">
           {/* الجزء الأيسر - الصورة */}
           <div className="col-md-7 d-flex  justify-content-center ">
             <img
               src="/assets/img/Group-7887711.webp"
               className="img-fluid"
               alt="Illustration"
-              style={{ maxWidth: "100%", height: "auto" }}
+              style={{ maxWidth: "70%", height: "auto" }}
             />
           </div>
 
