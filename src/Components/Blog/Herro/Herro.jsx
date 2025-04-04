@@ -20,7 +20,7 @@ function Herro() {
         <p className="text-dark">الطريقة الأئمن للبيع والشراء بين الأفراد</p>
 
         {/* فلاتر التصنيفات */}
-        <div className="container mt-4">
+        <div className="container mt-5">
           <div className="row d-flex justify-content-center gap-3 text-muted fs-5 text-center g-0">
             {categories.map((category) => (
               <div key={category} className="col-auto">
