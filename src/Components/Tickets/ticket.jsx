@@ -1,274 +1,259 @@
-import React, { useEffect, useRef, useState } from 'react';
+/* eslint-disable no-unused-vars */
+import React, { useState, useEffect, useRef } from 'react';
 import * as signalR from '@microsoft/signalr';
 
-const Ticket = () => {
+const RealTimeChatApp = () => {
   const [token, setToken] = useState(null);
-  const [chatId, setChatId] = useState(null);
-  const [lastTicketId, setLastTicketId] = useState(null);
+  const [connection, setConnection] = useState(null);
   const [currentUser, setCurrentUser] = useState(null);
+  const [chatId, setChatId] = useState(null);
   const [lastMessage, setLastMessage] = useState(null);
+  const [messages, setMessages] = useState([]);
   const [tickets, setTickets] = useState([]);
   const [addUserRequests, setAddUserRequests] = useState([]);
-  const [messageInput, setMessageInput] = useState('');
-  const [ticketDetails, setTicketDetails] = useState('');
 
-  const connectionRef = useRef(null);
+  const phoneRef = useRef();
+  const passwordRef = useRef();
+  const ticketDetailsRef = useRef();
+  const messageInputRef = useRef();
+  const userNameToAddRef = useRef();
+  const adminUserNameToAddRef = useRef();
 
   useEffect(() => {
-    connectionRef.current = new signalR.HubConnectionBuilder()
-      .withUrl("https://waffi.runasp.net/chatHub", {
-        accessTokenFactory: () => token
-      })
+    const newConnection = new signalR.HubConnectionBuilder()
+      .withUrl('https://waffi.runasp.net/chatHub', { accessTokenFactory: () => token })
       .withAutomaticReconnect()
       .build();
-
-    connectionRef.current.on("ChatStarted", handleChatStarted);
-    connectionRef.current.on("ReceiveMessage", handleReceiveMessage);
-    connectionRef.current.on("NewAddUserRequest", handleNewAddUserRequest);
+    setConnection(newConnection);
   }, [token]);
 
-  const ensureConnection = async () => {
-    if (connectionRef.current.state === signalR.HubConnectionState.Disconnected) {
-      try {
-        await connectionRef.current.start();
-        console.log("Connected to SignalR");
-      } catch (err) {
-        console.error("SignalR Start Error:", err);
-      }
+  useEffect(() => {
+    if (connection) {
+      connection.on('ChatStarted', (newChatId) => {
+        setChatId(newChatId);
+        ensureConnection().then(() => connection.invoke('JoinChat', newChatId));
+      });
+
+      connection.on('ReceiveMessage', (user, message) => {
+        const fullMessage = `User ${user}: ${message}`;
+        if (fullMessage !== lastMessage) {
+          setMessages((prev) => [...prev, { user, message }]);
+          setLastMessage(fullMessage);
+        }
+      });
+
+      connection.on('NewAddUserRequest', () => {
+        if (currentUser?.role === 'Admin') {
+          loadAddUserRequests();
+        }
+      });
+
+      ensureConnection();
     }
+  }, [connection]);
+
+  const ensureConnection = () => {
+    if (connection?.state === signalR.HubConnectionState.Disconnected) {
+      return connection.start();
+    }
+    return Promise.resolve();
   };
 
   const parseJwt = (token) => {
-    const base64Url = token.split('.')[1];
-    const base64 = base64Url.replace(/-/g, '+').replace(/_/g, '/');
-    const jsonPayload = decodeURIComponent(atob(base64).split('').map(c => {
-      return '%' + ('00' + c.charCodeAt(0).toString(16)).slice(-2);
-    }).join(''));
-    return JSON.parse(jsonPayload);
-  };
-
-  const login = async (phoneNumber, password) => {
     try {
-      const response = await fetch("https://waffi.runasp.net/api/account/login", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ phoneNumber, password })
-      });
-      if (!response.ok) throw new Error("Login failed");
-      const data = await response.json();
-      const tokenValue = data.data.token;
-      const tokenData = parseJwt(tokenValue);
-      const user = {
-        id: tokenData.nameid,
-        username: tokenData.given_name,
-        role: tokenData.role
-      };
-      localStorage.setItem("token", tokenValue);
-      setToken(tokenValue);
-      setCurrentUser(user);
-      if (user.role === "Admin") {
-        await ensureConnection();
-        connectionRef.current.invoke("JoinAdminGroup");
-        connectionRef.current.invoke("JoinChat", `user_${user.id}`);
-        loadTickets();
-      } else {
-        await ensureConnection();
-        connectionRef.current.invoke("JoinChat", `user_${user.id}`);
-      }
-    } catch (err) {
-      console.error("Login Error:", err);
-      alert("Login failed: " + err.message);
+      return JSON.parse(atob(token.split('.')[1]));
+    } catch (e) {
+      return null;
     }
   };
 
-  const handleChatStarted = async (newChatId) => {
-    setChatId(newChatId);
-    await ensureConnection();
-    connectionRef.current.invoke("JoinChat", newChatId);
-    if (currentUser.role === "Admin") {
-      loadUsers();
-    } else {
-      // Optional UI logic for user
-    }
-  };
+  const login = () => {
+    const phoneNumber = phoneRef.current.value.trim();
+    const password = passwordRef.current.value.trim();
+    if (!phoneNumber || !password) return alert('Enter phone and password');
 
-  const handleReceiveMessage = (user, message) => {
-    const fullMessage = `User ${user}: ${message}`;
-    if (fullMessage !== lastMessage) {
-      setLastMessage(fullMessage);
-      console.log(fullMessage); // replace with adding to chat view
-    }
-  };
-
-  const handleNewAddUserRequest = () => {
-    if (currentUser.role === "Admin") {
-      loadAddUserRequests();
-    }
-  };
-
-  const requestAddUser = async (userNameToAdd) => {
-    try {
-      const response = await fetch(`https://waffi.runasp.net/api/tickets/find-user-by-userName/${encodeURIComponent(userNameToAdd)}`, {
-        headers: { Authorization: `Bearer ${token}` }
-      });
-      const user = await response.json();
-      const userIdToAdd = user.id;
-
-      const url = currentUser.role === "Admin"
-        ? "https://waffi.runasp.net/api/tickets/add-user-to-chat"
-        : "https://waffi.runasp.net/api/tickets/request-add-user";
-
-      const postResponse = await fetch(url, {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-          Authorization: `Bearer ${token}`
-        },
-        body: JSON.stringify({ userIdToAdd, chatId })
-      });
-      const result = await postResponse.json();
-      alert(result.message);
-    } catch (err) {
-      console.error("Request Add User Error:", err);
-      alert(err.message);
-    }
-  };
-
-  const loadAddUserRequests = async () => {
-    try {
-      const response = await fetch("https://waffi.runasp.net/api/tickets/get-add-user-requests", {
-        headers: { Authorization: `Bearer ${token}` }
-      });
-      const requests = await response.json();
-      setAddUserRequests(requests);
-    } catch (err) {
-      console.error("Load Add User Requests Error:", err);
-    }
-  };
-
-  const approveAddUserRequest = async (requestId) => {
-    try {
-      const response = await fetch(`https://waffi.runasp.net/api/tickets/approve-add-user/${requestId}`, {
-        method: "POST",
-        headers: { Authorization: `Bearer ${token}` }
-      });
-      const data = await response.json();
-      alert(data.message);
-      loadAddUserRequests();
-      loadUsers();
-    } catch (err) {
-      console.error("Approve Add User Error:", err);
-    }
-  };
-
-  const submitTicket = async () => {
-    try {
-      const response = await fetch("https://waffi.runasp.net/api/tickets/request", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-          Authorization: `Bearer ${token}`
-        },
-        body: JSON.stringify({ details: ticketDetails })
-      });
-      const data = await response.json();
-      alert(data.message);
-      setLastTicketId(data.requestId);
-    } catch (err) {
-      console.error("Submit Ticket Error:", err);
-    }
-  };
-
-  const loadTickets = async () => {
-    try {
-      const response = await fetch("https://waffi.runasp.net/api/tickets/GetAllTickets", {
-        headers: { Authorization: `Bearer ${token}` }
-      });
-      const data = await response.json();
-      setTickets(data);
-    } catch (err) {
-      console.error("Load Tickets Error:", err);
-    }
-  };
-
-  const approveTicket = async (ticketId) => {
-    try {
-      const response = await fetch(`https://waffi.runasp.net/api/tickets/approve/${ticketId}`, {
-        method: "POST",
-        headers: { Authorization: `Bearer ${token}` }
-      });
-      const data = await response.json();
-      alert(data.message);
-      loadTickets();
-      if (currentUser.role === "Admin") {
-        setChatId(data.chatId);
-        ensureConnection().then(() => {
-          connectionRef.current.invoke("JoinChat", data.chatId);
+    fetch('https://waffi.runasp.net/api/account/login', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ phoneNumber, password })
+    })
+      .then(res => res.json())
+      .then(data => {
+        const userToken = data.data.token;
+        const tokenData = parseJwt(userToken);
+        setToken(userToken);
+        setCurrentUser({
+          id: tokenData.nameid,
+          username: tokenData.given_name,
+          role: tokenData.role
         });
-      }
-    } catch (err) {
-      console.error("Approve Ticket Error:", err);
-    }
+      });
   };
 
-  const sendMessage = async () => {
-    await ensureConnection();
-    connectionRef.current.invoke("SendMessage", chatId, messageInput);
-    setMessageInput('');
+  const submitTicket = () => {
+    const details = ticketDetailsRef.current.value;
+    fetch('https://waffi.runasp.net/api/tickets/request', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        Authorization: `Bearer ${token}`
+      },
+      body: JSON.stringify({ details })
+    })
+      .then(res => res.json())
+      .then(data => alert(data.message));
   };
 
-  const loadUsers = () => {
-    // You would implement user list fetching here
+  const loadTickets = () => {
+    fetch('https://waffi.runasp.net/api/tickets/GetAllTickets', {
+      headers: { Authorization: `Bearer ${token}` }
+    })
+      .then(res => res.json())
+      .then(setTickets);
+  };
+
+  const approveTicket = (ticketId) => {
+    fetch(`https://waffi.runasp.net/api/tickets/approve/${ticketId}`, {
+      method: 'POST',
+      headers: { Authorization: `Bearer ${token}` }
+    })
+      .then(res => res.json())
+      .then(data => {
+        alert(data.message);
+        setChatId(data.chatId);
+        connection.invoke('JoinChat', data.chatId);
+        loadTickets();
+      });
+  };
+
+  const requestAddUser = () => {
+    const inputRef = currentUser?.role === 'Admin' ? adminUserNameToAddRef : userNameToAddRef;
+    const userName = inputRef.current.value.trim();
+    if (!userName) return alert('Enter username');
+
+    fetch(`https://waffi.runasp.net/api/tickets/find-user-by-userName/${encodeURIComponent(userName)}`, {
+      headers: { Authorization: `Bearer ${token}` }
+    })
+      .then(res => res.json())
+      .then(user => {
+        const userIdToAdd = user.id;
+        const endpoint = currentUser.role === 'Admin'
+          ? 'add-user-to-chat'
+          : 'request-add-user';
+
+        return fetch(`https://waffi.runasp.net/api/tickets/${endpoint}`, {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+            Authorization: `Bearer ${token}`
+          },
+          body: JSON.stringify({ userIdToAdd, chatId })
+        });
+      })
+      .then(res => res.json())
+      .then(data => {
+        alert(data.message);
+        inputRef.current.value = '';
+      });
+  };
+
+  const loadAddUserRequests = () => {
+    fetch('https://waffi.runasp.net/api/tickets/get-add-user-requests', {
+      headers: { Authorization: `Bearer ${token}` }
+    })
+      .then(res => res.json())
+      .then(setAddUserRequests);
+  };
+
+  const approveAddUserRequest = (requestId) => {
+    fetch(`https://waffi.runasp.net/api/tickets/approve-add-user/${requestId}`, {
+      method: 'POST',
+      headers: { Authorization: `Bearer ${token}` }
+    })
+      .then(res => res.json())
+      .then(data => {
+        alert(data.message);
+        loadAddUserRequests();
+      });
+  };
+
+  const sendMessage = () => {
+    const message = messageInputRef.current.value;
+    connection.invoke('SendMessage', currentUser.username, message);
+    messageInputRef.current.value = '';
   };
 
   return (
     <div>
       <h1>Real-Time Chat Demo</h1>
 
-      <div id="loginSection">
-        <input id="phoneNumber" placeholder="Your Phone Number" type="text" />
-        <input id="password" placeholder="Your Password" type="password" />
-        <button onClick={() => login()}>Login</button>
-      </div>
-
-      <div id="userSection" style={{ display: "none" }}>
-        <input id="ticketDetails" placeholder="Ticket Details" />
-        <button onClick={() => submitTicket()}>Submit Ticket</button>
-      </div>
-
-      <div id="adminSection" style={{ display: "none" }}>
-        <h2>Admin Panel</h2>
-        <ul id="ticketList"></ul>
-        <div id="adminAddUserSection" style={{ display: "none" }}>
-          <input
-            type="text"
-            id="adminUserNameToAdd"
-            placeholder="Enter username to add"
-          />
-          <button onClick={() => requestAddUser()}>Add User</button>
+      {!token && (
+        <div>
+          <input ref={phoneRef} placeholder="Your Phone Number" type="text" />
+          <input ref={passwordRef} placeholder="Your Password" type="password" />
+          <button onClick={login}>Login</button>
         </div>
-      </div>
+      )}
 
-      <div id="chatSection" style={{ display: "none" }}>
-        <h3>Chat</h3>
-        <div id="messages"></div>
-        <input id="messageInput" placeholder="Type a message" />
-        <button onClick={() => sendMessage()}>Send</button>
-        <input
-          id="userNameToAdd"
-          placeholder="Enter username to add"
-          style={{ display: "none" }}
-        />
-        <button
-          id="requestAddUserBtn"
-          style={{ display: "none" }}
-          onClick={() => requestAddUser()}
-        >
-          Request to Add User
-        </button>
-      </div>
+      {currentUser?.role === 'Admin' && (
+        <div>
+          <h2>Admin Panel</h2>
+          <button onClick={loadTickets}>Load Tickets</button>
+          <ul>
+            {tickets.map(ticket => (
+              <li key={ticket.id}>
+                {ticket.details} (User: {ticket.username})
+                <button onClick={() => approveTicket(ticket.id)}>Approve</button>
+              </li>
+            ))}
+          </ul>
+          <input ref={adminUserNameToAddRef} placeholder="Enter username to add" />
+          <button onClick={requestAddUser}>Add User</button>
+        </div>
+      )}
+
+      {currentUser?.role === 'User' && (
+        <div>
+          <input ref={ticketDetailsRef} placeholder="Ticket Details" />
+          <button onClick={submitTicket}>Submit Ticket</button>
+        </div>
+      )}
+
+      {chatId && (
+        <div>
+          <h3>Chat</h3>
+          <div>
+            {messages.map((m, i) => (
+              <p key={i}><strong>User {m.user}:</strong> {m.message}</p>
+            ))}
+          </div>
+          <input ref={messageInputRef} placeholder="Type a message" />
+          <button onClick={sendMessage}>Send</button>
+
+          {currentUser?.role === 'User' && (
+            <div>
+              <input ref={userNameToAddRef} placeholder="Enter username to add" />
+              <button onClick={requestAddUser}>Request to Add User</button>
+            </div>
+          )}
+        </div>
+      )}
+
+      {currentUser?.role === 'Admin' && (
+        <div>
+          <h3>Pending User Requests</h3>
+          <ul>
+            {addUserRequests.map(req => (
+              <li key={req.id}>
+                User {req.requestingUserId} wants to add User {req.userIdToAdd} to Chat {req.chatId}
+                <button onClick={() => approveAddUserRequest(req.id)}>Approve</button>
+              </li>
+            ))}
+          </ul>
+        </div>
+      )}
     </div>
   );
 };
 
-export default Ticket;
+export default RealTimeChatApp;
