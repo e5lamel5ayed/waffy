@@ -6,16 +6,6 @@ import LinkedInIcon from "@mui/icons-material/LinkedIn";
 import TwitterIcon from "@mui/icons-material/Twitter";
 import phone from "/assets/phone.png";
 
-const androidAppLink = "https://waffy.onelink.me/fYVs/lxx6r9yl";
-const iosAppLink = "https://waffy.onelink.me/fYVs/lxx6r9yl";
-
-const openAndroidApp = () => {
-  window.open(androidAppLink, '_blank');
-};
-
-const openIosApp = () => {
-  window.open(iosAppLink, '_blank');
-};
 
 const rotateAnimation = keyframes`
   from { transform: rotate(0deg); }
@@ -32,7 +22,7 @@ const Footer = () => {
           display: "flex",
           alignItems: "center",
           justifyContent: "space-between",
-        
+
           margin: "auto",
           px: 3,
           flexWrap: "wrap",
@@ -76,46 +66,49 @@ const Footer = () => {
             src={phone}
             alt="Phone Mockup"
             style={{
-              maxWidth: "80%",
+              maxWidth: "75%",
               height: "auto",
               position: "relative",
-              marginTop: "50px",
-              marginRight: "150px",
+              marginTop: "30px",
+              marginRight: "220px",
               zIndex: 2,
             }}
           />
         </Box>
 
 
-<div class="d-flex flex-column align-items-end text-end p-4" dir="">
-  <h1 class="text-white fw-bold fs-1 mb-3">حمل وفّي وابدأ الآن</h1>
-  <p class="text-white fw-bold fs-4 mt-2">انضم لوفّي الآن واحفظ حقك</p>
-  <div className="d-flex gap-3">
-  <button class="mt-3 px-4 py-3 border border-white text-white fs-5 rounded bg-transparent 
+        <div class="d-flex flex-column align-items-end text-end p-4" dir="">
+          <h1 class="text-white fw-bold fs-1 mb-3">حمل وفّي وابدأ الآن</h1>
+          <p class="text-white fw-bold fs-4 mt-2">انضم لوفّي الآن واحفظ حقك</p>
+          <div className="d-flex gap-3">
+            <button class="mt-3 px-3 py-2 border border-white fs-5 rounded bg-white text-black 
                  hover-bg-white hover-text-dark transition">
-  تطبيق الاندرويد
-  </button>
-  <button class="mt-3 px-4 py-2 border border-white text-white fs-5 rounded bg-transparent 
-                 hover-bg-white hover-text-dark transition">
-     تطبيق الايفون
-  </button>
-  </div>
+              تطبيق الاندرويد
+              <img src="/assets/androidLogo.svg" width={30}/>
 
-</div>
+            </button>
+            <button class="mt-3 px-4 py-0 border border-white text-black fs-6 rounded bg-white 
+                 hover-bg-white hover-text-dark transition">
+              تطبيق الايفون
+              <img src="/assets/appleLogo.svg" width={30}/>
+            </button>
+          </div>
+
+        </div>
 
       </Box>
 
       <Box sx={{ width: "100%", borderTop: "1px solid #fff", mt: 0, pt: 3 }}>
-        <Typography 
-          variant="body1" 
-          sx={{ 
-            textAlign: "start", 
-            fontSize: "25px", 
-            flexGrow: 1, 
-            mb: -2, 
-            mr: 5, 
+        <Typography
+          variant="body1"
+          sx={{
+            textAlign: "start",
+            fontSize: "25px",
+            flexGrow: 1,
+            mb: -2,
+            mr: 5,
             paddingLeft: 5,
-            color: "#fff", 
+            color: "#fff",
             display: "flex",
             justifyContent: "start"
           }}
