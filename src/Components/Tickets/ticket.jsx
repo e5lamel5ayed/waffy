@@ -60,14 +60,14 @@ const RealTimeChatApp = () => {
       });
 
       connection.on('NewAddUserRequest', () => {
-        if (currentUser?.role === 'Admin') {
+        if (userData?.roles?.includes('Admin')) {
           loadAddUserRequests();
         }
       });
 
       ensureConnection();
     }
-  }, [connection]);
+  }, [connection, userData]);
 
   const ensureConnection = () => {
     if (connection?.state === signalR.HubConnectionState.Disconnected) {
@@ -82,7 +82,7 @@ const RealTimeChatApp = () => {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
-        Authorization: `Bearer ${token}`
+        Authorization: `Bearer ${userData?.token}`
       },
       body: JSON.stringify({ details })
     })
@@ -92,7 +92,7 @@ const RealTimeChatApp = () => {
 
   const loadTickets = () => {
     fetch('https://waffi.runasp.net/api/tickets/GetAllTickets', {
-      headers: { Authorization: `Bearer ${token}` }
+      headers: { Authorization: `Bearer ${userData?.token}` }
     })
       .then(res => res.json())
       .then(setTickets);
@@ -101,7 +101,7 @@ const RealTimeChatApp = () => {
   const approveTicket = (ticketId) => {
     fetch(`https://waffi.runasp.net/api/tickets/approve/${ticketId}`, {
       method: 'POST',
-      headers: { Authorization: `Bearer ${token}` }
+      headers: { Authorization: `Bearer ${userData?.token}` }
     })
       .then(res => res.json())
       .then(data => {
@@ -113,17 +113,17 @@ const RealTimeChatApp = () => {
   };
 
   const requestAddUser = () => {
-    const inputRef = currentUser?.role === 'Admin' ? adminUserNameToAddRef : userNameToAddRef;
+    const inputRef = userData?.roles?.includes('Admin') ? adminUserNameToAddRef : userNameToAddRef;
     const userName = inputRef.current.value.trim();
     if (!userName) return alert('Enter username');
 
     fetch(`https://waffi.runasp.net/api/tickets/find-user-by-userName/${encodeURIComponent(userName)}`, {
-      headers: { Authorization: `Bearer ${token}` }
+      headers: { Authorization: `Bearer ${userData?.token}` }
     })
       .then(res => res.json())
       .then(user => {
         const userIdToAdd = user.id;
-        const endpoint = currentUser.role === 'Admin'
+        const endpoint = userData?.roles?.includes('Admin')
           ? 'add-user-to-chat'
           : 'request-add-user';
 
@@ -131,7 +131,7 @@ const RealTimeChatApp = () => {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',
-            Authorization: `Bearer ${token}`
+            Authorization: `Bearer ${userData?.token}`
           },
           body: JSON.stringify({ userIdToAdd, chatId })
         });
@@ -145,7 +145,7 @@ const RealTimeChatApp = () => {
 
   const loadAddUserRequests = () => {
     fetch('https://waffi.runasp.net/api/tickets/get-add-user-requests', {
-      headers: { Authorization: `Bearer ${token}` }
+      headers: { Authorization: `Bearer ${userData?.token}` }
     })
       .then(res => res.json())
       .then(setAddUserRequests);
@@ -154,7 +154,7 @@ const RealTimeChatApp = () => {
   const approveAddUserRequest = (requestId) => {
     fetch(`https://waffi.runasp.net/api/tickets/approve-add-user/${requestId}`, {
       method: 'POST',
-      headers: { Authorization: `Bearer ${token}` }
+      headers: { Authorization: `Bearer ${userData?.token}` }
     })
       .then(res => res.json())
       .then(data => {
@@ -165,15 +165,14 @@ const RealTimeChatApp = () => {
 
   const sendMessage = () => {
     const message = messageInputRef.current.value;
-    connection.invoke('SendMessage', currentUser.username, message);
+    connection.invoke('SendMessage', userData?.userName, message);
     messageInputRef.current.value = '';
   };
 
   return (
     <div>
       <h1>Real-Time Chat Demo</h1>
-
-      {currentUser?.role === 'Admin' && (
+      {userData?.roles?.includes('Admin') && (
         <div>
           <h2>Admin Panel</h2>
           <button onClick={loadTickets}>Load Tickets</button>
@@ -190,7 +189,7 @@ const RealTimeChatApp = () => {
         </div>
       )}
 
-      {currentUser?.role === 'User' && (
+      {userData?.roles?.includes('User') && (
         <div>
           <input ref={ticketDetailsRef} placeholder="Ticket Details" />
           <button onClick={submitTicket}>Submit Ticket</button>
@@ -209,7 +208,7 @@ const RealTimeChatApp = () => {
           <input ref={messageInputRef} placeholder="Type a message" />
           <button onClick={sendMessage}>Send</button>
 
-          {currentUser?.role === 'User' && (
+          {userData?.roles?.includes('User') && (
             <div>
               <input ref={userNameToAddRef} placeholder="Enter username to add" />
               <button onClick={requestAddUser}>Request to Add User</button>
@@ -218,7 +217,7 @@ const RealTimeChatApp = () => {
         </div>
       )}
 
-      {currentUser?.role === 'Admin' && (
+      {userData?.roles?.includes('Admin') && (
         <div>
           <h3>Pending User Requests</h3>
           <ul>
