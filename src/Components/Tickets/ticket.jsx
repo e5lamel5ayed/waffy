@@ -76,37 +76,6 @@ const RealTimeChatApp = () => {
     return Promise.resolve();
   };
 
-  const parseJwt = (token) => {
-    try {
-      return JSON.parse(atob(token.split('.')[1]));
-    } catch (e) {
-      return null;
-    }
-  };
-
-  // const login = () => {
-  //   const phoneNumber = phoneRef.current.value.trim();
-  //   const password = passwordRef.current.value.trim();
-  //   if (!phoneNumber || !password) return alert('Enter phone and password');
-
-  //   fetch('https://waffi.runasp.net/api/account/login', {
-  //     method: 'POST',
-  //     headers: { 'Content-Type': 'application/json' },
-  //     body: JSON.stringify({ phoneNumber, password })
-  //   })
-  //     .then(res => res.json())
-  //     .then(data => {
-  //       const userToken = data.data.token;
-  //       const tokenData = parseJwt(userToken);
-  //       setToken(userToken);
-  //       setCurrentUser({
-  //         id: tokenData.nameid,
-  //         username: tokenData.given_name,
-  //         role: tokenData.role
-  //       });
-  //     });
-  // };
-
   const submitTicket = () => {
     const details = ticketDetailsRef.current.value;
     fetch('https://waffi.runasp.net/api/tickets/request', {
