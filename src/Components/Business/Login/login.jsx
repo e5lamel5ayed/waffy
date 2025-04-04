@@ -88,7 +88,7 @@ const Login = () => {
 
             <div className="input-group mb-3">
               <span className="input-group-text py-3">
-                <img src="/assets/img/saudi_flag.svg" alt="SA" width="30" />
+                <img src="/assets/img/saudi_flag.svg" alt="SA" width="22" />
               </span>
               <input
                 type="text"
@@ -101,7 +101,7 @@ const Login = () => {
             </div>
 
             <div className="input-group mb-3">
-              <span className="input-group-text py-3">
+              <span className="input-group-text py-3 px-3">
                 <i className="fas fa-lock"></i>
               </span>
               <input

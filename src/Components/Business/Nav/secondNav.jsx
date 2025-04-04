@@ -9,11 +9,11 @@ import LogoutIcon from '@mui/icons-material/Logout';
 
 function SecondNav() {
   const [isSidebarOpen, setSidebarOpen] = useState(false);
-  const [isLoggedIn, setIsLoggedIn] = useState(!!localStorage.getItem('token'));
+  const [isLoggedIn, setIsLoggedIn] = useState(!!sessionStorage.getItem('token'));
   const navigate = useNavigate();
 
   const handleLogout = () => {
-    localStorage.removeItem('token');
+    sessionStorage.removeItem('token');
     setIsLoggedIn(false);
     navigate('/login');
   };

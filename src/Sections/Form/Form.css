@@ -13,45 +13,18 @@
     flex-direction: column;
     gap: 15px;
 }
-  
-.input-group {
-    display: flex;
-    flex-direction: column;
-}
-  
-.input-group label {
-    font-size: 14px;
-    font-weight: bold;
-    margin-bottom: 5px;
-    color: #333;
-}
-  
-.input-group input,
-.input-group select {
-    padding: 10px;
-    font-size: 14px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    outline: none;
-    transition: 0.3s;
-}
-  
-.input-group input:focus,
-.input-group select:focus {
-    border-color: #ff1493;
-    box-shadow: 0 0 5px rgba(255, 20, 147, 0.5);
-}
-  
+
+
 .full-width {
     width: 100%;
 }
-  
+
 .phone-input {
     display: flex;
     align-items: center;
     gap: 10px;
 }
-  
+
 .phone-input select {
     width: 60px;
     text-align: center;
@@ -59,15 +32,15 @@
     border: 1px solid #ccc;
     border-radius: 5px;
 }
-  
+
 .phone-input input {
     flex: 1;
 }
 
 .submit-btn {
-   background-color: #1a7ffbb0;
+    background-color: #1a7ffbb0;
 }
-  
+
 button.submit-btn {
     background: #ff1493;
     color: white;
@@ -78,7 +51,7 @@ button.submit-btn {
     cursor: pointer;
     transition: 0.3s;
 }
-  
+
 button.submit-btn:hover {
     background: #c1126b;
 }

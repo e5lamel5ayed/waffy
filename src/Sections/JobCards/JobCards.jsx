@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import { ArrowLeft, Building2, Briefcase } from 'lucide-react';
 import '../JobCards/JobCards.css';
 import Form from "../Form/Form";
-import image from "/assets/Waffy-logo.png"
+import image from "/assets/waffyLogo.svg"
 import Footer from "../Footer/Footer";
 //-------------------------------------------
 // data  
