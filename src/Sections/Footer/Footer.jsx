@@ -98,23 +98,26 @@ const Footer = () => {
 
       </Box>
 
-      <Box sx={{ width: "100%", borderTop: "1px solid #fff", mt: 0, pt: 3 }}>
-        <Typography
-          variant="body1"
-          sx={{
-            textAlign: "start",
-            fontSize: "25px",
-            flexGrow: 1,
-            mb: -2,
-            mr: 5,
-            paddingLeft: 5,
-            color: "#fff",
-            display: "flex",
-            justifyContent: "start"
-          }}
-        >
-          الميزات | الأسئلة الشائعة | المدونة | وَفِي أعمال | التوظيف | تحدث معنا
-        </Typography>
+      <Box sx={{ width: "90%", borderTop: "1px solid #fff", mt: 0, pt: 3 ,display: "flex",justifyContent: "center"}}>
+
+        
+      <Typography
+  variant="body1"
+  sx={{
+    textAlign: "start",
+    fontSize: "25px",
+    flexGrow: 1,
+    mb: -2,
+    mr: 5,
+    paddingLeft: 5,
+    color: "#fff",
+    display: "flex",
+    justifyContent: "start"
+  }}
+>
+  الميزات&nbsp;&nbsp; الأسئلة الشائعة&nbsp;&nbsp; المدونة&nbsp;&nbsp; وَفِي أعمال&nbsp;&nbsp; التوظيف&nbsp;&nbsp; تحدث معنا
+</Typography>
+
 
         <Box
           sx={{
@@ -140,10 +143,12 @@ const Footer = () => {
 
       <Box
         sx={{
-          width: "100%",
+          width: "90%",
           borderTop: "1px solid #fff",
           mt: 5,
           pt: 3,
+          display: "flex",
+          justifyContent: "center"
         }}
       />
 

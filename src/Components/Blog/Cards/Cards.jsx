@@ -1,5 +1,9 @@
 import React from "react";
-import { Container, Row, Col, Card, Button } from "react-bootstrap";
+import { Container, Row, Col, Card } from "react-bootstrap";
+
+
+import { Link } from "react-router-dom";
+
 import './Cards.css';
 
 const cardsData = [
@@ -201,16 +205,22 @@ const Cards = () => {
       <Row className="g-3 ">
         {cardsData.map((card, index) => (
           <Col md={4} key={index}>
+                <Link class="text-decoration-none" to="/blog-details">
+
             <Card className=" border-0 text-end">
               <Card.Img variant="top"     className="custom-img" src={card.img} />
               <Card.Body>
                 <Card.Title className="fw-bold fs-4 mb-4 mt-3">{card.title}</Card.Title>
                 <Card.Text className=" fs-5">{card.text}</Card.Text>
+               <Link to="/blog-details">
                 <button  className="fw-bold   border  ">
                   قراءة المزيد
                 </button>
+                </Link>
               </Card.Body>
             </Card>
+            </Link>
+
           </Col>
         ))}
       </Row>

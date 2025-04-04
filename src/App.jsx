@@ -10,6 +10,7 @@ import '@fortawesome/fontawesome-free/css/all.min.css';
 import TicketPage from './Components/Tickets/ticket';
 import ProtectedRoute from './Components/ProtectedRoute';
 import Blog from './Components/Blog/Blog';
+import BlogDetails from './Components/BlogDetails/BlogDetails';
 //------------------------------------------------------
 
 function App() {
@@ -23,6 +24,7 @@ function App() {
         <Route path="/login" element={<Login />} />
         <Route path="/register" element={<Register />} />
         <Route path="/blog" element={<Blog />} />
+        <Route path="/blog-details" element={<BlogDetails />} />
 
         <Route
           path="/ticket"
