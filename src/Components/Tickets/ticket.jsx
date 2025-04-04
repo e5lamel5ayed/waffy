@@ -12,8 +12,6 @@ const RealTimeChatApp = () => {
   const [tickets, setTickets] = useState([]);
   const [addUserRequests, setAddUserRequests] = useState([]);
 
-  const phoneRef = useRef();
-  const passwordRef = useRef();
   const ticketDetailsRef = useRef();
   const messageInputRef = useRef();
   const userNameToAddRef = useRef();
@@ -46,12 +44,20 @@ const RealTimeChatApp = () => {
 
   useEffect(() => {
     if (connection) {
+      connection.start().then(() => {
+        console.log('SignalR connected');
+      }).catch(err => {
+        console.error('Error starting SignalR connection', err);
+      });
+
       connection.on('ChatStarted', (newChatId) => {
+        console.log('ChatStarted', newChatId); // تحقق من تلقي الـ chatId
         setChatId(newChatId);
         ensureConnection().then(() => connection.invoke('JoinChat', newChatId));
       });
 
       connection.on('ReceiveMessage', (user, message) => {
+        console.log('Received message', user, message); // تحقق من تلقي الرسائل
         const fullMessage = `User ${user}: ${message}`;
         if (fullMessage !== lastMessage) {
           setMessages((prev) => [...prev, { user, message }]);
