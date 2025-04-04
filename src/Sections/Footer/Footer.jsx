@@ -1,4 +1,4 @@
-import { Box, Button, Typography, keyframes, useMediaQuery } from "@mui/material";
+import { Box, Link, Typography, keyframes, useMediaQuery } from "@mui/material";
 import AppleIcon from "@mui/icons-material/Apple";
 import AndroidIcon from "@mui/icons-material/Android";
 import InstagramIcon from "@mui/icons-material/Instagram";
@@ -32,7 +32,7 @@ const Footer = () => {
           display: "flex",
           alignItems: "center",
           justifyContent: "space-between",
-          maxWidth: "1200px",
+        
           margin: "auto",
           px: 3,
           flexWrap: "wrap",
@@ -76,59 +76,33 @@ const Footer = () => {
             src={phone}
             alt="Phone Mockup"
             style={{
-              maxWidth: "100%",
+              maxWidth: "80%",
               height: "auto",
               position: "relative",
               marginTop: "50px",
+              marginRight: "150px",
               zIndex: 2,
             }}
           />
         </Box>
 
-        <Box sx={{ flex: "1 1 50%" }}>
-          <Typography variant={isMobile ? "h4" : "h2"} fontWeight="bold">
-            حمل وَفِي وابدأ الآن
-          </Typography>
-          <Typography variant={isMobile ? "h6" : "h5"} sx={{ my: 2 }}>
-            انضم لوفِي الآن واحفظ حقك
-          </Typography>
 
-          <Box sx={{ display: "flex", justifyContent: "center", gap: 2, flexDirection: isMobile ? "column" : "row" }}>
-            <Button
-              variant="contained"
-              onClick={openAndroidApp}
-              sx={{
-                backgroundColor: "#fff",
-                color: "#000",
-                display: "flex",
-                alignItems: "center",
-                px: 2,
-                borderRadius: "8px",
-                "&:hover": { backgroundColor: "#ddd" },
-              }}
-            >
-              <AndroidIcon sx={{ mr: 1 }} />
-              تطبيق الأندرويد
-            </Button>
+<div class="d-flex flex-column align-items-end text-end p-4" dir="">
+  <h1 class="text-white fw-bold fs-1 mb-3">حمل وفّي وابدأ الآن</h1>
+  <p class="text-white fw-bold fs-4 mt-2">انضم لوفّي الآن واحفظ حقك</p>
+  <div className="d-flex gap-3">
+  <button class="mt-3 px-4 py-3 border border-white text-white fs-5 rounded bg-transparent 
+                 hover-bg-white hover-text-dark transition">
+  تطبيق الاندرويد
+  </button>
+  <button class="mt-3 px-4 py-2 border border-white text-white fs-5 rounded bg-transparent 
+                 hover-bg-white hover-text-dark transition">
+     تطبيق الايفون
+  </button>
+  </div>
 
-            <Button
-              variant="contained"
-              onClick={openIosApp}
-              sx={{
-                backgroundColor: "#fff",
-                color: "#000",
-                display: "flex",
-                alignItems: "center",
-                px: 2,
-                borderRadius: "8px",
-                "&:hover": { backgroundColor: "#ddd" },
-              }}
-            >
-              <AppleIcon sx={{ mr: 1 }} />
-              تطبيق الآيفون
-            </Button>
-          </Box>
-        </Box>
+</div>
+
       </Box>
 
       <Box sx={{ width: "100%", borderTop: "1px solid #fff", mt: 0, pt: 3 }}>

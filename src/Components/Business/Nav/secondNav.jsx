@@ -22,8 +22,8 @@ function SecondNav() {
   };
   return (
     <>
-      <nav className="navbar  bg-white  py-4 {`navbar ${isScrolled ? 'scrolled' : ''}`}">
-        <div className=" container-fluid  justify-content-between align-items-center" style={{ width: '90%' }}>
+      <nav className="navbar container-fluid   {`navbar ${isScrolled ? 'scrolled' : ''}`}">
+        <div className="nav-container " >
           {/* زر تسجيل الدخول */}
 
           {isLoggedIn ? (
@@ -42,7 +42,7 @@ function SecondNav() {
             <Menu color="#000" size={38} />
           </button>
           {/* روابط التنقل */}
-          <div className=" gap-4 nav-links text-dark text-decoration-none fw-semibold nav-links-mop">
+          <div className="  nav-links text-dark text-decoration-none  nav-links-mop">
 
             {isLoggedIn && (
               <Link to="/ticket">التذاكر</Link>

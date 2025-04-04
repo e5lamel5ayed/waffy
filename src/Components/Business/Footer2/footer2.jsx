@@ -21,7 +21,7 @@ function Footer2() {
             </p>
           </div>
           <div className="footer-links ">
-            <a href="#" className="footer-link">لماذا وفي</a>
+            <a href="#" className="footer-link ">لماذا وفي</a>
             <a href="#" className="footer-link">كيف تستخدم وفي</a>
             <a href="#" className="footer-link">وفي أفراد</a>
             <a href="#" className="footer-link">اتصل بنا</a>
