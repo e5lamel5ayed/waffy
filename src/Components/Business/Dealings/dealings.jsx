@@ -34,7 +34,7 @@ const Dealings = () => {
       </div>
 
       {/* البوكسات */}
-      <div className="row mt-5  mb-5 ">
+      <div className="row mt-5  mb-5 gap-1">
         {[
           { text: "مستخدم", icon: "a-1-2.svg" },
           { text: "معاملة نشطة", icon: "checkmark-circle-2-1.svg" },
@@ -42,7 +42,7 @@ const Dealings = () => {
           { text: "تقييم المستخدمين", icon: "Vector-2.svg" },
         ].map((item, index) => (
           <div className="col-md-3 col-sm-6" key={index}>
-            <div className="box  d-flex align-items-center ">
+            <div className="box  d-flex align-items-center">
                
              
               <img
