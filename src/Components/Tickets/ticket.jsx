@@ -18,6 +18,23 @@ const RealTimeChatApp = () => {
   const messageInputRef = useRef();
   const userNameToAddRef = useRef();
   const adminUserNameToAddRef = useRef();
+  const [userData, setUserData] = useState(null);
+
+  useEffect(() => {
+    const token = sessionStorage.getItem("token");
+    const userName = sessionStorage.getItem("userName");
+    const roles = JSON.parse(sessionStorage.getItem("roles"));
+    const userId = sessionStorage.getItem("userId");
+
+    if (token && userName && roles && userId) {
+      setUserData({
+        token,
+        userName,
+        roles,
+        userId
+      });
+    }
+  }, []);
 
   useEffect(() => {
     const newConnection = new signalR.HubConnectionBuilder()
@@ -67,28 +84,28 @@ const RealTimeChatApp = () => {
     }
   };
 
-  const login = () => {
-    const phoneNumber = phoneRef.current.value.trim();
-    const password = passwordRef.current.value.trim();
-    if (!phoneNumber || !password) return alert('Enter phone and password');
+  // const login = () => {
+  //   const phoneNumber = phoneRef.current.value.trim();
+  //   const password = passwordRef.current.value.trim();
+  //   if (!phoneNumber || !password) return alert('Enter phone and password');
 
-    fetch('https://waffi.runasp.net/api/account/login', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ phoneNumber, password })
-    })
-      .then(res => res.json())
-      .then(data => {
-        const userToken = data.data.token;
-        const tokenData = parseJwt(userToken);
-        setToken(userToken);
-        setCurrentUser({
-          id: tokenData.nameid,
-          username: tokenData.given_name,
-          role: tokenData.role
-        });
-      });
-  };
+  //   fetch('https://waffi.runasp.net/api/account/login', {
+  //     method: 'POST',
+  //     headers: { 'Content-Type': 'application/json' },
+  //     body: JSON.stringify({ phoneNumber, password })
+  //   })
+  //     .then(res => res.json())
+  //     .then(data => {
+  //       const userToken = data.data.token;
+  //       const tokenData = parseJwt(userToken);
+  //       setToken(userToken);
+  //       setCurrentUser({
+  //         id: tokenData.nameid,
+  //         username: tokenData.given_name,
+  //         role: tokenData.role
+  //       });
+  //     });
+  // };
 
   const submitTicket = () => {
     const details = ticketDetailsRef.current.value;
@@ -187,14 +204,6 @@ const RealTimeChatApp = () => {
     <div>
       <h1>Real-Time Chat Demo</h1>
 
-      {!token && (
-        <div>
-          <input ref={phoneRef} placeholder="Your Phone Number" type="text" />
-          <input ref={passwordRef} placeholder="Your Password" type="password" />
-          <button onClick={login}>Login</button>
-        </div>
-      )}
-
       {currentUser?.role === 'Admin' && (
         <div>
           <h2>Admin Panel</h2>
@@ -222,6 +231,7 @@ const RealTimeChatApp = () => {
       {chatId && (
         <div>
           <h3>Chat</h3>
+
           <div>
             {messages.map((m, i) => (
               <p key={i}><strong>User {m.user}:</strong> {m.message}</p>

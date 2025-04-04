@@ -28,8 +28,15 @@ const Login = () => {
       });
 
       if (response.data.isSuccess && response.data.data.token) {
-        sessionStorage.setItem("token", response.data.data.token);
-        navigate("/");
+        const { token, userName, roles, userId } = response.data.data;
+        // حفظ البيانات في sessionStorage
+        sessionStorage.setItem("token", token);
+        sessionStorage.setItem("userName", userName);
+        sessionStorage.setItem("roles", JSON.stringify(roles));
+        sessionStorage.setItem("userId", userId);
+
+        // الإنتقال إلى الصفحة الرئيسية أو صفحة تذاكر
+        navigate("/ticket");
       } else {
         setError("حدث خطأ، لم يتم استلام التوكن!");
       }
