@@ -102,7 +102,7 @@ const Footer = () => {
       </Box>
 
       <Box sx={{ width: "90%", borderTop: "1px solid #fff", mt: 0, pt: 3 ,display: "flex",justifyContent: "center",margin: "auto"}}>
-      <div className="footerr-top d-flex gap-5 justify-content-between px-5" dir="rtl">
+      <div className="footerr-top d-flex gap-5 justify-content-between w-100 px-5" dir="rtl">
           <div className="footerr-logo">
             <img
               src="/assets/img/PNG-01-1-1024x658.webp"
@@ -120,8 +120,6 @@ const Footer = () => {
             <a href="#" className="footerr-link">اتصل بنا</a>
           </div>
         </div>
-
-
       </Box>
 
       <Box

@@ -16,27 +16,27 @@
     align-items: center;
   }
   
-  .logo-img {
+  .logo-img2 {
     width: 120px;
     height: 70px;
     border-left: 1px solid black;
     padding-left: 1rem;
   }
   
-  .logo-text {
+  .logo-text2 {
     padding-right: 1rem;
     text-align: right;
     font-size: 1.25rem;
     color: #333;
   }
   
-  .footer-links {
+  .footer-links2 {
     display: flex;
     justify-content: center;
     gap: 1.2rem;
   }
   
-  .footer-link {
+  .footer-link2 {
     text-decoration: none;
     color: black;
     font-size: 1.2rem;
@@ -79,7 +79,11 @@
     color: black !important;
   }
   
-/* الريسبونسيف */
-@media (max-width: 768px) {
-    
+  @media (max-width: 768px) {
+    .footerr-top {
+      flex-direction: column !important;
+      align-items: center; /* لو عايز المحتوى يبقى في النص */
+      gap: 2rem;
+    }
   }
+  

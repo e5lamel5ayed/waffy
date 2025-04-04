@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
 import {
   FaFacebook,
@@ -33,12 +33,12 @@ const Data = [
 
 function BlogDetails() {
   return (
-    <div className="BlogDetails">
+    <div className="BlogDetails ">
       <Nav />
 
       {/* hero section */}
       <div className="heero ">
-        <Container fluid className="bg-dark text-white py-5">
+        <Container fluid className="text-white py-5" style={{ backgroundColor: '#121326' }}>
           <Row className="align-items-center mt-5 gap-5 mb-5">
             {/* القسم الأيسر - الأيقونات والمشاركة */}
             <Col md={5} className="text-md-end text-center mb-3 mb-md-0">
@@ -75,84 +75,88 @@ function BlogDetails() {
       </div>
 
       {/* details section */}
-      <div className="details" dir="">
+      <div className="details m-auto" style={{ width: '90%' }}>
         <Container
           fluid
-          className="my-5 text-center px-5 "
-          style={{ backgroundColor: "#f8fafb" }}
+          className="my-5 text-center p-0 "
+          style={{ backgroundColor: "#f8fafb", borderRadius: '15px' }}
         >
-          {/* العنوان الرئيسي */}
-          <h2 className="fw-bold text-dark fs-2">
-            هل أنت تعمل بالعمل الحر؟ تبي تضمن عرڤونك وتحمي كل مستحقاتك بطريقة
-            موثوقة ومضمونة؟ مع خدمة وفّي ,تقدر تطمئن وتشتغل براحة بال وبثقة
-          </h2>
+          <img src="/assets/blogDetails.png" className="w-100" style={{ borderRadius: '15px' }} />
+          <div className="container">
 
-          {/* زر التحميل */}
-          <button
-            className=" mt-3 px-4 py-3 fs-5 border-0 rounded-pill text-white"
-            style={{ backgroundColor: "#0693e3" }}
-          >
-            حمّل تطبيق وَفِي الآن واحصل على ضمان في جميع معاملاتك
-          </button>
+            {/* العنوان الرئيسي */}
+            <h2 className="fw-bold text-dark fs-2 mt-5">
+              هل أنت تعمل بالعمل الحر؟ تبي تضمن عرڤونك وتحمي كل مستحقاتك بطريقة
+              موثوقة ومضمونة؟ مع خدمة وفّي ,تقدر تطمئن وتشتغل براحة بال وبثقة
+            </h2>
 
-          {/* قسم الأسئلة */}
-          <div className="mt-5 text-end" dir="rtl">
-            {/* لماذا تختار الخدمة؟ */}
+            {/* زر التحميل */}
+            <button
+              className=" mt-3 px-4 py-3 fs-5 border-0 rounded-pill text-white"
+              style={{ backgroundColor: "#0693e3" }}
+            >
+              حمّل تطبيق وَفِي الآن واحصل على ضمان في جميع معاملاتك
+            </button>
 
-            <h1 className="fw-bold  text-muted"> ليش تختار خدمة ضمان وفّي؟</h1>
-            <p className="mb-4">
-              <FaHandshake className="text-warning me-2" />
-              <strong>ضمان العملاء:</strong> مع وفّي، يمكنك كفريلانسر ضمان
-              استلام عربونك بأمان
-            </p>
-            <p className="mb-4">
-              <FaMoneyBillWave className="text-warning me-2" />
-              <strong>حماية المدفوعات:</strong> نحن هنا لضمان استلامك لكل
-              مستحقاتك، حيث يتم حفظ العربون بشكل آمن حتى تكتمل الخدمة بالكامل
-            </p>
-            <p className="mb-4">
-              <FaLock className="text-warning me-2" />
-              <strong>سلامة المعاملات: </strong> توفر خدمة وفّي بيئة آمنة
-              وموثوقة لإجراء المعاملات، مما يضمن سلامة عربونك ومستحقاتك
-            </p>
+            {/* قسم الأسئلة */}
+            <div className="mt-5 text-end" dir="rtl">
+              {/* لماذا تختار الخدمة؟ */}
 
-            {/* كيف تعمل الخدمة؟ */}
+              <h1 className="fw-bold  text-muted"> ليش تختار خدمة ضمان وفّي؟</h1>
+              <p className="mb-4">
+                <FaHandshake className="text-warning me-2" />
+                <strong>ضمان العملاء:</strong> مع وفّي، يمكنك كفريلانسر ضمان
+                استلام عربونك بأمان
+              </p>
+              <p className="mb-4">
+                <FaMoneyBillWave className="text-warning me-2" />
+                <strong>حماية المدفوعات:</strong> نحن هنا لضمان استلامك لكل
+                مستحقاتك، حيث يتم حفظ العربون بشكل آمن حتى تكتمل الخدمة بالكامل
+              </p>
+              <p className="mb-4">
+                <FaLock className="text-warning me-2" />
+                <strong>سلامة المعاملات: </strong> توفر خدمة وفّي بيئة آمنة
+                وموثوقة لإجراء المعاملات، مما يضمن سلامة عربونك ومستحقاتك
+              </p>
 
-            <h1 className="fw-bold  text-muted">كيف تعمل خدمة ضمان وَفِي؟</h1>
-            <p className="mb-4">
-              <strong>تحديد الشروط:</strong> قم بتحديد شروط العمل والمبلغ
-              المطلوب كعرڤون.
-            </p>
-            <p className="mb-4">
-              <strong>دفع العرڤون:</strong> نحن نقوم بحجز المبلغ بشكل آمن حتى
-              اكتمال الخدمة.
-            </p>
+              {/* كيف تعمل الخدمة؟ */}
 
-            <p className="mb-4">
-              <strong> إتمام الخدمة:</strong> بمجرد إتمام الخدمة بالكامل ورضا
-              العميل، يتم تحويل العربون ومستحقاتك بالكامل إليك
-            </p>
+              <h1 className="fw-bold  text-muted">كيف تعمل خدمة ضمان وَفِي؟</h1>
+              <p className="mb-4">
+                <strong>تحديد الشروط:</strong> قم بتحديد شروط العمل والمبلغ
+                المطلوب كعرڤون.
+              </p>
+              <p className="mb-4">
+                <strong>دفع العرڤون:</strong> نحن نقوم بحجز المبلغ بشكل آمن حتى
+                اكتمال الخدمة.
+              </p>
+
+              <p className="mb-4">
+                <strong> إتمام الخدمة:</strong> بمجرد إتمام الخدمة بالكامل ورضا
+                العميل، يتم تحويل العربون ومستحقاتك بالكامل إليك
+              </p>
+            </div>
+
+            <h1 className="fw-bold text-dark  mt-5 pt-5">
+              انضم إلينا اليوم واستمتع بحماية عربونك ومستحقاتك كفريلانسر بثقة
+              وأمان مع وفّي
+            </h1>
+
+            {/* زر التحميل */}
+            <button
+              className=" mt-3 px-4 py-3 mb-5 fs-5 border-0 rounded-pill text-white"
+              style={{ backgroundColor: "#0693e3" }}
+            >
+              ابدأ معاملتك الآن
+            </button>
           </div>
-
-          <h1 className="fw-bold text-dark  mt-5 pt-5">
-            انضم إلينا اليوم واستمتع بحماية عربونك ومستحقاتك كفريلانسر بثقة
-            وأمان مع وفّي
-          </h1>
-
-          {/* زر التحميل */}
-          <button
-            className=" mt-3 px-4 py-3 mb-5 fs-5 border-0 rounded-pill text-white"
-            style={{ backgroundColor: "#0693e3" }}
-          >
-            ابدأ معاملتك الآن
-          </button>
         </Container>
       </div>
 
       {/* another section  */}
-      <div className="another">
+      <div className="another mt-5">
         <div className="cards my-5 container-fluid" style={{ width: "95%" }}>
-          <h1 className="fw-bold text-end mb-5">مقالات أخرى</h1>
+          <h1 className="fw-bold text-end my-5">مقالات أخرى</h1>
           <Row className="g-3 ">
             {Data.map((card, index) => (
               <Col md={4} key={index}>
