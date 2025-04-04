@@ -51,10 +51,21 @@ const RealTimeChatApp = () => {
       });
 
       connection.on('ChatStarted', (newChatId) => {
-        console.log('ChatStarted', newChatId); // تحقق من تلقي الـ chatId
+        console.log('Received chatId:', newChatId); // تحقق من الـ chatId
         setChatId(newChatId);
-        ensureConnection().then(() => connection.invoke('JoinChat', newChatId));
+        ensureConnection().then(() => {
+          if (newChatId) {
+            connection.invoke('JoinChat', newChatId)
+              .then(() => {
+                console.log('Joined chat successfully');
+              })
+              .catch(err => {
+                console.error('Error joining chat', err);
+              });
+          }
+        });
       });
+      
 
       connection.on('ReceiveMessage', (user, message) => {
         console.log('Received message', user, message); // تحقق من تلقي الرسائل
