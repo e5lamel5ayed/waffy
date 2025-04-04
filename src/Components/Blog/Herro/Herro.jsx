@@ -21,7 +21,7 @@ function Herro() {
 
         {/* فلاتر التصنيفات */}
         <div className="container mt-4">
-          <div className="row d-flex justify-content-center gap-2 text-muted fs-5 text-center g-0">
+          <div className="row d-flex justify-content-center gap-3 text-muted fs-5 text-center g-0">
             {categories.map((category) => (
               <div key={category} className="col-auto">
                 <a
