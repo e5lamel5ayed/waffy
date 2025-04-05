@@ -19,18 +19,27 @@ const RealTimeChatApp = () => {
   const [userData, setUserData] = useState(null);
 
   useEffect(() => {
-    const token = sessionStorage.getItem("token");
+    const sessionToken = sessionStorage.getItem("token");
     const userName = sessionStorage.getItem("userName");
-    const roles = JSON.parse(sessionStorage.getItem("roles"));
+    const roles = JSON.parse(sessionStorage.getItem("roles") || '[]');
     const userId = sessionStorage.getItem("userId");
 
-    if (token && userName && roles && userId) {
+    if (sessionToken && userName && roles && userId) {
       setUserData({
-        token,
+        token: sessionToken,
         userName,
         roles,
         userId
       });
+
+      const newConnection = new signalR.HubConnectionBuilder()
+        .withUrl('https://waffi.runasp.net/chatHub', {
+          accessTokenFactory: () => sessionToken
+        })
+        .withAutomaticReconnect()
+        .build();
+
+      setConnection(newConnection);
     }
   }, []);
 
@@ -44,35 +53,28 @@ const RealTimeChatApp = () => {
 
   useEffect(() => {
     if (connection) {
-      connection.start().then(() => {
-        console.log('SignalR connected');
-      }).catch(err => {
-        console.error('Error starting SignalR connection', err);
-      });
+      const connection = new signalR.HubConnectionBuilder()
+        .withUrl("https://waffi.runasp.net/chatHub", { accessTokenFactory: () => token })
+        .withAutomaticReconnect()
+        .build();
 
-      connection.on('ChatStarted', (newChatId) => {
-        console.log('Received chatId:', newChatId); // تحقق من الـ chatId
-        setChatId(newChatId);
+
+      connection.on("ChatStarted", (newChatId) => {
+        const chatId = newChatId;
         ensureConnection().then(() => {
-          if (newChatId) {
-            connection.invoke('JoinChat', newChatId)
-              .then(() => {
-                console.log('Joined chat successfully');
-              })
-              .catch(err => {
-                console.error('Error joining chat', err);
-              });
-          }
+          connection.invoke("JoinChat", chatId)
+            .then(() => console.log(`Joined chat ${chatId}`))
+            .catch(err => console.error("JoinChat Error: ", err));
         });
-      });
-      
 
-      connection.on('ReceiveMessage', (user, message) => {
-        console.log('Received message', user, message); // تحقق من تلقي الرسائل
+      });
+
+      connection.on("ReceiveMessage", (user, message) => {
         const fullMessage = `User ${user}: ${message}`;
         if (fullMessage !== lastMessage) {
-          setMessages((prev) => [...prev, { user, message }]);
-          setLastMessage(fullMessage);
+          const messagesDiv = document.getElementById("messages");
+          messagesDiv.innerHTML += `<p><strong>User ${user}:</strong> ${message}</p>`;
+          const lastMessage = fullMessage;
         }
       });
 
@@ -86,12 +88,14 @@ const RealTimeChatApp = () => {
     }
   }, [connection, userData]);
 
-  const ensureConnection = () => {
-    if (connection?.state === signalR.HubConnectionState.Disconnected) {
-      return connection.start();
+  function ensureConnection() {
+    if (connection.state === signalR.HubConnectionState.Disconnected) {
+      return connection.start()
+        .then(() => console.log("Connected to SignalR"))
+        .catch(err => console.error("SignalR Start Error: ", err));
     }
     return Promise.resolve();
-  };
+  }
 
   const submitTicket = () => {
     const details = ticketDetailsRef.current.value;
@@ -115,19 +119,47 @@ const RealTimeChatApp = () => {
       .then(setTickets);
   };
 
-  const approveTicket = (ticketId) => {
+  function approveTicket(ticketId) {
     fetch(`https://waffi.runasp.net/api/tickets/approve/${ticketId}`, {
-      method: 'POST',
-      headers: { Authorization: `Bearer ${userData?.token}` }
+      method: "POST",
+      headers: { "Authorization": `Bearer ${token}` }
     })
-      .then(res => res.json())
+      .then(response => response.json())
       .then(data => {
         alert(data.message);
-        setChatId(data.chatId);
-        connection.invoke('JoinChat', data.chatId);
         loadTickets();
+        
+        if (userData?.roles?.includes('Admin')) {
+          const chatId = data.chatId;
+          if (!chatId) {
+            console.error("Invalid chatId received:", chatId);
+            return;
+          }
+          ensureConnection().then(() => {
+            if (connection.state === "Connected") {
+              connection.invoke("JoinChat", chatId)
+                .then(() => console.log(`Admin joined chat ${chatId}`))
+                .catch(err => console.error("Admin JoinChat Error: ", err));
+            } else {
+              console.error("SignalR connection not established.");
+            }
+          });
+        }
+      })
+      .catch(err => {
+        console.error("Approve Error: ", err);
       });
-  };
+    
+  }
+
+  function sendMessage() {
+    ensureConnection().then(() => {
+      const message = document.getElementById("messageInput").value;
+      connection.invoke("SendMessage", chatId, message)
+        .then(() => document.getElementById("messageInput").value = "")
+        .catch(err => console.error("Send Message Error: ", err));
+    });
+  }
 
   const requestAddUser = () => {
     const inputRef = userData?.roles?.includes('Admin') ? adminUserNameToAddRef : userNameToAddRef;
@@ -178,12 +210,6 @@ const RealTimeChatApp = () => {
         alert(data.message);
         loadAddUserRequests();
       });
-  };
-
-  const sendMessage = () => {
-    const message = messageInputRef.current.value;
-    connection.invoke('SendMessage', userData?.userName, message);
-    messageInputRef.current.value = '';
   };
 
   return (
