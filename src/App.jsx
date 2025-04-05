@@ -11,6 +11,8 @@ import TicketPage from './Components/Tickets/ticket';
 import ProtectedRoute from './Components/ProtectedRoute';
 import Blog from './Components/Blog/Blog';
 import BlogDetails from './Components/BlogDetails/BlogDetails';
+import Employment from './Components/Employment/Employment';
+import EmploymentDetails from './Components/Employment/Employment-Details/Employment-Details';
 //------------------------------------------------------
 
 function App() {
@@ -25,6 +27,8 @@ function App() {
         <Route path="/register" element={<Register />} />
         <Route path="/blog" element={<Blog />} />
         <Route path="/blog-details" element={<BlogDetails />} />
+        <Route path="/employment" element={<Employment />} />
+        <Route path="/employment-details" element={<EmploymentDetails />} />
 
         <Route
           path="/ticket"

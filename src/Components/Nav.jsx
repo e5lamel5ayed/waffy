@@ -50,7 +50,7 @@ function Nav() {
               <Link to="/ticket">التذاكر</Link>
             )}
             <a href="#contact">تحدث معنا</a>
-            <a href="#jobs">التوظيف</a>
+            <a href="#employment">التوظيف</a>
             <a href="#blog">المدونة</a>
             <a href="#business">وفّي أعمال</a>
             <ScrollLink to="faq-section2" style={{ cursor: 'pointer' }} smooth={true} duration={500}>الأسئلة الشائعة</ScrollLink>
