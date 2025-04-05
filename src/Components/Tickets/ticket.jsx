@@ -19,11 +19,11 @@ const RealTimeChatApp = () => {
   const adminUserNameToAddRef = useRef();
   const [userData, setUserData] = useState(null);
 
+  const sessionToken = sessionStorage.getItem("token");
+  const userName = sessionStorage.getItem("userName");
+  const roles = JSON.parse(sessionStorage.getItem("roles") || '[]');
+  const userId = sessionStorage.getItem("userId");
   useEffect(() => {
-    const sessionToken = sessionStorage.getItem("token");
-    const userName = sessionStorage.getItem("userName");
-    const roles = JSON.parse(sessionStorage.getItem("roles") || '[]');
-    const userId = sessionStorage.getItem("userId");
 
     if (sessionToken && userName && roles && userId) {
       setUserData({
@@ -42,42 +42,34 @@ const RealTimeChatApp = () => {
 
       setConnection(newConnection);
     }
-  }, []);
+  }, [sessionToken]);
 
-  useEffect(() => {
-    const newConnection = new signalR.HubConnectionBuilder()
-      .withUrl('https://waffi.runasp.net/chatHub', { accessTokenFactory: () => token })
-      .withAutomaticReconnect()
-      .build();
-    setConnection(newConnection);
-  }, [token]);
 
   useEffect(() => {
     if (connection) {
-      const connection = new signalR.HubConnectionBuilder()
-        .withUrl("https://waffi.runasp.net/chatHub", { accessTokenFactory: () => token })
-        .withAutomaticReconnect()
-        .build();
-
-
-      connection.on("ChatStarted", (newChatId) => {
-        const chatId = newChatId;
+      connection.on('ChatStarted', (newChatId) => {
+        console.log('Received chatId:', newChatId);
+        setChatId(newChatId);
         ensureConnection().then(() => {
-          connection.invoke("JoinChat", chatId)
-            .then(() => console.log(`Joined chat ${chatId}`))
-            .catch(err => console.error("JoinChat Error: ", err));
+          if (newChatId) {
+            connection.invoke('JoinChat', newChatId)
+              .then(() => {
+                console.log('Joined chat successfully');
+              })
+              .catch(err => {
+                console.error('Error joining chat', err);
+              });
+          }
         });
-
       });
-
       connection.on("ReceiveMessage", (user, message) => {
         const fullMessage = `User ${user}: ${message}`;
         if (fullMessage !== lastMessage) {
-          const messagesDiv = document.getElementById("messages");
-          messagesDiv.innerHTML += `<p><strong>User ${user}:</strong> ${message}</p>`;
-          const lastMessage = fullMessage;
+          setMessages(prev => [...prev, { user, message }]);
+          setLastMessage(fullMessage);
         }
       });
+
 
       connection.on('NewAddUserRequest', () => {
         if (userData?.roles?.includes('Admin')) {
@@ -123,19 +115,22 @@ const RealTimeChatApp = () => {
   function approveTicket(ticketId) {
     fetch(`https://waffi.runasp.net/api/tickets/approve/${ticketId}`, {
       method: "POST",
-      headers: { "Authorization": `Bearer ${token}` }
+      headers: { "Authorization": `Bearer ${sessionToken}` }
     })
       .then(response => response.json())
       .then(data => {
         alert(data.message);
         loadTickets();
-        
+
         if (userData?.roles?.includes('Admin')) {
           const chatId = data.chatId;
           if (!chatId) {
             console.error("Invalid chatId received:", chatId);
             return;
           }
+
+          setChatId(chatId); // 👈 ضيف دي هنا
+
           ensureConnection().then(() => {
             if (connection.state === "Connected") {
               connection.invoke("JoinChat", chatId)
@@ -147,10 +142,11 @@ const RealTimeChatApp = () => {
           });
         }
       })
+
       .catch(err => {
         console.error("Approve Error: ", err);
       });
-    
+
   }
 
   function sendMessage() {
@@ -215,7 +211,7 @@ const RealTimeChatApp = () => {
 
   return (
     <div>
-                  <Nav />
+      <Nav />
 
       <h1>Real-Time Chat Demo</h1>
       {userData?.roles?.includes('Admin') && (
@@ -251,6 +247,7 @@ const RealTimeChatApp = () => {
               <p key={i}><strong>User {m.user}:</strong> {m.message}</p>
             ))}
           </div>
+
           <input ref={messageInputRef} placeholder="Type a message" />
           <button onClick={sendMessage}>Send</button>
 
