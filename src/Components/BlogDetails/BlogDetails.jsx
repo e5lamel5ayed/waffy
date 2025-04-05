@@ -75,7 +75,7 @@ function BlogDetails() {
       </div>
 
       {/* details section */}
-      <div className="details m-auto" style={{ width: '90%' }}>
+      <div className="details" style={{ width: '90%', margin :'-110px auto' }}>
         <Container
           fluid
           className="my-5 text-center p-0 "
