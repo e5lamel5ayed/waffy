@@ -1,6 +1,7 @@
 /* eslint-disable no-unused-vars */
 import React, { useState, useEffect, useRef } from 'react';
 import * as signalR from '@microsoft/signalr';
+import Nav from '../Nav';
 
 const RealTimeChatApp = () => {
   const [token, setToken] = useState(null);
@@ -214,6 +215,8 @@ const RealTimeChatApp = () => {
 
   return (
     <div>
+                  <Nav />
+
       <h1>Real-Time Chat Demo</h1>
       {userData?.roles?.includes('Admin') && (
         <div>

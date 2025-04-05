@@ -56,8 +56,10 @@ function Nav() {
             <ScrollLink to="faq-section2" style={{ cursor: 'pointer' }} smooth={true} duration={500}>الأسئلة الشائعة</ScrollLink>
             <ScrollLink to="slider-container" style={{ cursor: 'pointer' }} smooth={true} duration={500}>الميزات</ScrollLink>
           </div>
+          <Link className='text-decoration-none' to="/">
 
-          <h1 className="logo">وفّي</h1>
+            <h1 className="logo">وفّي</h1>
+          </Link>
         </div>
       </nav>
 
