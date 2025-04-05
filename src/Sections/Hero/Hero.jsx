@@ -6,14 +6,15 @@ import img4 from "/assets/img4.png";
 import img5 from "/assets/img5.png";
 import extraImg from "/assets/step.png";
 import './hero.css';
+import { Link } from 'react-router-dom';
 
 //--------------------------------
 const steps = [
-  { img: img5, text: "وفّي يحوّل الفلوس للبائع"  },
+  { img: img5, text: "وفّي يحوّل الفلوس للبائع" },
   { img: img4, text: "الـمشتري يوافق على الاستلام" },
   { img: img3, text: "البائع يسلم المنتج أو الخدمة" },
   { img: img2, text: "المشتري يدفع عبر وفّي" },
-  { img: img, text:  "البائع يسجل تفاصيل المنتج أو الخدمة"}
+  { img: img, text: "البائع يسجل تفاصيل المنتج أو الخدمة" }
 ];
 
 function Hero() {
@@ -26,10 +27,10 @@ function Hero() {
         {steps.map((step, index) => (
           <React.Fragment key={index}>
             <div className="step" style={{ textAlign: 'center', maxWidth: '200px' }}>
-              <img src={step.img} alt={`Step ${index + 1}`} style={{ width: '50%', borderRadius: '10px' , height:"60%" , color:'#404d58'}} />
+              <img src={step.img} alt={`Step ${index + 1}`} style={{ width: '50%', borderRadius: '10px', height: "60%", color: '#404d58' }} />
               <p style={{ fontSize: '18px', fontWeight: '600', marginTop: '10px' }}>{step.text}</p>
             </div>
-            {index < steps.length - 1 && ( 
+            {index < steps.length - 1 && (
               <div className="extra-img">
                 <img src={extraImg} alt="Extra Step" style={{ width: '100px', height: '30px' }} />
               </div>
@@ -37,8 +38,9 @@ function Hero() {
           </React.Fragment>
         ))}
       </div>
-
-      <button className="btn" style={{ marginTop: '30px', padding: '10px 20px', fontSize: '18px' ,  }}>سجل الآن</button>
+      <Link to="/Login">
+        <button className="btn" style={{ marginTop: '30px', padding: '10px 20px', fontSize: '18px', }}>سجل الآن</button>
+      </Link>
     </div>
   );
 }

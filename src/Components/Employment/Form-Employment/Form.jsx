@@ -5,136 +5,145 @@ import './Form.css'
 
 function Form() {
   return (
-    <form className=" form  mt-3 p-2 text-muted fw-bold fs-5">
-    <div className="   mt-3 p-4" dir="rtl">
-      <div className="d-flex gap-1 col-md-12 col-12 mt-2">
-        <div className="col-md-6 mt-2">
-          <label className="form-label">
-            الاسم الأول <span style={{ color: "red" }}>*</span>
-          </label>
-          <input type="text" className="form-control" id="r" required />
+    <form className=" form  my-5 p-2 text-muted fw-bold fs-5">
+      <div className="   mt-3 p-4" dir="rtl">
+        <div className="d-flex gap-1 col-md-12 col-12 mt-2">
+          <div className="col-md-6 mt-2">
+            <label className="form-label label-color">
+              الاسم الأول <span className="star-requerd">*</span>
+            </label>
+            <input type="text" className="form-control" id="r" required />
+          </div>
+          <div className="col-md-6 mt-2">
+            <label className="form-label label-color">
+              {" "}
+              الاسم الأخير<span className="star-requerd">*</span>
+            </label>
+            <input type="text" className="form-control" id="" required />
+          </div>
         </div>
-        <div className="col-md-6 mt-2">
-          <label className="form-label">
+
+        <div className="col-md-12 mt-2">
+          <label className="form-label label-color">
             {" "}
-            الاسم الأخير<span style={{ color: "red" }}>*</span>
+            البريد الإلكتروني<span className="star-requerd">*</span>
+          </label>
+          <input type="email" className="form-control" id="" required />
+        </div>
+        <div className="col-md-12 mt-2">
+          <label className="form-label label-color">
+            {" "}
+            رقم الهاتف<span className="star-requerd">*</span>
+          </label>
+          <input type="number" className="form-control" id="" required />
+        </div>
+        <div className="col-md-12 mt-2">
+          <label className="form-label label-color">
+            {" "}
+            الوظيفة/ المنصب <span className="star-requerd">*</span>
           </label>
           <input type="text" className="form-control" id="" required />
         </div>
-      </div>
-
-      <div className="col-md-12 mt-2">
-        <label className="form-label">
-          {" "}
-          البريد الإلكتروني<span style={{ color: "red" }}>*</span>
-        </label>
-        <input type="email" className="form-control" id="" required />
-      </div>
-      <div className="col-md-12 mt-2">
-        <label className="form-label">
-          {" "}
-          رقم الهاتف<span style={{ color: "red" }}>*</span>
-        </label>
-        <input type="number" className="form-control" id="" required />
-      </div>
-      <div className="col-md-12 mt-2">
-        <label className="form-label">
-          {" "}
-          الوظيفة/ المنصب <span style={{ color: "red" }}>*</span>
-        </label>
-        <input type="text" className="form-control" id="" required />
-      </div>
-      <div className="col-md-12 mt-2">
-        <label className="form-label">
-          {" "}
-          القسم <span style={{ color: "red" }}>*</span>
-        </label>
-        <input type="text" className="form-control" id="" required />
-      </div>
-      <div className="col-md-12 mt-2">
-        <label className="form-label">
-          {" "}
-          سنوات الخبرة <span style={{ color: "red" }}>*</span>
-        </label>
-        <input type="text" className="form-control" id="" required />
-      </div>
-      <div className="col-md-12 mt-2">
-        <label className="form-label">
-          رابط حساب LinkedIn <span style={{ color: "red" }}>*</span>
-        </label>
-        <input type="text" className="form-control" id="" required />
-      </div>
-      <div className="col-md-12 mt-2">
-        <label className="form-label">
-          الجنسية<span style={{ color: "red" }}>*</span>
-        </label>
-        <input type="text" className="form-control" id="" required />
-      </div>
-
-      <div className="d-flex gap-1 col-md-12 col-12 mt-2">
-        <div className="col-md-6 mt-2">
-          <label className="form-label">
-            المدينة <span style={{ color: "red" }}>*</span>
-          </label>
-          <input type="text" className="form-control" id="r" required />
-        </div>
-        <div className="col-md-6 mt-2">
-          <label className="form-label">
-            الدولة <span style={{ color: "red" }}>*</span>
+        <div className="col-md-12 mt-2">
+          <label className="form-label label-color">
+            {" "}
+            القسم <span className="star-requerd">*</span>
           </label>
           <input type="text" className="form-control" id="" required />
         </div>
-      </div>
+        <div className="col-md-12 mt-2">
+          <label className="form-label label-color">
+            {" "}
+            سنوات الخبرة <span className="star-requerd">*</span>
+          </label>
+          <input type="text" className="form-control" id="" required />
+        </div>
+        <div className="col-md-12 mt-2">
+          <label className="form-label label-color">
+            رابط حساب LinkedIn <span className="star-requerd">*</span>
+          </label>
+          <input type="text" className="form-control" id="" required />
+        </div>
+        <div className="col-md-12 mt-2">
+          <label className="form-label label-color">
+            الجنسية<span className="star-requerd">*</span>
+          </label>
+          <input type="text" className="form-control" id="" required />
+        </div>
 
-      <div className="col-md-12 mt-2">
-        <label className="form-label">التعليم (اختياري)</label>
-        <input type="text" className="form-control" id="" required />
-      </div>
-      <div className="col-md-12 mt-2">
-        <label className="form-label">الخبرة العملية (اختياري)</label>
-        <input type="text" className="form-control" id="" required />
-      </div>
+        <div className="d-flex gap-1 col-md-12 col-12 mt-2">
+          <div className="col-md-6 mt-2">
+            <label className="form-label label-color">
+              المدينة <span className="star-requerd">*</span>
+            </label>
+            <input type="text" className="form-control" id="r" required />
+          </div>
+          <div className="col-md-6 mt-2">
+            <label className="form-label label-color">
+              الدولة <span className="star-requerd">*</span>
+            </label>
+            <input type="text" className="form-control" id="" required />
+          </div>
+        </div>
 
-      <div className="col-md-12 mt-2">
-        <label className="form-label">
-          فترة الإشعار <span style={{ color: "red" }}>*</span>
-        </label>
-        <input type="text" className="form-control" id="" required />
-      </div>
-      <div className="col-md-12 mt-2">
-        <label className="form-label">
-          الراتب الحالي (الريال السعودي)
-          <span style={{ color: "red" }}>*</span>
-        </label>
-        <input type="text" className="form-control" id="" required />
-      </div>
-      <div className="col-md-12 mt-2">
-        <label className="form-label">
-          الراتب المتوقع (الريال السعودي)
-          <span style={{ color: "red" }}>*</span>
-        </label>
-        <input type="text" className="form-control" id="" required />
-      </div>
+        <div className="col-md-12 mt-2">
+          <label className="form-label label-color">التعليم (اختياري)</label>
+          <input type="text" className="form-control" id="" required />
+        </div>
+        <div className="col-md-12 mt-2">
+          <label className="form-label label-color">الخبرة العملية (اختياري)</label>
+          <input type="text" className="form-control" id="" required />
+        </div>
 
-      <div className="col-md-5 mt-5 gap-5 d-flex">
-        <label className="form-label ">
-          السيرة الذاتية<span style={{ color: "red" }}>*</span>
-        </label>
-        <button type="file" className="form-control fw-bold p-3" id="" required  style={{ backgroundColor:"#6f757e",color:"white", maxWidth:"120px",maxHeight:"100px"}} > رفع الملف</button>
+        <div className="col-md-12 mt-2">
+          <label className="form-label label-color">
+            فترة الإشعار <span className="star-requerd">*</span>
+          </label>
+          <input type="text" className="form-control" id="" required />
+        </div>
+        <div className="col-md-12 mt-2">
+          <label className="form-label label-color">
+            الراتب الحالي (الريال السعودي)
+            <span className="star-requerd">*</span>
+          </label>
+          <input type="text" className="form-control" id="" required />
+        </div>
+        <div className="col-md-12 mt-2">
+          <label className="form-label label-color">
+            الراتب المتوقع (الريال السعودي)
+            <span className="star-requerd">*</span>
+          </label>
+          <input type="text" className="form-control" id="" required />
+        </div>
+
+        <div className="col-md-5 mt-5 gap-5 d-flex">
+          <label className="form-label label-color ">
+            السيرة الذاتية<span className="star-requerd">*</span>
+          </label>
+          <button type="file" className="form-control fw-bold p-3" id="" required style={{ backgroundColor: "#6f757e", color: "white", maxWidth: "120px", maxHeight: "100px", borderRadius: '1px' }} > رفع الملف</button>
+        </div>
+
+        <div className="col-md-5 gap-4 mt-4 d-flex">
+          <label className="form-label label-color ">(اختياري) cover <br />letter </label>
+          <button type="file" className="form-control fw-bold p-3 " id="" required style={{ backgroundColor: "#6f757e", color: "white", maxWidth: "120px", maxHeight: "100px", borderRadius: '1px' }}>رفع الملف</button>
+        </div>
+
+        <div className="row mt-2 ">
+          <button
+            style={{
+              backgroundColor: " #1a7efb",
+              color: " #fff",
+              border: "none",
+              borderRadius: "10px",
+              width: " 90%",
+              margin: "25px auto",
+            }}
+          > إرسال</button>
+        </div>
+
       </div>
+    </form>
 
-      <div className="col-md-5 gap-4 mt-4 d-flex">
-        <label className="form-label ">(اختياري) cover <br/>letter </label>
-        <button type="file" className="form-control fw-bold p-3 " id="" required  style={{ backgroundColor:"#6f757e",color:"white", maxWidth:"120px",maxHeight:"100px"}}>رفع الملف</button>
-      </div>
-
-      {/* <div className="row mt-2 "> */}
-        <button className="btn btn-primary w-100 col-md-12" style={{width:"100%"}}> إرسال</button>
-      {/* </div> */}
-
-    </div>
-  </form>
-    
   );
 }
 

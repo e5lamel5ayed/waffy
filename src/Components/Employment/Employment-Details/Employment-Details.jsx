@@ -3,7 +3,7 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import Nav from "../../Nav";
 import { Link } from "react-router-dom";
 
-// import Footer from "../../../Sections/Footer";
+import "./Employment-Details.css";
 import Footer from "../../../Sections/Footer/Footer";
 import Form from "../Form-Employment/Form";
 import { FaFacebook, FaInstagram, FaXTwitter } from "react-icons/fa6";
@@ -16,14 +16,14 @@ function EmploymentDetails() {
       <div className="container-fluid px-4    mx-auto my-5" style={{borderRadius:"3rem", width:"95%",backgroundColor:"rgba(238, 238, 238, 0.93)"}}>
         
         <div className="row col-md-12 py-5 text-end">
-          <Link>العودة لقائمة الوظائف</Link>
+          <Link to="/employment">العودة لقائمة الوظائف</Link>
         </div>
 
         <div className="row col-md-12 text-center mb-5">
           <h2>Business Development Manager</h2>
         </div>
 
-        <div className="row col-md-12 mb-4" style={{lineHeight:0.5}}>
+        <div className="row col-md-12 mb-4 blog-details-p" style={{lineHeight:0.5}}>
           <p>
          
             <span className="fw-bold text-dark">Position Title: </span> Business

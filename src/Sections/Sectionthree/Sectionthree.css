@@ -3,9 +3,11 @@
   align-items: center;
   justify-content: space-between;
   min-height: 70vh;
-  background: linear-gradient(to bottom, #eaf0f3 30%, white 100%);
   text-align: right;
   padding: 40px;
+  background-image: linear-gradient(rgba(145, 176, 201, 0.2), rgba(241, 252, 227, 0.2) 80%);
+  pointer-events: none;
+  margin-bottom: 60px;
 }
 
 .image-container {
@@ -39,7 +41,7 @@ p {
 
 .form-container {
   margin-top: 20px;
-  background: rgba(255, 253, 253, 0.235);
+  background: #fff !important;
   padding: 25px;
   border-radius: 15px;
   width: 100%;
@@ -47,6 +49,7 @@ p {
   display: flex;
   flex-direction: column;
   gap: 15px;
+  box-shadow: none !important;
 }
 
 .input-label {

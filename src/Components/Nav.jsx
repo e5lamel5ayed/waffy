@@ -27,6 +27,13 @@ function Nav() {
     setIsLoggedIn(false);
     navigate('/login');
   };
+  const phoneNumber = "+966553043449";
+  const message = "مرحباً، أريد الاستفسار عن...";
+
+  const openWhatsApp = () => {
+    const url = `https://wa.me/${phoneNumber}?text=${encodeURIComponent(message)}`;
+    window.open(url, '_blank');
+  };
 
   return (
     <div>
@@ -49,7 +56,7 @@ function Nav() {
             {isLoggedIn && (
               <Link to="/ticket">التذاكر</Link>
             )}
-            <a href="#contact">تحدث معنا</a>
+            <a onClick={openWhatsApp}>تحدث معنا</a>
             <a href="#employment">التوظيف</a>
             <a href="#blog">المدونة</a>
             <a href="#business">وفّي أعمال</a>
@@ -73,11 +80,11 @@ function Nav() {
         </ScrollLink>
         <a href="#business">وفّي أعمال</a>
         <a href="#blog">المدونة</a>
-        <a href="#jobs">التوظيف</a>
+        <a href="#employment">التوظيف</a>
         {isLoggedIn && (
           <Link to="/ticket">التذاكر</Link>
         )}
-        <a href="#contact">تحدث معنا</a>
+        <a onClick={openWhatsApp}>تحدث معنا</a>
 
       </div>
     </div>

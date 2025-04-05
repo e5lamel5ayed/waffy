@@ -7,6 +7,7 @@ import supportTeam from "/assets/support-team.png";
 import sellerImage from "/assets/seller.png";
 import buyerImage from "/assets/buyer.png";
 import '../Sectiontwo/section_two.css';
+import { Link } from "react-router-dom";
 
 //-----------------
 function SectionTwo() {
@@ -89,8 +90,9 @@ function SectionTwo() {
       <div className="w-100">
         {activeTab === 'seller' ?
           (
-
-            <button className="btn-2" style={{ marginLeft: 'auto', marginRight: '180px' }}>سجل الان</button>
+            <Link to="/Login">
+              <button className="btn-2" style={{ marginLeft: 'auto', marginRight: '180px' }}>سجل الان</button>
+            </Link>
           ) : (
 
             <button className="btn-2" style={{ marginLeft: 'auto', marginRight: '180px' }}>بيع الان</button>

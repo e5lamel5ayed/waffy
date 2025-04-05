@@ -20,42 +20,42 @@ const jobs = [
   {
     title: "Operations Manager – Pipeline",
     experience: "Manager",
-    department:"Operations",
+    department: "Operations",
   },
   {
     title: "Operations Specialist – Pipeline",
     experience: "Mid-level",
-    department:"Operations",
+    department: "Operations",
   },
   {
     title: "Product Marketing Manager – Pipeline",
     experience: "Manager",
-    department:"Marketing",
+    department: "Marketing",
   },
   {
     title: "Social Media Specialist – Pipeline",
     experience: "Senior",
-    department:"Marketing",
+    department: "Marketing",
   },
   {
     title: "Senior Backend Engineer",
     experience: "Senior",
-    department:"Tech",
+    department: "Tech",
   },
   {
     title: "Senior QC Automation Test Engineer",
     experience: "Senior",
-    department:"Tech",
+    department: "Tech",
   },
   {
     title: "Frontend Engineer (React JS)",
     experience: "Senior",
-    department:"Tech",
+    department: "Tech",
   },
   {
     title: "Lead Software Engineer",
     experience: "Lead",
-    department:"Tech",
+    department: "Tech",
   },
 ];
 
@@ -68,45 +68,43 @@ function EmploymentCard() {
           {jobs.map((job, index) => (
             <div key={index} className="col-md-12 col-lg-12 mb-5">
               <Link class="text-decoration-none" to="/employment-details">
-              <div className="card  border-1 p-4">
-                <div className="row align-items-center">
-                  <div className="col-md-6 d-flex justify-content-center ">
-                    <div className="col-md-6 d-flex align-items-center gap-5">
-                      <div className="text-secondary text-center">
-                      <FaBuilding size={18} className="me-2" />
-                        <p className="mb-0">القسم</p>
-                        <p className=" text-black">{job.department}</p>
-                      </div>
-                      <div className=" col-md-6 text-secondary text-center">
-                      <FaBriefcase size={18} className="me-2" />
-
-                        <p className="mb-0">الخبرة</p>
-                        <p className=" text-black">{job.experience}</p>
+                <div className="card  border-1 p-4">
+                  <div className="row align-items-center">
+                    <div className="col-md-6 d-flex justify-content-center ">
+                      <div className="col-md-6 d-flex align-items-center " style={{gap:'100px'}}>
+                        <div style={{color:'#9e9e9e'}}  className=" text-center">
+                          <FaBuilding size={18} className="me-2" />
+                          <p className="mb-0">القسم</p>
+                          <p>{job.department}</p>
+                        </div>
+                        <div style={{color:'#9e9e9e'}} className=" col-md-6 text-center">
+                          <FaBriefcase size={18} className="me-2" />
+                          <p className="mb-0">الخبرة</p>
+                          <p style={{color:'hsl(0,0%,25%)'}}>{job.experience}</p>
+                        </div>
                       </div>
                     </div>
-                  </div>
-                  <div className="d-flex gap-3 col-md-6 text-end">
-                    <div>
-                    <h4 className="fw-bold">{job.title}</h4>
-                    <div className="d-flex text-end align-items-center gap-1 
-                     fw-medium mt-1">
-                      <Link class="text-decoration-none text-dark" to="/employment-details">
-                          <FaArrowLeft />
-    <span>التفاصيل</span>
-    </Link>
-              </div>
-            </div>
-                    <a href="#" className="d-inline-block mt-2">
-                      <img
-                        src="/assets/img/Waffy-logo.webp" // تأكد أن المسار صحيح
-                        alt="وفي"
-                        width="80"
-                        height="80"
-                      />
-                    </a>
+                    <div className="d-flex gap-3 col-md-6 text-end justify-content-end">
+                      <div>
+                        <h4 className="fw-bold">{job.title}</h4>
+                        <div className="d-flex text-end justify-content-end align-items-center gap-1 fw-medium mt-1">
+                          <Link class="text-decoration-none text-dark" to="/employment-details">
+                            <FaArrowLeft />
+                            <span>التفاصيل</span>
+                          </Link>
+                        </div>
+                      </div>
+                      <a href="#" className="d-inline-block mt-2">
+                        <img
+                          src="/assets/img/Waffy-logo.webp" // تأكد أن المسار صحيح
+                          alt="وفي"
+                          width="80"
+                          height="80"
+                        />
+                      </a>
+                    </div>
                   </div>
                 </div>
-              </div>
               </Link>
             </div>
           ))}

@@ -19,7 +19,7 @@ const Footer = () => {
   const isMobile = useMediaQuery("(max-width:600px)");
 
   return (
-    <Box sx={{ backgroundColor: "#0056D2", color: "#fff", py: 5, position: "relative", overflow: "hidden" }}>
+    <Box sx={{ backgroundColor: "#1347b8", color: "#fff", pt: 5, position: "relative", overflow: "hidden" }}>
       <Box
         sx={{
           display: "flex",
@@ -87,13 +87,13 @@ const Footer = () => {
             <button class="mt-3 px-3 py-2 border border-white fs-5 rounded bg-white text-black 
                  hover-bg-white hover-text-dark transition">
               تطبيق الاندرويد
-              <img src="/assets/androidLogo.svg" width={30}/>
+              <img src="/assets/androidLogo.svg" width={30} />
 
             </button>
             <button class="mt-3 px-4 py-0 border border-white text-black fs-6 rounded bg-white 
                  hover-bg-white hover-text-dark transition">
               تطبيق الايفون
-              <img src="/assets/appleLogo.svg" width={30}/>
+              <img src="/assets/appleLogo.svg" width={30} />
             </button>
           </div>
 
@@ -101,8 +101,8 @@ const Footer = () => {
 
       </Box>
 
-      <Box sx={{ width: "90%", borderTop: "1px solid #fff", mt: 0, pt: 3 ,display: "flex",justifyContent: "center",margin: "auto"}}>
-      <div className="footerr-top d-flex gap-5 justify-content-between w-100 px-5" dir="rtl">
+      <Box sx={{ width: "90%", borderTop: "1px solid #fff", mt: 0, pt: 3, display: "flex", justifyContent: "center", margin: "auto" }}>
+        <div className="footerr-top d-flex gap-5 justify-content-between w-100 px-5" dir="rtl">
           <div className="footerr-logo">
             <img
               src="/assets/img/PNG-01-1-1024x658.webp"
@@ -136,18 +136,17 @@ const Footer = () => {
 
       <Box
         sx={{
-          backgroundColor: "#0056D2",
           color: "#fff",
-       
+          margin: 'auto',
           px: 4,
-          width: "100%",
+          width: "90%",
         }}
       >
-          {/* القسم السفلي */}
-          <div className="footerr-bottom fw-600" dir="rtl">
+        {/* القسم السفلي */}
+        <div className="footerr-bottom fw-600" dir="rtl">
           <div className="footerr-rights ">
             <p>وفي
-              ©2024  جميع <br/>الحقوق محفوظة</p>
+              ©2024  جميع <br />الحقوق محفوظة</p>
           </div>
 
           <div className="footerr-center">

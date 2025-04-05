@@ -30,7 +30,7 @@ function SecondNav() {
             <Link to="/login">
               <button className="btnlog" onClick={handleLogout}>
                 تسجيل الحروج
-                <LogoutIcon style={{marginLeft:'10px'}}/>
+                <LogoutIcon style={{ marginLeft: '10px' }} />
               </button>
             </Link>
           ) : (
@@ -74,18 +74,11 @@ function SecondNav() {
         {isLoggedIn && (
           <Link className="text-dark text-decoration-none fw-semibold" to="/ticket">التذاكر</Link>
         )}
-        <a href="#" className="text-dark text-decoration-none fw-semibold">
-          وفّي أفراد
-        </a>
-        <a href="#" className="text-dark text-decoration-none fw-semibold">
-          الأسئلة الشائعة
-        </a>
-        <a href="#" className="text-dark text-decoration-none fw-semibold">
-          كيف تستخدم وفّي
-        </a>
-        <a href="#" className="text-dark text-decoration-none fw-semibold">
-          لماذا وفّي
-        </a>
+        <Link to="/"> وفّي أفراد</Link>
+        <ScrollLink to="faq-section" style={{ cursor: 'pointer' }} smooth={true} duration={500}>الأسئلة الشائعة</ScrollLink>
+        <ScrollLink to="how" style={{ cursor: 'pointer' }} smooth={true} duration={500}>  كيف تستخدم وفّي </ScrollLink>
+        <ScrollLink to="why-wafi" style={{ cursor: 'pointer' }} smooth={true} duration={500}>  لماذا وفّي</ScrollLink>
+
       </div>
     </>
   );
