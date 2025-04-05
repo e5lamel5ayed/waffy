@@ -3,6 +3,8 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import { FaArrowLeft } from "react-icons/fa";
 import { FaBriefcase } from "react-icons/fa";
 import { FaBuilding } from "react-icons/fa";
+import { Link } from "react-router-dom";
+
 
 
 
@@ -65,6 +67,7 @@ function EmploymentCard() {
         <div className="row justify-content-center">
           {jobs.map((job, index) => (
             <div key={index} className="col-md-12 col-lg-12 mb-5">
+              <Link class="text-decoration-none" to="/employment-details">
               <div className="card  border-1 p-4">
                 <div className="row align-items-center">
                   <div className="col-md-6 d-flex justify-content-center ">
@@ -87,9 +90,10 @@ function EmploymentCard() {
                     <h4 className="fw-bold">{job.title}</h4>
                     <div className="d-flex text-end align-items-center gap-1 
                      fw-medium mt-1">
+                      <Link class="text-decoration-none text-dark" to="/employment-details">
                           <FaArrowLeft />
     <span>التفاصيل</span>
-  
+    </Link>
               </div>
             </div>
                     <a href="#" className="d-inline-block mt-2">
@@ -103,6 +107,7 @@ function EmploymentCard() {
                   </div>
                 </div>
               </div>
+              </Link>
             </div>
           ))}
         </div>
