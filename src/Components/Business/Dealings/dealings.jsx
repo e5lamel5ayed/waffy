@@ -34,7 +34,7 @@ const Dealings = () => {
       </div>
 
       {/* البوكسات */}
-      <div className="row mt-5  mb-5 gap-1">
+      <div className="row mt-5  mb-5 ">
         {[
           { text: "مستخدم", icon: "a-1-2.svg" },
           { text: "معاملة نشطة", icon: "checkmark-circle-2-1.svg" },
