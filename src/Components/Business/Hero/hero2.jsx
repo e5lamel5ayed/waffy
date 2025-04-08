@@ -1,5 +1,6 @@
 import React from "react";
 import "./hero.css";
+import { Link } from "react-router-dom";
 //-------------------------
 
 function Hero2() {
@@ -37,7 +38,9 @@ function Hero2() {
                 className="form-control mb-3  text-end "
                 placeholder="رقم الجوال"
               />
+              <Link to="/new-dealings">
               <button className=" w-100  fw-bold log">سجل الآن</button>
+              </Link>
             </div>
           </div>
         </div>
