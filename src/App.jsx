@@ -12,6 +12,7 @@ import Blog from './Components/Blog/Blog';
 import BlogDetails from './Components/BlogDetails/BlogDetails';
 import Employment from './Components/Employment/Employment';
 import EmploymentDetails from './Components/Employment/Employment-Details/Employment-Details';
+import NewDealings from './Components/Business/NewDealings/NewDealings'
 //------------------------------------------------------
 
 function App() {
@@ -27,6 +28,7 @@ function App() {
         <Route path="/blog-details" element={<BlogDetails />} />
         <Route path="/employment" element={<Employment />} />
         <Route path="/employment-details" element={<EmploymentDetails />} />
+        <Route path="/new-dealings" element={<NewDealings />} />
 
         <Route
           path="/ticket"
