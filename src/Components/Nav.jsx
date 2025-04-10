@@ -25,8 +25,10 @@ function Nav() {
   const handleLogout = () => {
     sessionStorage.removeItem('token');
     setIsLoggedIn(false);
+    window.location.reload();
     navigate('/login');
   };
+  
   const phoneNumber = "+966553043449";
   const message = "مرحباً، أريد الاستفسار عن...";
 

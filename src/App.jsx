@@ -14,6 +14,8 @@ import Employment from './Components/Employment/Employment';
 import EmploymentDetails from './Components/Employment/Employment-Details/Employment-Details';
 import NewDealings from './Components/Business/NewDealings/NewDealings'
 //------------------------------------------------------
+import 'primereact/resources/themes/lara-light-blue/theme.css';
+import 'primereact/resources/primereact.min.css';
 
 function App() {
   return (

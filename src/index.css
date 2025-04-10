@@ -5,3 +5,8 @@ body {
 
 
 }
+
+/* styles.css أو ملف SCSS */
+.w-100-important {
+    width: 100% !important;
+}

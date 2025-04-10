@@ -1,5 +1,16 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import React, { useEffect, useRef, useState } from "react";
 import * as signalR from "@microsoft/signalr";
+import SubmitTicketForm from "./SubmitTicketForm";
+import AdminPanel from "./AdminPanel";
+import AddUserRequestsPanel from "./AddUserRequestsPanel";
+import ChatSection from "./ChatSection";
+import Nav from "../Nav";
+import { Dialog } from 'primereact/dialog';
+import { Card } from 'primereact/card';
+import { Button } from "primereact/button";
+import UserTicketsPanel from "./UserTicketsPanel";
+import { Toast } from 'primereact/toast';
 
 export default function Ticket() {
   const [token, setToken] = useState(null);
@@ -12,7 +23,12 @@ export default function Ticket() {
   const [message, setMessage] = useState("");
   const connectionRef = useRef(null);
   const [addUserRequests, setAddUserRequests] = useState([]);
+  const [visible, setVisible] = useState(false);
+  const [inChatMode, setInChatMode] = useState(false);
+  const [userTickets, setUserTickets] = useState([]);
+  const toast = useRef(null);
 
+  const [requestDialogVisible, setRequestDialogVisible] = useState(false);
   useEffect(() => {
     const savedToken = sessionStorage.getItem("token");
     const userId = sessionStorage.getItem("userId");
@@ -28,6 +44,30 @@ export default function Ticket() {
       });
     }
   }, []);
+  const showToast = (message, severity) => {
+    toast.current.show({ severity: severity, summary: message, life: 5000 });
+  };
+
+
+  const loadOldMessages = async (chatId) => {
+    try {
+      const res = await fetch(`https://waffi.runasp.net/api/Tickets/messages/${chatId}`, {
+        headers: { Authorization: `Bearer ${token}` },
+      });
+      const data = await res.json();
+      if (!res.ok) throw new Error(data.message || "Failed to load old messages");
+
+      const formattedMessages = data.map(msg => `${msg.userName}: ${msg.body}`);
+      setMessages(formattedMessages);
+    } catch (err) {
+      console.error("Error loading old messages:", err);
+    }
+  };
+  useEffect(() => {
+    if (chatId) {
+      loadOldMessages(chatId);
+    }
+  }, [chatId]);
 
   const submitTicket = () => {
     fetch("https://waffi.runasp.net/api/tickets/request", {
@@ -40,8 +80,11 @@ export default function Ticket() {
     })
       .then((res) => res.json())
       .then((data) => {
-        alert(data.message);
+        showToast(data.message, 'success');
         setChatId(data.chatId);
+      })
+      .catch((error) => {
+        showToast(error);
       });
   };
 
@@ -51,6 +94,21 @@ export default function Ticket() {
     })
       .then((res) => res.json())
       .then(setTickets);
+  };
+  const loadUserTickets = async () => {
+    try {
+      const res = await fetch(
+        `https://waffi.runasp.net/api/Tickets/GetUserTickets/${currentUser.id}`,
+        {
+          method: "GET",
+          headers: { Authorization: `Bearer ${token}` },
+        }
+      );
+      const data = await res.json();
+      setUserTickets(data);
+    } catch (error) {
+      console.error("Error loading user tickets", error);
+    }
   };
 
   const approveTicket = async (ticketId) => {
@@ -65,17 +123,18 @@ export default function Ticket() {
       const data = await response.json();
       if (!response.ok) throw new Error(data.message || "Failed to approve ticket");
 
-      alert(data.message);
+      showToast(data.message, 'success'); // استخدام Toast هنا
       setChatId(data.chatId);
+      loadOldMessages(data.chatId);
       loadTickets();
     } catch (err) {
-      alert("Approve failed: " + err.message);
+      showToast("حدث خطأ في الموافقة على التذكرة", err);
     }
   };
 
   const requestAddUser = async () => {
     if (!userToAdd) {
-      alert("Please enter a username to add");
+      showToast("الرجاء إدخال اسم المستخدم لإضافته", 'warn'); // استخدام Toast هنا
       return;
     }
 
@@ -87,10 +146,7 @@ export default function Ticket() {
       const userData = await userResponse.json();
       if (!userResponse.ok) throw new Error(userData.message || "User not found");
 
-      const endpoint =
-        currentUser.role === "Admin"
-          ? "add-user-to-chat"
-          : "request-add-user";
+      const endpoint = currentUser.role === "Admin" ? "add-user-to-chat" : "request-add-user";
       const response = await fetch(`https://waffi.runasp.net/api/tickets/${endpoint}`, {
         method: "POST",
         headers: {
@@ -102,21 +158,20 @@ export default function Ticket() {
       const data = await response.json();
       if (!response.ok) throw new Error(data.message || "Failed to add/request user");
 
-      alert(data.message);
+      showToast(data.message, 'success'); // استخدام Toast هنا
       setUserToAdd("");
     } catch (err) {
-      alert("Add user failed: " + err.message);
+      showToast("فشل في إضافة المستخدم", err);
     }
   };
+
   const loadAddUserRequests = () => {
     fetch(`https://waffi.runasp.net/api/tickets/get-add-user-requests`, {
       headers: { Authorization: `Bearer ${token}` },
     })
       .then((response) => response.json())
       .then(setAddUserRequests)
-      .catch((err) =>
-        console.error("Load Add User Requests Error: ", err)
-      );
+      .catch((err) => console.error("Load Add User Requests Error: ", err));
   };
 
   const approveAddUserRequest = (requestId) => {
@@ -127,14 +182,20 @@ export default function Ticket() {
       .then((res) => res.json())
       .then((data) => {
         alert(data.message);
-        loadAddUserRequests(); // reload after approval
+        loadAddUserRequests();
       })
-      .catch((err) =>
-        console.error("Approve Add User Request Error: ", err)
-      );
+      .catch((err) => console.error("Approve Add User Request Error: ", err));
   };
+
   useEffect(() => {
     if (!token || !currentUser) return;
+
+    if (token && currentUser.role === "Admin") {
+      loadTickets();
+      loadAddUserRequests();
+    } else if (token && currentUser.role === "User") {
+      loadUserTickets();
+    }
 
     const connection = new signalR.HubConnectionBuilder()
       .withUrl("https://waffi.runasp.net/chatHub", {
@@ -146,11 +207,11 @@ export default function Ticket() {
     connectionRef.current = connection;
 
     connection.on("ChatStarted", (newChatId) => {
-      console.log("ChatStarted Notify received: ", newChatId);
       setChatId(newChatId);
-      connection.invoke("JoinChat", newChatId)
-        .catch((err) => console.error("JoinChat Error: ", err));
+      loadOldMessages(newChatId); // تحميل الرسائل القديمة
+      connection.invoke("JoinChat", newChatId).catch(console.error);
     });
+
 
     connection.on("ReceiveMessage", (sender, messageBody) => {
       setMessages((prev) => [...prev, `${sender}: ${messageBody}`]);
@@ -164,19 +225,17 @@ export default function Ticket() {
 
     connection.start()
       .then(() => {
-        connection.invoke("JoinChat", `user_${currentUser.id}`)
-          .catch((err) => console.error("Initial JoinChat Error: ", err));
-
+        connection.invoke("JoinChat", `user_${currentUser.id}`).catch(console.error);
         if (currentUser.role === "Admin") {
-          connection.invoke("JoinAdminGroup")
-            .catch((err) => console.error("JoinAdminGroup Error: ", err));
+          connection.invoke("JoinAdminGroup").catch(console.error);
         }
       })
-      .catch((err) => console.error("SignalR Connection Error: ", err));
+      .catch(console.error);
 
     return () => {
       connection.stop();
     };
+
   }, [token, currentUser]);
 
   const sendMessage = () => {
@@ -188,77 +247,137 @@ export default function Ticket() {
     }
   };
 
-  if (!token || !currentUser) {
-    return <div>جاري التحقق من معلومات الدخول...</div>;
-  }
+  const openChat = (chatId) => {
+    setChatId(chatId);
+    setInChatMode(true);
+    connectionRef.current?.invoke("JoinChat", chatId).catch(console.error);
+  };
+
+  const backToTickets = () => {
+    setChatId(null);
+    setInChatMode(false);
+  };
+
+  if (!token || !currentUser) return <div>جاري التحقق من معلومات الدخول...</div>;
 
   return (
-    <div className="container">
-      <h1>Real-Time Chat Demo</h1>
-      {currentUser?.role === "Admin" ? (
-        <div>
-          <h2>Admin Panel</h2>
-          <button onClick={loadTickets}>Load Tickets</button>
-          <ul>
-            {tickets.map((ticket) => (
-              <li key={ticket.id}>
-                {ticket.details} (User: {ticket.username}){" "}
-                <button onClick={() => approveTicket(ticket.id)}>Approve</button>
-              </li>
-            ))}
-          </ul>
-        </div>
-      ) : (
-        <div>
-          <input
-            placeholder="Ticket Details"
-            value={details}
-            onChange={(e) => setDetails(e.target.value)}
-          />
-          <button onClick={submitTicket}>Submit Ticket</button>
-        </div>
-      )}
-      {currentUser?.role === "Admin" && (
-        <div style={{ marginTop: "2rem" }}>
-          <h3>Add User Requests</h3>
-          <button onClick={loadAddUserRequests}>Load Add User Requests</button>
-          <ul>
-            {addUserRequests.map((req) => (
-              <li key={req.id}>
-                User {req.requestingUserId} wants to add User {req.userIdToAdd} to Chat {req.chatId}{" "}
-                <button onClick={() => approveAddUserRequest(req.id)}>Approve</button>
-              </li>
-            ))}
-          </ul>
-        </div>
-      )}
+    <>
+      <Nav />
+      <Toast ref={toast} />
+      <div dir="rtl" style={{ backgroundColor: '#f0fbff', minHeight: '100vh', padding: '2rem' }}>
+        <div className="row">
+          <div className="col-md-3">
+            {/* بطاقة المستخدم */}
+            <Card className="mb-3 shadow-sm p-3 bg-white">
+              <div className="d-flex align-items-center gap-4">
+                <div>
+                  <img src="/assets/client5.png" alt="User" className="rounded-circle me-3" style={{ width: '70px', height: '70px' }} />
+                </div>
+                <div>
+                  <div className="fw-bold mb-3">مرحبا {currentUser.username}</div>
+                  <div className="text-muted">+966555447496</div>
+                </div>
+              </div>
+            </Card>
 
-      <div id="chatSection" style={{ display: chatId ? "block" : "none" }}>
-        <h3>Chat</h3>
-        <div style={{ border: "1px solid #ccc", padding: "10px", height: "200px", overflowY: "auto" }}>
-          {messages.map((m, i) => (
-            <p key={i}>{m}</p>
-          ))}
+            <div>
+              {/* زر حسب الدور */}
+              <div className="mb-3">
+                {currentUser.role === "Admin" ? (
+                  <Button
+                    label="الطلبات"
+                    icon="pi pi-list"
+                    className="p-button-primary w-100"
+                    onClick={() => setRequestDialogVisible(true)}
+                  />
+                ) : (
+                  <Button
+                    label="بدء معاملة جديدة"
+                    icon="pi pi-plus"
+                    className="p-button-primary w-100"
+                    onClick={() => setVisible(true)}
+                  />
+                )}
+              </div>
+            </div>
+
+            {/* الفورم الأساسي */}
+            <Card className="shadow-sm bg-white">
+              <div className="d-flex justify-content-center gap-3 mb-4">
+                <img src="/assets/client5.png" className="rounded-circle shadow" alt="User" style={{ width: '70px', height: '70px' }} />
+                <img src="/assets/client5.png" className="rounded-circle shadow" alt="User" style={{ width: '70px', height: '70px' }} />
+              </div>
+
+              <div className="text-center fw-bold my-4">
+                <h6>توثيق الهوية من خلال أبشر، أطرافاً موثوقين لتجنب الاحتيال</h6>
+              </div>
+
+            </Card>
+
+            {/* الفوتر */}
+            <div className="text-center text-muted small mt-3">
+              <a href="#">سياسة الخصوصية</a> | <a href="#">شروط الاستخدام</a>
+              <br />
+              جميع الحقوق محفوظة © وفّق 2022
+            </div>
+          </div>
+
+          <div className="col-md-9">
+            <div className="container" style={{ maxHeight: 'calc(100vh - 100px)', overflowY: 'auto' }}>
+              {currentUser.role === "Admin" && !inChatMode && (
+                <>
+                  <AdminPanel tickets={tickets} approveTicket={approveTicket} openChat={openChat} />
+                  <AddUserRequestsPanel
+                    addUserRequests={addUserRequests}
+                    loadAddUserRequests={loadAddUserRequests}
+                    approveAddUserRequest={approveAddUserRequest}
+                  />
+                </>
+              )}
+
+              {currentUser.role === "User" && !inChatMode && (
+                <UserTicketsPanel tickets={userTickets} openChat={openChat} />
+              )}
+
+              {inChatMode && (
+                <ChatSection
+                  chatId={chatId}
+                  messages={messages}
+                  message={message}
+                  setMessage={setMessage}
+                  sendMessage={sendMessage}
+                  backToTickets={backToTickets}
+                  userToAdd={userToAdd}
+                  setUserToAdd={setUserToAdd}
+                  requestAddUser={requestAddUser}
+                />
+              )}
+            </div>
+          </div>
         </div>
-        <input
-          value={message}
-          onChange={(e) => setMessage(e.target.value)}
-          placeholder="Type a message"
-        />
-        <button onClick={sendMessage}>Send</button>
+
+        {/* Dialog */}
+        <Dialog header="معاملة جديدة" visible={visible} onHide={() => setVisible(false)} style={{ width: '30vw' }} breakpoints={{ '960px': '75vw' }}>
+          <div>
+            <SubmitTicketForm details={details} setDetails={setDetails} submitTicket={submitTicket} />
+          </div>
+        </Dialog>
+
+        {/* Dialog لعرض الطلبات - يظهر فقط للأدمن */}
+        <Dialog
+          header="طلبات اضافة مستخدمين"
+          visible={requestDialogVisible}
+          onHide={() => setRequestDialogVisible(false)}
+          style={{ width: '50vw' }}
+          breakpoints={{ '960px': '80vw', '640px': '100vw' }}
+        >
+          <AddUserRequestsPanel
+            addUserRequests={addUserRequests}
+            approveAddUserRequest={approveAddUserRequest}
+          />
+        </Dialog>
       </div>
-      <div style={{ marginTop: "20px" }}>
-        <h4>إضافة مستخدم للمحادثة</h4>
-        <input
-          type="text"
-          placeholder="اسم المستخدم المراد إضافته"
-          value={userToAdd}
-          onChange={(e) => setUserToAdd(e.target.value)}
-          style={{ marginRight: "10px" }}
-        />
-        <button onClick={requestAddUser}>إضافة</button>
-      </div>
-      {/* </div> */}
-    </div >
+
+    </>
   );
 }

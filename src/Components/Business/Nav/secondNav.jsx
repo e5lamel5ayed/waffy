@@ -15,8 +15,10 @@ function SecondNav() {
   const handleLogout = () => {
     sessionStorage.removeItem('token');
     setIsLoggedIn(false);
+    window.location.reload();
     navigate('/login');
   };
+  
   const toggleSidebar = () => {
     setSidebarOpen(!isSidebarOpen);
   };

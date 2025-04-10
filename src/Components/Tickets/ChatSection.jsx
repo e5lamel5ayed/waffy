@@ -1,0 +1,93 @@
+import React, { useState } from "react";
+import { Card } from "primereact/card";
+import { InputText } from "primereact/inputtext";
+import { Button } from "primereact/button";
+import { Dialog } from "primereact/dialog"; // استيراد Dialog من PrimeReact
+import { InputText as PrimeInputText } from "primereact/inputtext"; // استيراد InputText
+import "./ChatSection.css";
+
+export default function ChatSection({
+  chatId,
+  messages,
+  message,
+  setMessage,
+  sendMessage,
+  backToTickets,
+  requestAddUser,
+  userToAdd,
+  setUserToAdd,
+}) {
+  const [showAddUserDialog, setShowAddUserDialog] = useState(false);
+
+  if (!chatId) return null;
+
+  // دالة لفتح الديالوج
+  const openAddUserDialog = () => {
+    setShowAddUserDialog(true);
+  };
+
+  // دالة لإغلاق الديالوج
+  const closeAddUserDialog = () => {
+    setShowAddUserDialog(false);
+  };
+
+  return (
+    <Card title="Live Chat" className="chat-card">
+      <div className="d-flex justify-content-end mb-3">
+        <Button label="رجوع إلى التذاكر" icon="pi pi-arrow-left" className="p-button-secondary" onClick={backToTickets} />
+      </div>
+
+      <div className="chat-messages">
+        {messages.map((msg, index) => {
+          const [sender, ...bodyParts] = msg.split(": ");
+          const body = bodyParts.join(": ");
+          const isMe = sender === "Admin";
+
+          return (
+            <div key={index} className={`chat-message ${isMe ? "me" : "other"}`}>
+              <div className="message-bubble">
+                <strong>{sender}</strong>
+                <p>{body}</p>
+              </div>
+            </div>
+          );
+        })}
+      </div>
+
+      <div className="chat-input">
+        <InputText
+          value={message}
+          onChange={(e) => setMessage(e.target.value)}
+          placeholder="Type a message..."
+          className="chat-text-input"
+        />
+        <Button label="ارسال" onClick={sendMessage} className="chat-send-button" />
+      </div>
+
+      <div className="d-flex justify-content-start mt-3">
+        <Button label="إضافة مستخدم" icon="pi pi-user-plus" className="p-button-success" onClick={openAddUserDialog} />
+      </div>
+
+      <Dialog
+        visible={showAddUserDialog}
+        style={{ width: '450px' }}
+        header="إضافة مستخدم إلى الشات"
+        modal
+        onHide={closeAddUserDialog}
+      >
+        <div>
+          <PrimeInputText
+            value={userToAdd}
+            onChange={(e) => setUserToAdd(e.target.value)}
+            placeholder="أدخل اسم المستخدم"
+            className="p-inputtext p-component w-100"
+          />
+          <div className="mt-3 d-flex justify-content-end">
+            <Button label="إضافة" icon="pi pi-check" className="p-button-primary" onClick={requestAddUser} />
+            <Button label="إغلاق" icon="pi pi-times" className="p-button-text" onClick={closeAddUserDialog} />
+          </div>
+        </div>
+      </Dialog>
+    </Card>
+  );
+}
