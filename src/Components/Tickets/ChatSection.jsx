@@ -2,8 +2,8 @@ import React, { useState } from "react";
 import { Card } from "primereact/card";
 import { InputText } from "primereact/inputtext";
 import { Button } from "primereact/button";
-import { Dialog } from "primereact/dialog"; // استيراد Dialog من PrimeReact
-import { InputText as PrimeInputText } from "primereact/inputtext"; // استيراد InputText
+import { Dialog } from "primereact/dialog";
+import { InputText as PrimeInputText } from "primereact/inputtext";
 import "./ChatSection.css";
 
 export default function ChatSection({
@@ -21,12 +21,10 @@ export default function ChatSection({
 
   if (!chatId) return null;
 
-  // دالة لفتح الديالوج
   const openAddUserDialog = () => {
     setShowAddUserDialog(true);
   };
 
-  // دالة لإغلاق الديالوج
   const closeAddUserDialog = () => {
     setShowAddUserDialog(false);
   };
@@ -34,7 +32,7 @@ export default function ChatSection({
   return (
     <Card title="Live Chat" className="chat-card">
       <div className="d-flex justify-content-end mb-3">
-        <Button label="رجوع إلى التذاكر" icon="pi pi-arrow-left" className="p-button-secondary" onClick={backToTickets} />
+        <Button label="رجوع إلى التذاكر" icon="pi pi-arrow-left" className="p-button-secondary rounded-1" onClick={backToTickets} />
       </div>
 
       <div className="chat-messages">
@@ -42,6 +40,7 @@ export default function ChatSection({
           const [sender, ...bodyParts] = msg.split(": ");
           const body = bodyParts.join(": ");
           const isMe = sender === "Admin";
+          console.log(sender)
 
           return (
             <div key={index} className={`chat-message ${isMe ? "me" : "other"}`}>
@@ -61,11 +60,11 @@ export default function ChatSection({
           placeholder="Type a message..."
           className="chat-text-input"
         />
-        <Button label="ارسال" onClick={sendMessage} className="chat-send-button" />
+        <Button label="ارسال" onClick={sendMessage} className="chat-send-button rounded-1" />
       </div>
 
       <div className="d-flex justify-content-start mt-3">
-        <Button label="إضافة مستخدم" icon="pi pi-user-plus" className="p-button-success" onClick={openAddUserDialog} />
+        <Button label="إضافة مستخدم" icon="pi pi-user-plus" className="p-button-success rounded-1" onClick={openAddUserDialog} />
       </div>
 
       <Dialog
@@ -83,8 +82,8 @@ export default function ChatSection({
             className="p-inputtext p-component w-100"
           />
           <div className="mt-3 d-flex justify-content-end">
-            <Button label="إضافة" icon="pi pi-check" className="p-button-primary" onClick={requestAddUser} />
-            <Button label="إغلاق" icon="pi pi-times" className="p-button-text" onClick={closeAddUserDialog} />
+            <Button label="إضافة" icon="pi pi-check" className="p-button-primary rounded-1" onClick={requestAddUser} />
+            <Button label="إغلاق" icon="pi pi-times" className="p-button-text rounded-1" onClick={closeAddUserDialog} />
           </div>
         </div>
       </Dialog>

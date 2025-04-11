@@ -13,18 +13,31 @@ export default function UserTicketsPanel({ tickets, openChat }) {
             <div className="row g-4">
                 {tickets.map((ticket) => (
                     <div className="col-12" key={ticket.id}>
-                        <Card title={`التذكرة: ${ticket.details}`} className="shadow">
-                            <p className="mb-3">{ticket.details}</p>
-                            {ticket.ticketChatId && (
-                                <div className="d-flex justify-content-end">
-                                    <Button
-                                        label="دردشة"
-                                        icon="pi pi-comments"
-                                        className="p-button-info"
-                                        onClick={() => openChat(ticket.ticketChatId)}
-                                    />
-                                </div>
-                            )}
+                        <Card title={`التذكرة: ${ticket.details}`} className="shadow-sm">
+                            <div className="d-flex gap-2 justify-content-between align-items-center">
+                                <p className="mb-3">{ticket.details}</p>
+                                {ticket.status === "Pending" ? (
+                                    <span 
+                                    style={{
+                                        backgroundColor:"#F97316",
+                                        padding: "10px",
+                                        borderRadius: "8px",
+                                        color: "#fff",
+                                    }}
+                                    >قيد المراجعة</span>
+                                ) : (
+                                    ticket.ticketChatId && (
+                                        <div className="d-flex justify-content-end">
+                                            <Button
+                                                label="دردشة"
+                                                icon="pi pi-comments"
+                                                className="p-button-info rounded-1"
+                                                onClick={() => openChat(ticket.ticketChatId)}
+                                            />
+                                        </div>
+                                    )
+                                )}
+                            </div>
                         </Card>
                     </div>
                 ))}

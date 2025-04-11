@@ -28,10 +28,11 @@ const Login = () => {
       });
 
       if (response.data.isSuccess && response.data.data.token) {
-        const { token, userName, roles, userId } = response.data.data;
+        const { token, userName, roles, userId, phoneNumber } = response.data.data;
         // حفظ البيانات في sessionStorage
         sessionStorage.setItem("token", token);
         sessionStorage.setItem("userName", userName);
+        sessionStorage.setItem("phoneNumber", phoneNumber);
         sessionStorage.setItem("roles", JSON.stringify(roles));
         sessionStorage.setItem("userId", userId);
 
