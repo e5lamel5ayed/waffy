@@ -7,9 +7,9 @@ export default function AddUserRequestsPanel({ addUserRequests, approveAddUserRe
         <div style={{ marginTop: "2rem" }}>
             <div className="p-d-flex p-flex-column">
                 {addUserRequests.map((req) => (
-                    <Card key={req.id} className="mb-3" >
+                    <Card key={req.id} className="mb-3 shadow-sm" >
                         <p>
-                            المستخدم <strong>{req.requestingUserName}</strong> يرغب في إضافة المستخدم <strong>{req.userToAddName}</strong> إلى المحادثة <strong>{req.chatId}</strong>
+                            المستخدم <strong>{req.requestingUserName}</strong> يرغب في إضافة المستخدم <strong>{req.userToAddName}</strong> إلى المحادثة <strong>{req.ticketName}</strong>
                         </p>
                         <Button
                             label="موافقة"

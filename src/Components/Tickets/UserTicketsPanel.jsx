@@ -13,9 +13,8 @@ export default function UserTicketsPanel({ tickets, openChat }) {
             <div className="row g-4">
                 {tickets.map((ticket) => (
                     <div className="col-12" key={ticket.id}>
-                        <Card title={`التذكرة: ${ticket.details}`} className="shadow-sm">
-                            <div className="d-flex gap-2 justify-content-between align-items-center">
-                                <p className="mb-3">{ticket.details}</p>
+                        <Card title={`اسم التذكره: ${ticket.ticketName}`} className="shadow-sm">
+                            <div className="d-flex gap-2 justify-content-end align-items-center">
                                 {ticket.status === "Pending" ? (
                                     <span 
                                     style={{

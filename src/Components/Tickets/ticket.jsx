@@ -17,7 +17,6 @@ export default function Ticket() {
   const [token, setToken] = useState(null);
   const [currentUser, setCurrentUser] = useState(null);
   const [chatId, setChatId] = useState(null);
-  const [details, setDetails] = useState("");
   const [tickets, setTickets] = useState([]);
   const [userToAdd, setUserToAdd] = useState("");
   const [messages, setMessages] = useState([]);
@@ -28,6 +27,15 @@ export default function Ticket() {
   const [inChatMode, setInChatMode] = useState(false);
   const [userTickets, setUserTickets] = useState([]);
   const toast = useRef(null);
+  const [formData, setFormData] = useState({
+    ticketName: "",
+    productOrServiceName: "",
+    productOrServiceDescription: "",
+    price: 0,
+    feeResponsibility: "",
+    otherPartyUsername: "",
+    createdAt: new Date().toISOString()
+  });
 
   const [requestDialogVisible, setRequestDialogVisible] = useState(false);
   useEffect(() => {
@@ -78,12 +86,13 @@ export default function Ticket() {
         "Content-Type": "application/json",
         Authorization: `Bearer ${token}`,
       },
-      body: JSON.stringify({ details }),
+      body: JSON.stringify(formData),
     })
       .then((res) => res.json())
       .then((data) => {
         showToast(data.message, 'success');
         setChatId(data.chatId);
+        setVisible(false);
       })
       .catch((error) => {
         showToast(error, 'danger');
@@ -130,7 +139,7 @@ export default function Ticket() {
       loadOldMessages(data.chatId);
       loadTickets();
     } catch (err) {
-      showToast(err , 'danger');
+      showToast(err, 'danger');
     }
   };
   const deleteTicket = async (ticketId) => {
@@ -181,7 +190,7 @@ export default function Ticket() {
       showToast(data.message, 'success');
       setUserToAdd("");
     } catch (err) {
-      showToast("فشل في إضافة المستخدم", err , 'danger');
+      showToast("فشل في إضافة المستخدم", err, 'danger');
     }
   };
 
@@ -353,12 +362,12 @@ export default function Ticket() {
           <div className="col-md-9 ticket-mop">
             <div className="container" style={{ maxHeight: 'calc(100vh - 100px)', overflowY: 'auto' }}>
               {currentUser.role === "Admin" && !inChatMode && (
-                  <AdminPanel
-                    tickets={tickets}
-                    approveTicket={approveTicket}
-                    deleteTicket={deleteTicket}
-                    openChat={openChat}
-                  />
+                <AdminPanel
+                  tickets={tickets}
+                  approveTicket={approveTicket}
+                  deleteTicket={deleteTicket}
+                  openChat={openChat}
+                />
               )}
 
               {currentUser.role === "User" && !inChatMode && (
@@ -383,10 +392,13 @@ export default function Ticket() {
         </div>
 
         <Dialog header="معاملة جديدة" visible={visible} onHide={() => setVisible(false)} style={{ width: '30vw' }} breakpoints={{ '960px': '75vw' }}>
-          <div>
-            <SubmitTicketForm details={details} setDetails={setDetails} submitTicket={submitTicket} />
-          </div>
+          <SubmitTicketForm
+            formData={formData}
+            setFormData={setFormData}
+            submitTicket={submitTicket}
+          />
         </Dialog>
+
 
         <Dialog
           header="طلبات اضافة مستخدمين"
