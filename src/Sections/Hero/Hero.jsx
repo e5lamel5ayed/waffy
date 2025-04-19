@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import img from "/assets/img.png";
 import img2 from "/assets/img2.png";
 import img3 from "/assets/img3.png";
@@ -18,6 +18,7 @@ const steps = [
 ];
 
 function Hero() {
+  const [isLoggedIn] = useState(!!sessionStorage.getItem('token'));
   return (
     <div className="hero" style={{ padding: '50px 10%', textAlign: 'center' }}>
       <h2> الوسيط الآمن في التعاملات المالية <span className="primary-text">وفّي</span></h2>
@@ -38,9 +39,20 @@ function Hero() {
           </React.Fragment>
         ))}
       </div>
-      <Link to="/Login">
-        <button className="btn" style={{ marginTop: '30px', padding: '10px 20px', fontSize: '18px', }}>سجل الآن</button>
+
+        {isLoggedIn ? (
+      <Link to="/ticket" className='text-decoration-none'>
+          <button className="btn" style={{ marginTop: '30px', padding: '10px 20px', fontSize: '18px', textDecoration:'none' }}>
+            انشئ معاملة
+          </button>
       </Link>
+        ) : (
+          <Link to="/Login" className='text-decoration-none'>
+          <button className="btn" style={{ marginTop: '30px', padding: '10px 20px', fontSize: '18px', textDecoration:'none' }}>
+            سجل الان
+          </button>
+          </Link>
+        )}
     </div>
   );
 }
