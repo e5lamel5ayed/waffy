@@ -9,7 +9,7 @@ const Login = () => {
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
   const navigate = useNavigate();
-  const clientId = "253049583987-ttskesid08shpobn9mensung1ma3opfk.apps.googleusercontent.com";
+  const clientId = "658660261683-37dhm0ka3eae1lfvd86cupsliv6p4dk1.apps.googleusercontent.com";
   useEffect(() => {
     setTimeout(() => {
       const googleButton = document.querySelector("div[aria-labelledby]");
