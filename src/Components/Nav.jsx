@@ -58,7 +58,7 @@ function Nav() {
             {isLoggedIn && (
               <Link to="/ticket">التذاكر</Link>
             )}
-            <a onClick={openWhatsApp}>تحدث معنا</a>
+            <a style={{cursor:'pointer'}} onClick={openWhatsApp}>تحدث معنا</a>
             <a href="#employment">التوظيف</a>
             <a href="#blog">المدونة</a>
             <a href="#business">وفّي أعمال</a>
