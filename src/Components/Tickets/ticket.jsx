@@ -43,18 +43,23 @@ export default function Ticket() {
     const userId = sessionStorage.getItem("userId");
     const userName = sessionStorage.getItem("userName");
     const phoneNumber = sessionStorage.getItem("phoneNumber");
+    const email = sessionStorage.getItem("email");
     const roles = JSON.parse(sessionStorage.getItem("roles") || "[]");
 
-    if (savedToken && userId && phoneNumber && userName && roles.length > 0) {
+    const isValidPhone = phoneNumber && phoneNumber !== "undefined" && phoneNumber !== "null";
+
+    if (savedToken  && userName && roles.length > 0) {
       setToken(savedToken);
       setCurrentUser({
         id: userId,
         username: userName,
-        phoneNumber: phoneNumber,
+        phoneNumber: isValidPhone ? phoneNumber : email,
+        email: email,
         role: roles[0],
       });
     }
   }, []);
+
   const showToast = (message, severity) => {
     toast.current.show({ severity: severity, summary: message, life: 5000 });
   };
@@ -298,15 +303,20 @@ export default function Ticket() {
           <div className="col-md-3">
             {/* بطاقة المستخدم */}
             <Card className="mb-3 shadow-sm p-3 bg-white">
-              <div className="d-flex align-items-center gap-4">
+              <div className="d-flex align-items-center ">
                 <div>
-                  <img src="/assets/client5.png" alt="User" className="rounded-circle me-3" style={{ width: '70px', height: '70px' }} />
-                </div>
-                <div>
-                  <div className="fw-bold mb-3">مرحبا {currentUser.username}</div>
-                  <div className="text-muted">{currentUser.phoneNumber}</div>
+                  <img src="/assets/client5.png" alt="User" className="rounded-circle m-auto" style={{ width: '70px', height: '70px' }} />
                 </div>
               </div>
+                <div>
+                  <div className="fw-bold mb-3">مرحبا {currentUser.username}</div>
+                  <div className="text-muted">
+                    {currentUser.phoneNumber === currentUser.email
+                      ? currentUser.email
+                      : currentUser.phoneNumber}
+                  </div>
+
+                </div>
             </Card>
 
             <div>

@@ -23,7 +23,7 @@ function Nav() {
   };
 
   const handleLogout = () => {
-    sessionStorage.removeItem('token');
+    sessionStorage.clear();
     setIsLoggedIn(false);
     window.location.reload();
     navigate('/login');

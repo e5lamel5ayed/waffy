@@ -7,7 +7,6 @@ import { Dialog } from 'primereact/dialog';
 export default function AdminPanel({ tickets, approveTicket, deleteTicket, openChat }) {
     const [confirmVisible, setConfirmVisible] = useState(false);
     const [selectedTicketId, setSelectedTicketId] = useState(null);
-
     const [dialogVisible, setDialogVisible] = useState(false);
     const [selectedTicket, setSelectedTicket] = useState(null);
 

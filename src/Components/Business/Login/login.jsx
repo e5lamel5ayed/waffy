@@ -45,24 +45,33 @@ const Login = () => {
       setError("فشل تسجيل الدخول، تحقق من البيانات!");
     }
   };
-
   const handleGoogleLoginSuccess = async (response) => {
     try {
       const { credential } = response;
+  
       const res = await axios.post("https://waffi.runasp.net/api/Account/GoogleLogin", {
         idToken: credential,
       });
-
+  
       if (res.data.isSuccess && res.data.data.token) {
-        sessionStorage.setItem("token", res.data.data.token);
+        const { token, userName, email, roles } = res.data.data;
+  
+        // حفظ البيانات في sessionStorage
+        sessionStorage.setItem("token", token);
+        sessionStorage.setItem("userName", userName);
+        sessionStorage.setItem("email", email);
+        sessionStorage.setItem("roles", JSON.stringify(roles));
+
+        // الانتقال للصفحة الرئيسية
         navigate("/");
       } else {
         setError("فشل تسجيل الدخول عبر جوجل!");
       }
     } catch {
-      setError("حدث خطأ أثناء تسجيل الدخول عبر جوجل! ");
+      setError("حدث خطأ أثناء تسجيل الدخول عبر جوجل!");
     }
   };
+  
 
   const handleGoogleLoginFailure = () => {
     setError("فشل تسجيل الدخول عبر جوجل!");
@@ -126,7 +135,14 @@ const Login = () => {
             <button type="submit" className="next mt-3 w-100 fw-bold">تسجيل الدخول</button>
             <div className="mt-3">
               <GoogleLogin
-                onSuccess={handleGoogleLoginSuccess} onError={handleGoogleLoginFailure} />
+                onSuccess={handleGoogleLoginSuccess}
+                onError={handleGoogleLoginFailure}
+                width="100%"
+                text="signin_with"
+                locale="ar"
+                shape="pill"
+              />
+
             </div>
             <div className="mt-4">
               <Link to="/register" style={{ textDecoration: "none" }}>

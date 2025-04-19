@@ -94,8 +94,9 @@ function SectionTwo() {
               <button className="btn-2" style={{ marginLeft: 'auto', marginRight: '180px' }}>سجل الان</button>
             </Link>
           ) : (
-
-            <button className="btn-2" style={{ marginLeft: 'auto', marginRight: '180px' }}>بيع الان</button>
+            <Link to="/ticket">
+              <button className="btn-2" style={{ marginLeft: 'auto', marginRight: '180px' }}>بيع الان</button>
+            </Link>
           )
         }
       </div>
