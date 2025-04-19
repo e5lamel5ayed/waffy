@@ -18,7 +18,7 @@ const steps = [
 ];
 
 function Hero() {
-  const [isLoggedIn] = useState(!!sessionStorage.getItem('token'));
+const [isLoggedIn] = useState(!!localStorage.getItem('waffi_token'));
   return (
     <div className="hero" style={{ padding: '50px 10%', textAlign: 'center' }}>
       <h2> الوسيط الآمن في التعاملات المالية <span className="primary-text">وفّي</span></h2>

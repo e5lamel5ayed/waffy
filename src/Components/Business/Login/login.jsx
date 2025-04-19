@@ -26,17 +26,17 @@ const Login = () => {
         phoneNumber: phone,
         password: password,
       });
-
+  
       if (response.data.isSuccess && response.data.data.token) {
         const { token, userName, roles, userId, phoneNumber } = response.data.data;
-        // حفظ البيانات في sessionStorage
-        sessionStorage.setItem("token", token);
-        sessionStorage.setItem("userName", userName);
-        sessionStorage.setItem("phoneNumber", phoneNumber);
-        sessionStorage.setItem("roles", JSON.stringify(roles));
-        sessionStorage.setItem("userId", userId);
-
-        // الإنتقال إلى الصفحة الرئيسية أو صفحة تذاكر
+  
+        // حفظ البيانات في localStorage بمفاتيح مخصصة
+        localStorage.setItem("waffi_token", token);
+        localStorage.setItem("waffi_userName", userName);
+        localStorage.setItem("waffi_phoneNumber", phoneNumber);
+        localStorage.setItem("waffi_roles", JSON.stringify(roles));
+        localStorage.setItem("waffi_userId", userId);
+  
         navigate("/ticket");
       } else {
         setError("حدث خطأ، لم يتم استلام التوكن!");
@@ -45,6 +45,7 @@ const Login = () => {
       setError("فشل تسجيل الدخول، تحقق من البيانات!");
     }
   };
+  
   const handleGoogleLoginSuccess = async (response) => {
     try {
       const { credential } = response;
@@ -56,14 +57,13 @@ const Login = () => {
       if (res.data.isSuccess && res.data.data.token) {
         const { token, userName, email, roles } = res.data.data;
   
-        // حفظ البيانات في sessionStorage
-        sessionStorage.setItem("token", token);
-        sessionStorage.setItem("userName", userName);
-        sessionStorage.setItem("email", email);
-        sessionStorage.setItem("roles", JSON.stringify(roles));
-
-        // الانتقال للصفحة الرئيسية
-        navigate("/");
+        // حفظ البيانات في localStorage بمفاتيح مخصصة
+        localStorage.setItem("waffi_token", token);
+        localStorage.setItem("waffi_userName", userName);
+        localStorage.setItem("waffi_email", email);
+        localStorage.setItem("waffi_roles", JSON.stringify(roles));
+  
+        navigate("/ticket");
       } else {
         setError("فشل تسجيل الدخول عبر جوجل!");
       }

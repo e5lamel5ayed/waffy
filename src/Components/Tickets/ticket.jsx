@@ -39,16 +39,16 @@ export default function Ticket() {
 
   const [requestDialogVisible, setRequestDialogVisible] = useState(false);
   useEffect(() => {
-    const savedToken = sessionStorage.getItem("token");
-    const userId = sessionStorage.getItem("userId");
-    const userName = sessionStorage.getItem("userName");
-    const phoneNumber = sessionStorage.getItem("phoneNumber");
-    const email = sessionStorage.getItem("email");
-    const roles = JSON.parse(sessionStorage.getItem("roles") || "[]");
-
+    const savedToken = localStorage.getItem("waffi_token");
+    const userId = localStorage.getItem("waffi_userId");
+    const userName = localStorage.getItem("waffi_userName");
+    const phoneNumber = localStorage.getItem("waffi_phoneNumber");
+    const email = localStorage.getItem("waffi_email");
+    const roles = JSON.parse(localStorage.getItem("waffi_roles") || "[]");
+  
     const isValidPhone = phoneNumber && phoneNumber !== "undefined" && phoneNumber !== "null";
-
-    if (savedToken  && userName && roles.length > 0) {
+  
+    if (savedToken && userName && roles.length > 0) {
       setToken(savedToken);
       setCurrentUser({
         id: userId,
@@ -59,6 +59,7 @@ export default function Ticket() {
       });
     }
   }, []);
+  
 
   const showToast = (message, severity) => {
     toast.current.show({ severity: severity, summary: message, life: 5000 });

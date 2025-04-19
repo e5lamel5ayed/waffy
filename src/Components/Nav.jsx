@@ -7,7 +7,7 @@ import LogoutIcon from '@mui/icons-material/Logout';
 function Nav() {
   const [isSidebarOpen, setSidebarOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
-  const [isLoggedIn, setIsLoggedIn] = useState(!!sessionStorage.getItem('token'));
+  const [isLoggedIn, setIsLoggedIn] = useState(!!localStorage.getItem('waffi_token'));
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -23,12 +23,16 @@ function Nav() {
   };
 
   const handleLogout = () => {
-    sessionStorage.clear();
+    localStorage.removeItem("waffi_token");
+    localStorage.removeItem("waffi_userId");
+    localStorage.removeItem("waffi_userName");
+    localStorage.removeItem("waffi_phoneNumber");
+    localStorage.removeItem("waffi_email");
+    localStorage.removeItem("waffi_roles");
+  
     setIsLoggedIn(false);
-    window.location.reload();
     navigate('/login');
   };
-  
   const phoneNumber = "+966553043449";
   const message = "مرحباً، أريد الاستفسار عن...";
 
