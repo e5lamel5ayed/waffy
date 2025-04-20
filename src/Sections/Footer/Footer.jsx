@@ -5,7 +5,7 @@ import InstagramIcon from "@mui/icons-material/Instagram";
 import LinkedInIcon from "@mui/icons-material/LinkedIn";
 import TwitterIcon from "@mui/icons-material/Twitter";
 import phone from "/assets/phone.png";
-import { FaFacebook, FaInstagram, FaXTwitter } from "react-icons/fa6";
+import { FaFacebook, FaInstagram, FaLinkedinIn, FaXTwitter } from "react-icons/fa6";
 import './Footer.css'
 
 
@@ -37,13 +37,13 @@ const Footer = () => {
         <Box sx={{ flex: "1 1 50%", position: "relative", mb: isMobile ? 4 : 0 }}>
           <Box
             sx={{
-              width: 430,
-              height: 420,
-              border: "2px dashed rgba(255, 255, 255, 0.5)",
+              width: 476,
+              height: 477,
+              border: "2px dashed rgba(255, 255, 255, 1)",
               borderRadius: "50%",
               position: "absolute",
-              top: "10%",
-              left: "10%",
+              top: "11%",
+              left: "21%",
               transform: "translate(-50%, -50%)",
               animation: `${rotateAnimation} 15s linear infinite`,
               display: isMobile ? "none" : "block",
@@ -53,12 +53,12 @@ const Footer = () => {
           <Box
             sx={{
               width: 330,
-              height: 320,
-              border: "2px dashed rgba(255, 255, 255, 0.5)",
+              height: 330,
+              border: "2px dashed rgba(255, 255, 255, 1)",
               borderRadius: "50%",
               position: "absolute",
-              top: "17%",
-              left: "19%",
+              top: "22%",
+              left: "29%",
               transform: "translate(-50%, -50%)",
               animation: `${rotateAnimation} 15s linear infinite`,
               display: isMobile ? "none" : "block",
@@ -83,21 +83,30 @@ const Footer = () => {
         <div class="d-flex flex-column align-items-end text-end p-4" dir="">
           <h1 class="text-white fw-bold fs-1 mb-3">حمل وفّي وابدأ الآن</h1>
           <p class="text-white fw-bold fs-4 mt-2">انضم لوفّي الآن واحفظ حقك</p>
+
           <div className="d-flex gap-3">
-            <button class="mt-3 px-3 py-2 border border-white fs-5 rounded bg-white text-black 
-                 hover-bg-white hover-text-dark transition">
+            <a
+              href="https://play.google.com/store/apps/details?id=com.waffy"
+              target="_blank"
+              rel="noopener noreferrer"
+              class="mt-3 px-3 py-2 border border-white fs-5 rounded bg-white text-black text-decoration-none d-flex align-items-center gap-2"
+            >
               تطبيق الاندرويد
-              <img src="/assets/androidLogo.svg" width={30} />
+              <img src="/assets/androidLogo.svg" width="30" />
+            </a>
 
-            </button>
-            <button class="mt-3 px-4 py-0 border border-white text-black fs-6 rounded bg-white 
-                 hover-bg-white hover-text-dark transition">
+            <a
+              href="https://apps.apple.com/sa/app/%D9%88%D9%81%D9%8A-waffy/id1659421204?mt=8"
+              target="_blank"
+              rel="noopener noreferrer"
+              class="mt-3 px-4 py-3 border border-white fs-5 rounded bg-white text-black text-decoration-none d-flex align-items-center gap-2"
+            >
               تطبيق الايفون
-              <img src="/assets/appleLogo.svg" width={30} />
-            </button>
+              <img src="/assets/appleLogo.svg" width="30" />
+            </a>
           </div>
-
         </div>
+
 
       </Box>
 
@@ -156,9 +165,9 @@ const Footer = () => {
           </div>
 
           <div className="footerr-social ">
-            <a href="#"><FaXTwitter size={30} /></a>
-            <a href="#"><FaInstagram size={30} /></a>
-            <a href="#"><FaFacebook size={30} /></a>
+            <a href="https://x.com/GetWaffyApp"><FaXTwitter size={30} /></a>
+            <a href="https://www.instagram.com/getwaffyapp/"><FaInstagram size={30} /></a>
+            <a href="https://www.linkedin.com/company/waffyapp/"><FaLinkedinIn size={30} /></a>
           </div>
         </div>
       </Box>

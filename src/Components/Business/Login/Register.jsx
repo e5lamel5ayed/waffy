@@ -36,12 +36,18 @@ const Register = () => {
             setError("فشل إنشاء الحساب، تحقق من البيانات!");
         }
     };
+    const phoneNumber = "+966553043449";
+    const message = "مرحباً، أريد الاستفسار عن...";
 
+    const openWhatsApp = () => {
+        const url = `https://wa.me/${phoneNumber}?text=${encodeURIComponent(message)}`;
+        window.open(url, '_blank');
+    };
     return (
         <div className="bg-white" style={{ height: '130vh' }}>
             <div className="nav-bar bg-white">
                 <div className="container w-75 d-flex justify-content-between align-items-center">
-                    <button className="btnn border px-4 d-flex align-items-center">
+                    <button onClick={openWhatsApp} className="btnn border px-4 d-flex align-items-center">
                         تواصل معنا
                         <img src="/assets/img/whatsapp.svg" className="text-success mx-2" alt="WhatsApp" />
                     </button>

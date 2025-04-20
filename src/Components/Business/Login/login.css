@@ -74,3 +74,14 @@
     width: 22px;
     height: 22px;
 }
+
+@media (min-width: 1600px) and (max-width: 2200px) {
+    .profile-img {
+        position: absolute;
+        top: 30%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        width: 220px;
+        height: 220px;
+    }
+}
