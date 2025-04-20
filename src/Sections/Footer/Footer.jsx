@@ -35,6 +35,7 @@ const Footer = () => {
         }}
       >
         <Box sx={{ flex: "1 1 50%", position: "relative", mb: isMobile ? 4 : 0 }}>
+          {/* الدائرة الكبيرة */}
           <Box
             sx={{
               width: 476,
@@ -47,9 +48,15 @@ const Footer = () => {
               transform: "translate(-50%, -50%)",
               animation: `${rotateAnimation} 15s linear infinite`,
               display: isMobile ? "none" : "block",
+              "@media (min-width: 1600px) and (max-width: 2200px)": {
+                left: "32%",
+                width: 480,
+                height: 480,
+              },
             }}
           ></Box>
 
+          {/* الدائرة الصغيرة */}
           <Box
             sx={{
               width: 330,
@@ -62,6 +69,12 @@ const Footer = () => {
               transform: "translate(-50%, -50%)",
               animation: `${rotateAnimation} 15s linear infinite`,
               display: isMobile ? "none" : "block",
+              "@media (min-width: 1600px) and (max-width: 2200px)": {
+                left: "35%",
+                width: 340,
+                top: "18%",
+                height: 340,
+              },
             }}
           ></Box>
 
@@ -75,10 +88,16 @@ const Footer = () => {
               marginTop: "30px",
               marginRight: "220px",
               zIndex: 2,
+
+            }}
+            sx={{
+              "@media  (max-width: 768px) ": {
+                marginTop: "0",
+                marginRight: "0",
+              },
             }}
           />
         </Box>
-
 
         <div class="d-flex flex-column align-items-end text-end p-4" dir="">
           <h1 class="text-white fw-bold fs-1 mb-3">حمل وفّي وابدأ الآن</h1>
