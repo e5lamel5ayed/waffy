@@ -22,6 +22,9 @@ function SecondNav() {
   
     setIsLoggedIn(false);
     navigate('/login');
+    setTimeout(() => {
+      window.location.reload();
+    }, 100); 
   };
   
   const toggleSidebar = () => {

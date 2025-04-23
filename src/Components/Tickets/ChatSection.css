@@ -3,6 +3,16 @@
   max-width: 1000px;
   margin: auto;
 }
+.chat-message.User .message-bubble {
+  background-color: #f1f1f1; /* Color for User messages */
+  text-align: left;
+}
+
+.chat-message.Admin .message-bubble {
+  background-color: #007bff; /* Color for Admin messages */
+  color: white;
+  text-align: right;
+}
 
 .chat-messages {
   height: 300px;
@@ -18,11 +28,11 @@
   margin-bottom: 0.75rem;
 }
 
-.chat-message.me {
+.chat-message.Admin {
   justify-content: flex-end;
 }
 
-.chat-message.other {
+.chat-message.User {
   justify-content: flex-start;
 }
 
@@ -35,7 +45,7 @@
   box-shadow: 0 1px 4px rgba(0, 0, 0, 0.1);
 }
 
-.chat-message.me .message-bubble {
+.chat-message.Admin .message-bubble {
   background-color: #cce5ff;
   color: #004085;
 }

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { Card } from "primereact/card";
 import { InputText } from "primereact/inputtext";
 import { Button } from "primereact/button";
@@ -14,20 +14,23 @@ export default function ChatSection({
   sendMessage,
   backToTickets,
   requestAddUser,
+  userRole,
   userToAdd,
   setUserToAdd,
 }) {
   const [showAddUserDialog, setShowAddUserDialog] = useState(false);
+  const messagesEndRef = useRef(null);
+
+  useEffect(() => {
+    if (messagesEndRef.current) {
+      messagesEndRef.current.scrollIntoView({ behavior: "auto" });
+    }
+  }, [messages]);
 
   if (!chatId) return null;
 
-  const openAddUserDialog = () => {
-    setShowAddUserDialog(true);
-  };
-
-  const closeAddUserDialog = () => {
-    setShowAddUserDialog(false);
-  };
+  const openAddUserDialog = () => setShowAddUserDialog(true);
+  const closeAddUserDialog = () => setShowAddUserDialog(false);
 
   return (
     <Card title="Live Chat" className="chat-card">
@@ -37,20 +40,18 @@ export default function ChatSection({
 
       <div className="chat-messages">
         {messages.map((msg, index) => {
-          const [sender, ...bodyParts] = msg.split(": ");
-          const body = bodyParts.join(": ");
-          const isMe = sender === "Admin";
-          console.log(sender)
+          const isCurrentUser = msg.role === userRole;
 
           return (
-            <div key={index} className={`chat-message ${isMe ? "me" : "other"}`}>
+            <div key={index} className={`chat-message ${isCurrentUser ? "Admin" : "User"}`}>
               <div className="message-bubble">
-                <strong>{sender}</strong>
-                <p>{body}</p>
+                <strong>{msg.sender} ({msg.role})</strong>
+                <p>{msg.body}</p>
               </div>
             </div>
           );
         })}
+        <div ref={messagesEndRef}></div>
       </div>
 
       <div className="chat-input">

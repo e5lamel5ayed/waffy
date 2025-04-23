@@ -1,12 +1,9 @@
-import { Box, Link, Typography, keyframes, useMediaQuery } from "@mui/material";
-import AppleIcon from "@mui/icons-material/Apple";
-import AndroidIcon from "@mui/icons-material/Android";
-import InstagramIcon from "@mui/icons-material/Instagram";
-import LinkedInIcon from "@mui/icons-material/LinkedIn";
-import TwitterIcon from "@mui/icons-material/Twitter";
+import { Box, keyframes, useMediaQuery } from "@mui/material";
 import phone from "/assets/phone.png";
-import { FaFacebook, FaInstagram, FaLinkedinIn, FaXTwitter } from "react-icons/fa6";
+import { FaInstagram, FaLinkedinIn, FaXTwitter } from "react-icons/fa6";
 import './Footer.css'
+import {Link as ScrollLink} from 'react-scroll';
+import { Link } from "react-router-dom";
 
 
 
@@ -14,7 +11,13 @@ const rotateAnimation = keyframes`
   from { transform: rotate(0deg); }
   to { transform: rotate(360deg); }
 `;
+const phoneNumber = "+966553043449";
+const message = "مرحباً، أريد الاستفسار عن...";
 
+const openWhatsApp = () => {
+  const url = `https://wa.me/${phoneNumber}?text=${encodeURIComponent(message)}`;
+  window.open(url, '_blank');
+};
 const Footer = () => {
   const isMobile = useMediaQuery("(max-width:600px)");
 
@@ -141,12 +144,63 @@ const Footer = () => {
               الوسيط الآمن<br /> للتعامل بين الأفراد
             </p>
           </div>
-          <div className="footerr-links ">
-            <a href="#" className="footerr-link ">لماذا وفي</a>
-            <a href="#" className="footerr-link">كيف تستخدم وفي</a>
-            <a href="#" className="footerr-link">وفي أفراد</a>
-            <a href="#" className="footerr-link">اتصل بنا</a>
+
+          <div className="footerr-links">
+            <ScrollLink
+              to="slider-container"
+              className="footerr-link"
+              smooth={true}
+              duration={500}
+              offset={-100}
+              style={{ cursor: 'pointer' }} 
+            >
+              الميزات
+            </ScrollLink>
+
+            <ScrollLink
+              to="faq-section2"
+              className="footerr-link"
+              smooth={true}
+              duration={500}
+              offset={-100}
+              style={{ cursor: 'pointer' }} 
+            >
+              الأسئلة الشائعة
+            </ScrollLink>
+
+            <Link
+              to="/blog"
+              className="footerr-link"
+              style={{ cursor: 'pointer' }} 
+            >
+              المدونة
+            </Link>
+
+            <Link
+              to="/business"
+              className="footerr-link"
+              style={{ cursor: 'pointer' }} 
+            >
+              وفّي أعمال
+            </Link>
+
+            <Link
+              to="/employment"
+              className="footerr-link"
+              style={{ cursor: 'pointer' }} 
+            >
+              التوظيف
+            </Link>
+
+            <a
+              className="footerr-link"
+              onClick={openWhatsApp}
+              style={{ cursor: 'pointer' }} 
+            >
+              تحدث معنا
+            </a>
           </div>
+
         </div>
       </Box>
 
@@ -170,7 +224,6 @@ const Footer = () => {
           width: "90%",
         }}
       >
-        {/* القسم السفلي */}
         <div className="footerr-bottom fw-600" dir="rtl">
           <div className="footerr-rights ">
             <p>وفي
@@ -178,7 +231,6 @@ const Footer = () => {
           </div>
 
           <div className="footerr-center">
-            <span>Powered By Gotrah</span>
             <a href="#" className="footerr-policy">الشروط والأحكام</a>
             <a href="#" className="footerr-policy">سياسة الخصوصية</a>
           </div>

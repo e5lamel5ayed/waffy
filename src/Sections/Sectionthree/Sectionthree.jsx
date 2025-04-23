@@ -1,9 +1,11 @@
-import React from "react";
+import React, { useState } from "react";
 import "./Sectionthree.css";
 import { Button } from "@mui/material";
 import sellingImage from "/assets/progres.png";
+import { Link } from "react-router-dom";
 
 const Sectionthree = () => {
+  const [isLoggedIn] = useState(!!localStorage.getItem('waffi_token'));
   return (
     <div className="selling-section">
       <div className="image-container">
@@ -37,9 +39,20 @@ const Sectionthree = () => {
             aria-invalid="false"
             aria-required="true"
           />
-          <Button variant="contained" className="submit-btn">
-            أنشئ معاملة
-          </Button>
+          {isLoggedIn ? (
+            <Link to="/ticket">
+
+              <Button variant="contained" className="submit-btn">
+                أنشئ معاملة
+              </Button>
+            </Link>
+          ) : (
+            <Link to="/login">
+              <Button variant="contained" className="submit-btn">
+                أنشئ معاملة
+              </Button>
+            </Link>
+          )}
         </div>
       </div>
     </div>

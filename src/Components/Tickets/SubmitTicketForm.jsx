@@ -26,6 +26,7 @@ export default function SubmitTicketForm({
                     placeholder="اسم المعاملة"
                     value={formData.ticketName}
                     onChange={(e) => handleChange("ticketName", e.target.value)}
+                    required
                 />
             </div>
 
@@ -34,6 +35,7 @@ export default function SubmitTicketForm({
                     placeholder="اسم المنتج أو الخدمة"
                     value={formData.productOrServiceName}
                     onChange={(e) => handleChange("productOrServiceName", e.target.value)}
+                    required
                 />
             </div>
 
@@ -44,16 +46,18 @@ export default function SubmitTicketForm({
                     onChange={(e) => handleChange("productOrServiceDescription", e.target.value)}
                     rows={3}
                     autoResize
+                    required
                 />
             </div>
 
             <div className="mb-3">
                 <InputText
                     placeholder="السعر"
-                    type="number"
                     value={formData.price}
-                    onChange={(e) => handleChange("price", parseFloat(e.target.value))}
+                    onChange={(e) => handleChange("price", e.target.value)}
+                    required
                 />
+
             </div>
 
             <div className="mb-3">

@@ -1,6 +1,7 @@
 import React from "react";
 import styles from "./Sectionsix.module.css";
 import group from "/assets/Group.png";
+import { Link } from "react-router-dom";
 
 const SectionSix = () => {
   return (
@@ -21,7 +22,9 @@ const SectionSix = () => {
             الطرفـــين في المـــعـــامـــلات التي تـــديـــرهــــــــــــا
             بأمـــــــــان وسهـــــولــــــــة.
           </p>
+          <Link to="/ticket">
           <button className={styles.joinButton}>انضم الآن</button>
+          </Link>
         </div>
       </div>
 

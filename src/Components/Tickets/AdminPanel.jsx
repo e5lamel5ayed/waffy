@@ -50,9 +50,20 @@ export default function AdminPanel({ tickets, approveTicket, deleteTicket, openC
                         <div><strong>الطرف الآخر:</strong> {selectedTicket.otherPartyUsername}</div>
                         <div><strong>اسم المنتج / الخدمة:</strong> {selectedTicket.productOrServiceName}</div>
                         <div><strong>الوصف:</strong> {selectedTicket.productOrServiceDescription}</div>
-                        <div><strong>السعر:</strong> {selectedTicket.price} ريال</div>
+                        <div><strong>السعر:</strong> {selectedTicket.price} </div>
                         <div><strong>مسؤول الرسوم:</strong> {selectedTicket.feeResponsibility}</div>
-                        <div><strong>تاريخ الإنشاء:</strong> {new Date(selectedTicket.createdAt).toLocaleString()}</div>
+                        <div>
+                            <strong>تاريخ الإنشاء:</strong>{" "}
+                            {new Date(selectedTicket.createdAt.replace(/Z$/, "")).toLocaleString("eg-EG", {
+                                year: 'numeric',
+                                month: '2-digit',
+                                day: '2-digit',
+                                hour: '2-digit',
+                                minute: '2-digit',
+                                second: '2-digit',
+                                hour12: true
+                            })}
+                        </div>
                         <div><strong>الحالة:</strong>
                             <span style={{ fontWeight: 'bold', color: selectedTicket.status === "Approved" ? 'green' : 'orange', marginRight: '5px' }}>
                                 {selectedTicket.status === "Approved" ? "موافقة" : selectedTicket.status === "Pending" ? "قيد الانتظار" : selectedTicket.status}

@@ -31,7 +31,7 @@ export default function Ticket() {
     ticketName: "",
     productOrServiceName: "",
     productOrServiceDescription: "",
-    price: 0,
+    price: "",
     feeResponsibility: "",
     otherPartyUsername: "",
     createdAt: new Date().toISOString()
@@ -45,9 +45,9 @@ export default function Ticket() {
     const phoneNumber = localStorage.getItem("waffi_phoneNumber");
     const email = localStorage.getItem("waffi_email");
     const roles = JSON.parse(localStorage.getItem("waffi_roles") || "[]");
-  
+
     const isValidPhone = phoneNumber && phoneNumber !== "undefined" && phoneNumber !== "null";
-  
+
     if (savedToken && userName && roles.length > 0) {
       setToken(savedToken);
       setCurrentUser({
@@ -59,7 +59,7 @@ export default function Ticket() {
       });
     }
   }, []);
-  
+
 
   const showToast = (message, severity) => {
     toast.current.show({ severity: severity, summary: message, life: 5000 });
@@ -72,7 +72,11 @@ export default function Ticket() {
       });
       const data = await res.json();
       if (!res.ok) throw new Error(data.message || "Failed to load old messages");
-      const formattedMessages = data.map(msg => `${msg.userName}: ${msg.body}`);
+      const formattedMessages = data.map(msg => ({
+        sender: msg.userName,
+        body: msg.body,
+        role: msg.role,
+      }));
       setMessages(formattedMessages);
     } catch (err) {
       console.error("Error loading old messages:", err);
@@ -86,24 +90,49 @@ export default function Ticket() {
   }, [chatId]);
 
   const submitTicket = () => {
+    const now = new Date();
+    const localISO = new Date(now.getTime() - now.getTimezoneOffset() * 60000).toISOString();
+
+    const dataToSend = {
+      ...formData,
+      createdAt: localISO,
+    };
+
+
     fetch("https://waffi.runasp.net/api/tickets/request", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
         Authorization: `Bearer ${token}`,
       },
-      body: JSON.stringify(formData),
+      body: JSON.stringify(dataToSend),
     })
       .then((res) => res.json())
       .then((data) => {
         showToast(data.message, 'success');
         setChatId(data.chatId);
-        setVisible(false);
+        setVisible(false); // يقفل الدايلوج
+
+        // تفضية الحقول
+        setFormData({
+          ticketName: "",
+          productOrServiceName: "",
+          productOrServiceDescription: "",
+          price: "",
+          feeResponsibility: null,
+          otherPartyUsername: ""
+        });
+
+        loadTickets();
+        loadUserTickets();
+        setTickets([]);
       })
+
       .catch((error) => {
         showToast(error, 'danger');
       });
   };
+
 
   const loadTickets = () => {
     fetch("https://waffi.runasp.net/api/tickets/GetAllTickets", {
@@ -139,7 +168,7 @@ export default function Ticket() {
       );
       const data = await response.json();
       if (!response.ok) throw new Error(data.message || "Failed to approve ticket");
-
+      loadUserTickets();
       showToast(data.message, 'success');
       setChatId(data.chatId);
       loadOldMessages(data.chatId);
@@ -216,11 +245,15 @@ export default function Ticket() {
     })
       .then((res) => res.json())
       .then((data) => {
-        alert(data.message);
+        showToast(data.message, 'success');
         loadAddUserRequests();
       })
-      .catch((err) => console.error("Approve Add User Request Error: ", err));
+      .catch((err) => {
+        console.error("Approve Add User Request Error: ", err);
+        showToast("حدث خطأ أثناء الموافقة على الطلب", 'error'); // اختياري: توست للخطأ
+      });
   };
+
 
   useEffect(() => {
     if (!token || !currentUser) return;
@@ -245,12 +278,19 @@ export default function Ticket() {
       setChatId(newChatId);
       loadOldMessages(newChatId);
       connection.invoke("JoinChat", newChatId).catch(console.error);
+
+      loadUserTickets();
     });
 
 
-    connection.on("ReceiveMessage", (sender, messageBody) => {
-      setMessages((prev) => [...prev, `${sender}: ${messageBody}`]);
+    connection.on("ReceiveMessage", (sender, messageBody, role) => {
+      setMessages((prev) => [
+        ...prev,
+        { sender, body: messageBody, role }
+      ]);
     });
+
+
 
     connection.on("NewAddUserRequest", (requestId) => {
       if (currentUser.role === "Admin") {
@@ -274,13 +314,18 @@ export default function Ticket() {
   }, [token, currentUser]);
 
   const sendMessage = () => {
-    if (connectionRef.current && message) {
+    const trimmedMessage = message.trim();
+    if (connectionRef.current && trimmedMessage) {
       connectionRef.current
-        .invoke("SendMessage", chatId, message)
-        .then(() => setMessage(""))
+        .invoke("SendMessage", chatId, trimmedMessage)
+        .then(() => {
+          // ما تضيفش الرسالة يدويًا هنا
+          setMessage(""); // فقط فضي التكست
+        })
         .catch(console.error);
     }
   };
+
 
   const openChat = (chatId) => {
     setChatId(chatId);
@@ -309,15 +354,15 @@ export default function Ticket() {
                   <img src="/assets/client5.png" alt="User" className="rounded-circle m-auto" style={{ width: '70px', height: '70px' }} />
                 </div>
               </div>
-                <div>
-                  <div className="fw-bold mb-3">مرحبا {currentUser.username}</div>
-                  <div className="text-muted">
-                    {currentUser.phoneNumber === currentUser.email
-                      ? currentUser.email
-                      : currentUser.phoneNumber}
-                  </div>
-
+              <div>
+                <div className="fw-bold mb-3">مرحبا {currentUser.username}</div>
+                <div className="text-muted">
+                  {currentUser.phoneNumber === currentUser.email
+                    ? currentUser.email
+                    : currentUser.phoneNumber}
                 </div>
+
+              </div>
             </Card>
 
             <div>
@@ -394,8 +439,10 @@ export default function Ticket() {
                   sendMessage={sendMessage}
                   backToTickets={backToTickets}
                   userToAdd={userToAdd}
+                  userRole={currentUser.role}
                   setUserToAdd={setUserToAdd}
                   requestAddUser={requestAddUser}
+                  currentUser={currentUser}
                 />
               )}
             </div>

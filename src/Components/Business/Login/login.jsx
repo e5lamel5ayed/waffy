@@ -55,12 +55,12 @@ const Login = () => {
       });
   
       if (res.data.isSuccess && res.data.data.token) {
-        const { token, userName, email, roles } = res.data.data;
+        const { token, userName, email, roles, userId } = res.data.data;
   
-        // حفظ البيانات في localStorage بمفاتيح مخصصة
         localStorage.setItem("waffi_token", token);
         localStorage.setItem("waffi_userName", userName);
         localStorage.setItem("waffi_email", email);
+        localStorage.setItem("waffi_userId", userId);
         localStorage.setItem("waffi_roles", JSON.stringify(roles));
   
         navigate("/ticket");

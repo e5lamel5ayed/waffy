@@ -32,7 +32,12 @@ function Nav() {
   
     setIsLoggedIn(false);
     navigate('/login');
+  
+    setTimeout(() => {
+      window.location.reload();
+    }, 100); 
   };
+  
   const phoneNumber = "+966553043449";
   const message = "مرحباً، أريد الاستفسار عن...";
 

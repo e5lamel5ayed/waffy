@@ -90,12 +90,12 @@ function SectionTwo() {
       <div className="w-100">
         {activeTab === 'seller' ?
           (
-            <Link to="/Login">
-              <button className="btn-2" style={{ marginLeft: 'auto', marginRight: '180px' }}>سجل الان</button>
+            <Link to="/ticket" style={{ textDecoration: 'none' }}>
+              <button className="btn-2" style={{ marginLeft: 'auto', marginRight: '180px', textDecoration: 'none' }}> بيع الآن</button>
             </Link>
           ) : (
-            <Link to="/ticket">
-              <button className="btn-2" style={{ marginLeft: 'auto', marginRight: '180px' }}>بيع الان</button>
+            <Link to="/ticket" style={{ textDecoration: 'none' }}>
+              <button className="btn-2" style={{ marginLeft: 'auto', marginRight: '180px' }}> اشتر الآن</button>
             </Link>
           )
         }
